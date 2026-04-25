@@ -259,44 +259,58 @@ function createProject(name, content, templateName, useLocal) {
         process.exit(1);
     }
 
-    console.log(`\x1b[34mCreating ${templateName} with React-like structure in ${isCurrentDir ? 'current directory' : targetDir}...\x1b[0m`);
+    console.log(`\x1b[34mCreating modular ${templateName} in ${isCurrentDir ? 'current directory' : targetDir}...\x1b[0m`);
     
     if (!isCurrentDir) {
         fs.mkdirSync(targetDir);
     }
 
-    // Create directories
+    // Create Modular Directories
     const jsDir = path.join(targetDir, 'js');
     const cssDir = path.join(targetDir, 'css');
-    if (!fs.existsSync(jsDir)) fs.mkdirSync(jsDir);
-    if (!fs.existsSync(cssDir)) fs.mkdirSync(cssDir);
+    const cssCompDir = path.join(cssDir, 'components');
+    const jsModDir = path.join(jsDir, 'modules');
+    
+    [jsDir, cssDir, cssCompDir, jsModDir].forEach(d => {
+        if (!fs.existsSync(d)) fs.mkdirSync(d);
+    });
 
-    // Default app.js logic
-    const appJs = `// RAVN UI - Custom App Logic
+    // Modular CSS
+    const layoutCss = `/* Layout Core Styles */
+.app-container { min-height: 100vh; display: flex; flex-direction: column; }`;
+    const dashboardCss = `/* Dashboard Specific Styles */
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-6); }`;
+
+    // Modular JS
+    const dashboardJs = `// Dashboard Logic Module
+export const initDashboard = () => {
+    console.log('Dashboard Module Initialized');
+};`;
+    const appJs = `// Main Application Entry
+import { initDashboard } from './modules/dashboard.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('RAVN UI Project Initialized');
+    initDashboard();
 });`;
-
-    // Default app.css
-    const appCss = `/* Custom Styles */
-body {
-    background-color: var(--muted);
-}`;
 
     let finalContent = content;
     const uiCssPath = useLocal ? './node_modules/@ravn-ui/core/dist/ui.css' : 'https://unpkg.com/@ravn-ui/core/dist/ui.css';
     const themesCssPath = useLocal ? './node_modules/@ravn-ui/core/dist/themes.css' : 'https://unpkg.com/@ravn-ui/core/dist/themes.css';
     const uiJsPath = useLocal ? './node_modules/@ravn-ui/core/dist/ui.js' : 'https://unpkg.com/@ravn-ui/core/dist/ui.js';
 
-    // Inject links into template
+    // Inject modular links into template
     finalContent = content
-        .replace(/<link rel="stylesheet" href="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.css">/g, `<link rel="stylesheet" href="${uiCssPath}">\n    <link rel="stylesheet" href="${themesCssPath}">\n    <link rel="stylesheet" href="./css/app.css">`)
+        .replace(/<link rel="stylesheet" href="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.css">/g, 
+            `<link rel="stylesheet" href="${uiCssPath}">\n    <link rel="stylesheet" href="${themesCssPath}">\n    <link rel="stylesheet" href="./css/layout.css">\n    <link rel="stylesheet" href="./css/components/dashboard.css">`)
         .replace(/<link rel="stylesheet" href="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/themes\.css">/g, '')
-        .replace(/<script src="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.js"><\/script>/g, `<script src="${uiJsPath}"></script>\n    <script src="./js/app.js"></script>`);
+        .replace(/<script src="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.js"><\/script>/g, 
+            `<script src="${uiJsPath}"></script>\n    <script type="module" src="./js/app.js"></script>`);
     
     fs.writeFileSync(path.join(targetDir, 'index.html'), finalContent);
     fs.writeFileSync(path.join(jsDir, 'app.js'), appJs);
-    fs.writeFileSync(path.join(cssDir, 'app.css'), appCss);
+    fs.writeFileSync(path.join(jsModDir, 'dashboard.js'), dashboardJs);
+    fs.writeFileSync(path.join(cssDir, 'layout.css'), layoutCss);
+    fs.writeFileSync(path.join(cssCompDir, 'dashboard.css'), dashboardCss);
 
     if (useLocal) {
         // Create basic package.json
@@ -320,12 +334,14 @@ body {
         }
     }
     
-    console.log('\n\x1b[32mSuccess! Your premium project is ready.\x1b[0m');
-    console.log(`\x1b[1mFolder structure:\x1b[0m`);
+    console.log('\n\x1b[32mSuccess! Your modular project is ready.\x1b[0m');
+    console.log(`\x1b[1mModular Folder Structure:\x1b[0m`);
     console.log(`  ├── css/`);
-    console.log(`  │   └── app.css`);
+    console.log(`  │   ├── layout.css`);
+    console.log(`  │   └── components/dashboard.css`);
     console.log(`  ├── js/`);
-    console.log(`  │   └── app.js`);
+    console.log(`  │   ├── app.js (Entry)`);
+    console.log(`  │   └── modules/dashboard.js`);
     console.log(`  ├── index.html`);
     if (useLocal) console.log(`  └── package.json`);
     
