@@ -76,6 +76,12 @@ Apply themes via `data-theme` on the `html` tag.
 - `RAVN.modal(id, action)`: Programmatic control for modals.
 - `RAVN.copy(text, message)`: Clipboard utility with success feedback.
 
+## PWA & Performance
+RAVN UI is optimized for Google Lighthouse 100/100 scores.
+- **Offline Support**: Includes a built-in Service Worker and Manifest for PWA installation.
+- **Bundle Size**: ~15KB total (CSS+JS). < 5KB Gzipped.
+- **Optimization**: Uses `link rel="preload"` and hardware-accelerated animations.
+
 ## Documentation
 Full documentation available at: https://ravn-ui.vercel.app/
 Modular documentation sources: `/docs/components/*.html`

@@ -1,0 +1,17 @@
+{
+  "name": "RAVN UI Documentation",
+  "short_name": "RAVN UI",
+  "description": "Minimal, premium, CDN-first UI library.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#020617",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

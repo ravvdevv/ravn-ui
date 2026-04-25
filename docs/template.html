@@ -4,10 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAVN UI | Documentation</title>
+    <title>RAVN UI — Elite Minimal Design System</title>
+    <meta name="description" content="A high-density, premium, CDN-first UI library built for the future of SaaS. 15KB total, 0 dependencies.">
+    <meta name="keywords" content="UI Library, SaaS UI, Minimal Design, CSS Framework, Design System, Elite Web Design">
+    <meta name="author" content="RAVN UI Team">
+    <meta name="theme-color" content="#020617">
+    
+    <!-- OpenGraph (Facebook/Discord) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="RAVN UI — Elite Minimal Design System">
+    <meta property="og:description" content="Build premium SaaS interfaces in minutes with a 15KB vanilla core.">
+    <meta property="og:image" content="https://ravn-ui.vercel.app/logo.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RAVN UI — Elite Minimal Design System">
+    <meta name="twitter:description" content="The design system for those who build the future. Minimal, fast, and beautiful.">
+    <meta name="twitter:image" content="https://ravn-ui.vercel.app/logo.png">
+
+    <!-- PWA & Mobile -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="icon" href="logo.png" type="image/png">
+    
+    <!-- Performance -->
+    <link rel="preload" href="dist/ui.css" as="style">
+    <link rel="preload" href="dist/ui.js" as="script">
     <link rel="stylesheet" href="dist/ui.css">
     <link rel="stylesheet" href="dist/themes.css">
-    <link rel="icon" href="favicon.png" type="image/png">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(err => console.log('SW failed:', err));
+            });
+        }
+    </script>
     <style>
         :root {
             --sidebar-width: 280px;
