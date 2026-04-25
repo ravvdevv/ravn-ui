@@ -1,0 +1,81 @@
+# RAVN UI - SaaS Core Design System
+Minimal, premium, CDN-first UI library built for high-performance SaaS interfaces. Designed for clarity, scale, and elite aesthetics.
+
+## Overview
+RAVN UI provides a strict, production-grade component set with zero framework overhead. It is built on a modular CSS architecture and a robust design token system.
+
+- **Technology**: Vanilla CSS + JS (CDN-First)
+- **Size**: < 15KB (Uncompressed), ~7KB (Gzipped)
+- **Dependencies**: 0
+- **Philosophy**: Neutral palettes, high-end typography (Inter), zero emojis.
+
+## Installation & Setup
+### CDN Usage (Recommended)
+```html
+<link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
+<link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
+<script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
+```
+
+### Package Manager
+```bash
+bun add @ravn-ui/core
+# or
+npm install @ravn-ui/core
+```
+
+## Design Tokens (CSS Variables)
+RAVN UI is driven by a 4px base spacing scale and a semantic color palette.
+- **Colors**: `--background`, `--foreground`, `--primary`, `--muted`, `--border`, `--success`, `--warning`, `--error`.
+- **Spacing**: `--space-1` (0.25rem/4px) to `--space-12` (3rem/48px).
+- **Radius**: `--radius` (0.375rem).
+
+## Component Library
+### Buttons
+Variants: `.btn-primary`, `.btn-outline`, `.btn-ghost`, `.btn-sm`.
+```html
+<button class="btn btn-primary">Elite Action</button>
+```
+
+### Cards
+Structured for data density.
+```html
+<div class="card">
+  <div class="card-header"><h3>Title</h3><small>Subtitle</small></div>
+  <div class="card-content">Main metrics or data.</div>
+  <div class="card-footer"><button class="btn btn-sm">Details</button></div>
+</div>
+```
+
+### Modals & Interactivity
+Toggle via `data-modal-target="id"` or programmatically.
+```html
+<div id="m1" class="modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <h3>Header</h3>
+    <button data-modal-close>Close</button>
+  </div>
+</div>
+```
+
+### Dashboard Patterns
+- **Sidebar**: Vertical navigation with `.sidebar-item`.
+- **Breadcrumbs**: Hierarchical paths with `.breadcrumb-item`.
+- **Metric Trends**: `.trend-up` and `.trend-down` status indicators.
+- **Progress**: `.progress` and `.progress-bar`.
+
+## Theming System
+Apply themes via `data-theme` on the `html` tag.
+- **Available Themes**: `light`, `dark`, `claude`, `midnight`, `supabase`, `linear`, `zinc`, `forest`, `indigo`.
+- **Auto-Detection**: Library respects `prefers-color-scheme` if no theme is hardcoded.
+
+## JavaScript API (window.RAVN)
+- `RAVN.setTheme(string)`: Persists theme selection to localStorage.
+- `RAVN.showToast(string)`: Triggers a minimal system toast.
+- `RAVN.modal(id, action)`: Programmatic control for modals.
+- `RAVN.copy(text, message)`: Clipboard utility with success feedback.
+
+## Documentation
+Full documentation available at: https://ravn-ui.vercel.app/
+Modular documentation sources: `/docs/components/*.html`
