@@ -6,7 +6,6 @@
     <img src="https://img.shields.io/npm/v/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="NPM Version" />
     <img src="https://img.shields.io/npm/l/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="License" />
     <img src="https://img.shields.io/npm/unpacked-size/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="NPM Unpacked Size" />
-    <img src="https://img.shields.io/vercel/deploy/ravn-ui?style=flat-square&color=black" alt="Vercel Status" />
   </p>
 </div>
 
