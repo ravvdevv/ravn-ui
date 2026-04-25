@@ -84,13 +84,31 @@ The CLI is a project initializer that handles:
 
 ---
 
+## 🏎️ Hybrid SPA Architecture
+RAVN UI projects use a **Hybrid SPA** model, giving developers the performance of an SPA with the maintainability of a multi-page app.
+
+### 1. The SPA Hub (`index.html`)
+- **Core Strategy**: The main dashboard shell is an SPA.
+- **`data-view`**: Internal dashboard tabs (Overview, Analytics, Stats) are handled within `index.html` using the `RAVN.view()` engine.
+- **Benefits**: Instant transitions, zero-refresh feel, and persistent sidebar state.
+
+### 2. Multi-Page Extensions (`/pages/`)
+- **Core Strategy**: Distinctly different functional areas (Settings, User Management, Billing) are stored in separate `.html` files within the `pages/` directory.
+- **Benefits**: Keeps the codebase modular, prevents `index.html` from becoming monolithic, and simplifies deployment to static hosts like Vercel.
+
+### 3. Navigation Logic
+- **Internal (SPA)**: Elements with `data-target-view="id"` trigger `RAVN.view(id)` to swap content blocks without a page load.
+- **External (MPA)**: Standard `<a href="./pages/file.html">` links are used to navigate between the SPA hub and modular pages.
+
+---
+
 ## 🤖 Instructions for AI Assistants
 When assisting with a RAVN UI project:
-1. **Prefer Semantic Classes**: Use `.card`, `.btn`, `.table` before reaching for utility classes.
-2. **Leverage SPA Logic**: For dashboard navigation, use `data-target-view` and `data-view` blocks within a single `index.html` unless a multi-page app (MPA) is explicitly requested.
-3. **Theming Consistency**: Never hardcode colors. Use the semantic variables (e.g., `var(--primary)`, `var(--border)`, `var(--muted-foreground)`).
-4. **Layout Utilities**: Use the gap scale (e.g., `.gap-4`) and flex helpers (`.flex`, `.items-center`) to manage spacing between cards and components.
-5. **Offline Awareness**: If the project has a `package.json`, assume it's a **Local** install and link to `node_modules`. If not, use **CDN** links.
+1. **Prefer Hybrid Navigation**: Use `data-view` for fast dashboard tabs and separate `pages/` files for distinct application sections.
+2. **Persistent Layouts**: When creating new pages in `pages/`, ensure they replicate the `.layout-shell` and sidebar structure to maintain a unified user experience.
+3. **Semantic Over Utilities**: Use `.card`, `.btn`, `.table` before reaching for utility classes.
+4. **Theming Consistency**: Never hardcode colors. Use semantic variables (e.g., `var(--primary)`, `var(--border)`).
+5. **Offline Awareness**: If a `package.json` exists, link to `node_modules`. Otherwise, use CDN links.
 
 ---
 
