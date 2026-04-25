@@ -16,15 +16,21 @@ RAVN UI is a strictly designed, high-performance, and CDN-first UI library inspi
 ## Quickstart
 
 ### Via CDN (Recommended)
-Add the following to your `<head>`:
-
 ```html
-<!-- Core Styles -->
-<link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
-<link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
+<!DOCTYPE html>
+<html lang="en" data-theme="midnight"> <!-- Set theme here -->
+<head>
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
+    <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
+</head>
+<body>
+    <button class="btn btn-primary">Elite SaaS Button</button>
 
-<!-- Core Logic -->
-<script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
+    <!-- Core Logic -->
+    <script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
+</body>
+</html>
 ```
 
 ### Via Package Manager
