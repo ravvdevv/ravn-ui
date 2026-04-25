@@ -265,18 +265,20 @@ function createProject(name, content, templateName, useLocal) {
         fs.mkdirSync(targetDir);
     }
 
-    // Create src directory
-    const srcDir = path.join(targetDir, 'src');
-    if (!fs.existsSync(srcDir)) fs.mkdirSync(srcDir);
+    // Create directories
+    const jsDir = path.join(targetDir, 'js');
+    const cssDir = path.join(targetDir, 'css');
+    if (!fs.existsSync(jsDir)) fs.mkdirSync(jsDir);
+    if (!fs.existsSync(cssDir)) fs.mkdirSync(cssDir);
 
-    // Default main.js logic
-    const mainJs = `// RAVN UI - Custom App Logic
+    // Default app.js logic
+    const appJs = `// RAVN UI - Custom App Logic
 document.addEventListener('DOMContentLoaded', () => {
     console.log('RAVN UI Project Initialized');
 });`;
 
-    // Default styles.css
-    const stylesCss = `/* Custom Styles */
+    // Default app.css
+    const appCss = `/* Custom Styles */
 body {
     background-color: var(--muted);
 }`;
@@ -288,13 +290,13 @@ body {
 
     // Inject links into template
     finalContent = content
-        .replace(/<link rel="stylesheet" href="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.css">/g, `<link rel="stylesheet" href="${uiCssPath}">\n    <link rel="stylesheet" href="${themesCssPath}">\n    <link rel="stylesheet" href="./src/styles.css">`)
+        .replace(/<link rel="stylesheet" href="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.css">/g, `<link rel="stylesheet" href="${uiCssPath}">\n    <link rel="stylesheet" href="${themesCssPath}">\n    <link rel="stylesheet" href="./css/app.css">`)
         .replace(/<link rel="stylesheet" href="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/themes\.css">/g, '')
-        .replace(/<script src="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.js"><\/script>/g, `<script src="${uiJsPath}"></script>\n    <script src="./src/main.js"></script>`);
+        .replace(/<script src="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.js"><\/script>/g, `<script src="${uiJsPath}"></script>\n    <script src="./js/app.js"></script>`);
     
     fs.writeFileSync(path.join(targetDir, 'index.html'), finalContent);
-    fs.writeFileSync(path.join(srcDir, 'main.js'), mainJs);
-    fs.writeFileSync(path.join(srcDir, 'styles.css'), stylesCss);
+    fs.writeFileSync(path.join(jsDir, 'app.js'), appJs);
+    fs.writeFileSync(path.join(cssDir, 'app.css'), appCss);
 
     if (useLocal) {
         // Create basic package.json
@@ -320,9 +322,10 @@ body {
     
     console.log('\n\x1b[32mSuccess! Your premium project is ready.\x1b[0m');
     console.log(`\x1b[1mFolder structure:\x1b[0m`);
-    console.log(`  ├── src/`);
-    console.log(`  │   ├── main.js`);
-    console.log(`  │   └── styles.css`);
+    console.log(`  ├── css/`);
+    console.log(`  │   └── app.css`);
+    console.log(`  ├── js/`);
+    console.log(`  │   └── app.js`);
     console.log(`  ├── index.html`);
     if (useLocal) console.log(`  └── package.json`);
     
