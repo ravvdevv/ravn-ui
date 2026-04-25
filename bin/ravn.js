@@ -259,35 +259,56 @@ function createProject(name, content, templateName, useLocal) {
         process.exit(1);
     }
 
-    console.log(`\x1b[34mCreating ${templateName} in ${isCurrentDir ? 'current directory' : targetDir}...\x1b[0m`);
+    console.log(`\x1b[34mCreating ${templateName} with React-like structure in ${isCurrentDir ? 'current directory' : targetDir}...\x1b[0m`);
     
     if (!isCurrentDir) {
         fs.mkdirSync(targetDir);
     }
 
-    // Process content for local install
+    // Create src directory
+    const srcDir = path.join(targetDir, 'src');
+    if (!fs.existsSync(srcDir)) fs.mkdirSync(srcDir);
+
+    // Default main.js logic
+    const mainJs = `// RAVN UI - Custom App Logic
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('RAVN UI Project Initialized');
+});`;
+
+    // Default styles.css
+    const stylesCss = `/* Custom Styles */
+body {
+    background-color: var(--muted);
+}`;
+
     let finalContent = content;
+    const uiCssPath = useLocal ? './node_modules/@ravn-ui/core/dist/ui.css' : 'https://unpkg.com/@ravn-ui/core/dist/ui.css';
+    const themesCssPath = useLocal ? './node_modules/@ravn-ui/core/dist/themes.css' : 'https://unpkg.com/@ravn-ui/core/dist/themes.css';
+    const uiJsPath = useLocal ? './node_modules/@ravn-ui/core/dist/ui.js' : 'https://unpkg.com/@ravn-ui/core/dist/ui.js';
+
+    // Inject links into template
+    finalContent = content
+        .replace(/<link rel="stylesheet" href="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.css">/g, `<link rel="stylesheet" href="${uiCssPath}">\n    <link rel="stylesheet" href="${themesCssPath}">\n    <link rel="stylesheet" href="./src/styles.css">`)
+        .replace(/<link rel="stylesheet" href="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/themes\.css">/g, '')
+        .replace(/<script src="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.js"><\/script>/g, `<script src="${uiJsPath}"></script>\n    <script src="./src/main.js"></script>`);
+    
+    fs.writeFileSync(path.join(targetDir, 'index.html'), finalContent);
+    fs.writeFileSync(path.join(srcDir, 'main.js'), mainJs);
+    fs.writeFileSync(path.join(srcDir, 'styles.css'), stylesCss);
+
     if (useLocal) {
-        finalContent = content
-            .replace(/https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.css/g, './node_modules/@ravn-ui/core/dist/ui.css')
-            .replace(/https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/themes\.css/g, './node_modules/@ravn-ui/core/dist/themes.css')
-            .replace(/https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.js/g, './node_modules/@ravn-ui/core/dist/ui.js');
-        
         // Create basic package.json
         const pkg = {
             name: name === '.' ? path.basename(process.cwd()) : name,
             version: '0.1.0',
             private: true,
             scripts: {
+                "dev": "npx serve .",
                 "start": "npx serve ."
             }
         };
         fs.writeFileSync(path.join(targetDir, 'package.json'), JSON.stringify(pkg, null, 2));
-    }
-    
-    fs.writeFileSync(path.join(targetDir, 'index.html'), finalContent);
 
-    if (useLocal) {
         console.log(`\x1b[33mInstalling dependencies...\x1b[0m`);
         try {
             execSync('bun add @ravn-ui/core', { cwd: targetDir, stdio: 'inherit' });
@@ -297,13 +318,20 @@ function createProject(name, content, templateName, useLocal) {
         }
     }
     
-    console.log('\n\x1b[32mSuccess! Your project is ready.\x1b[0m');
-    console.log(`\x1b[1mNext steps:\x1b[0m`);
+    console.log('\n\x1b[32mSuccess! Your premium project is ready.\x1b[0m');
+    console.log(`\x1b[1mFolder structure:\x1b[0m`);
+    console.log(`  ├── src/`);
+    console.log(`  │   ├── main.js`);
+    console.log(`  │   └── styles.css`);
+    console.log(`  ├── index.html`);
+    if (useLocal) console.log(`  └── package.json`);
+    
+    console.log(`\n\x1b[1mNext steps:\x1b[0m`);
     if (!isCurrentDir) {
         console.log(`  cd ${name || 'ravn-app'}`);
     }
     if (useLocal) {
-        console.log(`  bun start (or npm start)`);
+        console.log(`  bun dev (or npm run dev)`);
     } else {
         console.log(`  Open index.html in your browser\n`);
     }
