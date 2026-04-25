@@ -1,5 +1,5 @@
 {
-  "name": "@ravn-ui/core",
+  "name": "@ravvdevv/ravn-ui",
   "version": "1.0.0",
   "description": "Minimal, premium, CDN-first UI library inspired by DaisyUI and shadcn/ui.",
   "main": "dist/ui.js",
@@ -23,6 +23,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ravn-ui/core"
+    "url": "https://github.com/ravvdevv/ravn-ui"
   }
 }
