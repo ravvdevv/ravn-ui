@@ -14,30 +14,46 @@
                 <span class="helper-text">Unique name for your workspace.</span>
             </div>
             <div class="form-group">
-                <label class="label">API Key (Error State)</label>
-                <input type="password" class="input input-error" value="••••••••••••••••">
-                <span class="helper-text" style="color: var(--error);">Invalid API key format.</span>
+                <label class="label">Email Address</label>
+                <input type="email" class="input input-error" value="invalid-email">
+                <span class="helper-text" style="color: var(--error);">Please enter a valid email address.</span>
             </div>
             <div class="form-group">
-                <label class="label">Username (Success State)</label>
-                <input type="text" class="input input-success" value="ravn_user">
-                <span class="helper-text" style="color: var(--success);">Username is available.</span>
+                <label class="label">Username</label>
+                <input type="text" class="input input-success" value="ravn_developer">
+                <span class="helper-text" style="color: var(--success);">Username is available!</span>
             </div>
             <div class="form-group">
-                <label class="label">Disabled Field</label>
-                <input type="text" class="input" disabled value="Read-only data">
+                <label class="label">API Key</label>
+                <input type="password" class="input" disabled value="••••••••••••••••">
+                <span class="helper-text">API key is disabled for this project.</span>
             </div>
         </div>
         <pre id="in-code" class="mockup-code"><code>&lt;div class="form-group"&gt;
-  &lt;label class="label"&gt;Label&lt;/label&gt;
-  &lt;input type="text" class="input" placeholder="Placeholder..."&gt;
-  &lt;span class="helper-text"&gt;Optional helper text&lt;/span&gt;
+  &lt;label class="label"&gt;Project Name&lt;/label&gt;
+  &lt;input type="text" class="input" placeholder="e.g. Apollo Dashboard"&gt;
+  &lt;span class="helper-text"&gt;Unique name for your workspace.&lt;/span&gt;
 &lt;/div&gt;
 
 &lt;!-- Error State --&gt;
-&lt;input type="text" class="input input-error"&gt;
+&lt;div class="form-group"&gt;
+  &lt;label class="label"&gt;Email Address&lt;/label&gt;
+  &lt;input type="email" class="input input-error" value="invalid-email"&gt;
+  &lt;span class="helper-text" style="color: var(--error);"&gt;Please enter a valid email address.&lt;/span&gt;
+&lt;/div&gt;
 
 &lt;!-- Success State --&gt;
-&lt;input type="text" class="input input-success"&gt;</code></pre>
+&lt;div class="form-group"&gt;
+  &lt;label class="label"&gt;Username&lt;/label&gt;
+  &lt;input type="text" class="input input-success" value="ravn_developer"&gt;
+  &lt;span class="helper-text" style="color: var(--success);"&gt;Username is available!&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Disabled State --&gt;
+&lt;div class="form-group"&gt;
+  &lt;label class="label"&gt;API Key&lt;/label&gt;
+  &lt;input type="password" class="input" disabled value="••••••••••••••••"&gt;
+  &lt;span class="helper-text"&gt;API key is disabled for this project.&lt;/span&gt;
+&lt;/div&gt;</code></pre>
     </div>
 </section>
