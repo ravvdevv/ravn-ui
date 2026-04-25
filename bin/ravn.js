@@ -21,6 +21,55 @@ const BANNER = `
  ------------------------------------------
 `;
 
+const SAMPLE_PAGE_HTML = `<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users — RAVN UI</title>
+    <link rel="stylesheet" href="../node_modules/@ravn-ui/core/dist/ui.css">
+    <link rel="stylesheet" href="../node_modules/@ravn-ui/core/dist/themes.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div class="layout-shell">
+        <aside class="layout-sidebar sidebar">
+            <div class="sidebar-header"><div style="font-weight: 900; font-size: 1.5rem; color: var(--primary);">RAVN</div></div>
+            <div class="sidebar-content">
+                <nav class="sidebar-nav">
+                    <a href="../index.html" class="sidebar-item">Dashboard</a>
+                    <a href="javascript:void(0)" class="sidebar-item active">Users</a>
+                </nav>
+            </div>
+        </aside>
+        <main class="layout-main">
+            <header class="layout-header">
+                <div class="breadcrumbs">
+                    <a href="../index.html" class="breadcrumb-item">Dashboard</a>
+                    <span class="breadcrumb-item active">Users</span>
+                </div>
+            </header>
+            <div class="layout-content">
+                <div class="card">
+                    <div class="card-header"><h3>User Management</h3></div>
+                    <div class="table-container" style="border: none;">
+                        <table class="table">
+                            <thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead>
+                            <tbody>
+                                <tr><td>Jane Doe</td><td>Admin</td><td><span class="badge badge-secondary">Active</span></td></tr>
+                                <tr><td>John Smith</td><td>Editor</td><td><span class="badge">Offline</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../node_modules/@ravn-ui/core/dist/ui.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>`;
+
 const DASHBOARD_HTML = `<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -43,13 +92,9 @@ const DASHBOARD_HTML = `<!DOCTYPE html>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                         <span>Dashboard</span>
                     </a>
-                    <a href="javascript:void(0)" class="sidebar-item" data-target-view="analytics">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                        <span>Analytics</span>
-                    </a>
-                    <a href="javascript:void(0)" class="sidebar-item">
+                    <a href="./pages/users.html" class="sidebar-item">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                        <span>Customers</span>
+                        <span>Users (Sample Page)</span>
                     </a>
                 </nav>
             </div>
@@ -88,36 +133,14 @@ const DASHBOARD_HTML = `<!DOCTYPE html>
                             <div style="font-size: 1.75rem; font-weight: 800;">+2,350</div>
                             <div class="trend trend-up">↑ 180%</div>
                         </div>
-                        <div class="card" style="padding: var(--space-4);">
-                            <div class="text-sm text-muted mb-1">ACTIVE NOW</div>
-                            <div style="font-size: 1.75rem; font-weight: 800;">573</div>
-                            <div class="trend trend-down">↓ 4</div>
-                        </div>
                     </div>
 
                     <div class="card mt-6">
-                        <div class="card-header"><h3>Recent Transactions</h3></div>
-                        <div class="table-container" style="border: none;">
-                            <table class="table">
-                                <thead>
-                                    <tr><th>Customer</th><th>Status</th><th>Amount</th></tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>Alex Rivera</td><td><span class="badge badge-secondary">Paid</span></td><td>$240.00</td></tr>
-                                    <tr><td>Sarah Chen</td><td><span class="badge">Pending</span></td><td>$1,200.00</td></tr>
-                                </tbody>
-                            </table>
+                        <div class="card-header"><h3>Recent Activity</h3></div>
+                        <div class="p-6 text-center text-muted">
+                            <p>No recent activity found.</p>
+                            <a href="./pages/users.html" class="btn btn-primary btn-sm mt-4">Manage Users</a>
                         </div>
-                    </div>
-                </div>
-
-                <!-- View: Analytics -->
-                <div data-view="analytics" style="display: none;">
-                    <div class="card" style="padding: var(--space-12); text-align: center; border-style: dashed;">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
-                        <h3>Analytics Stream</h3>
-                        <p class="text-muted">Configure your data sources to begin visualization.</p>
-                        <button class="btn btn-primary mt-4">Connect Source</button>
                     </div>
                 </div>
             </div>
@@ -311,6 +334,16 @@ export const formatCurrency = (val) => {
     fs.writeFileSync(path.join(jsDir, 'app.js'), appJs);
     fs.writeFileSync(path.join(cssDir, 'app.css'), appCss);
     fs.writeFileSync(path.join(functionsDir, 'utils.js'), utilsJs);
+
+    // Create sample page in pages/
+    let finalSampleContent = SAMPLE_PAGE_HTML;
+    if (!useLocal) {
+        finalSampleContent = SAMPLE_PAGE_HTML
+            .replace(/..\/node_modules\/@ravn-ui\/core\/dist\/ui\.css/g, 'https://unpkg.com/@ravn-ui/core/dist/ui.css')
+            .replace(/..\/node_modules\/@ravn-ui\/core\/dist\/themes\.css/g, 'https://unpkg.com/@ravn-ui/core/dist/themes.css')
+            .replace(/..\/node_modules\/@ravn-ui\/core\/dist\/ui\.js/g, 'https://unpkg.com/@ravn-ui/core/dist/ui.js');
+    }
+    fs.writeFileSync(path.join(pagesDir, 'users.html'), finalSampleContent);
 
     if (useLocal) {
         // Create basic package.json
