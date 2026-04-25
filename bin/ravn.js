@@ -258,7 +258,32 @@ function askTemplate(projectName) {
             default: content = DASHBOARD_HTML; templateName = 'SaaS Dashboard'; break;
         }
 
-        askInstallMethod(projectName, content, templateName);
+        askTheme(projectName, content, templateName);
+    });
+}
+
+function askTheme(projectName, content, templateName) {
+    console.log('\n\x1b[1mSelect a starting theme:\x1b[0m');
+    console.log('  \x1b[36m1)\x1b[0m Light (Default)');
+    console.log('  \x1b[36m2)\x1b[0m Dark (Night mode)');
+    console.log('  \x1b[36m3)\x1b[0m Midnight (Elite Black)');
+    console.log('  \x1b[36m4)\x1b[0m Indigo (SaaS Classic)');
+    console.log('  \x1b[36m5)\x1b[0m Rose Pine (Sophisticated)');
+    console.log('  \x1b[36m6)\x1b[0m Nord (Arctic Frost)');
+
+    rl.question('\n\x1b[1mSelect (1-6):\x1b[0m ', (choice) => {
+        let theme = 'light';
+        switch(choice) {
+            case '2': theme = 'dark'; break;
+            case '3': theme = 'midnight'; break;
+            case '4': theme = 'indigo'; break;
+            case '5': theme = 'rose-pine'; break;
+            case '6': theme = 'nord'; break;
+            default: theme = 'light'; break;
+        }
+
+        const finalContent = content.replace('data-theme="light"', `data-theme="${theme}"`);
+        askInstallMethod(projectName, finalContent, templateName);
     });
 }
 
