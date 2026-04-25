@@ -171,16 +171,22 @@
         [data-theme="dark"] .brand img,
         [data-theme="dark"] .hero img,
         [data-theme="midnight"] .brand img,
-        [data-theme="midnight"] .hero img,
         [data-theme="supabase"] .brand img,
         [data-theme="supabase"] .hero img,
         [data-theme="linear"] .brand img,
         [data-theme="linear"] .hero img,
         [data-theme="dark-zinc"] .brand img,
-        [data-theme="dark-zinc"] .hero img {
+        /* Theme-aware logo inversion */
+        [data-theme="dark"] .sidebar img,
+        [data-theme="midnight"] .sidebar img,
+        [data-theme="supabase"] .sidebar img,
+        [data-theme="linear"] .sidebar img {
             filter: invert(1) grayscale(1);
-            mix-blend-mode: screen; /* Dark mode seamlessness */
+            mix-blend-mode: screen;
         }
+
+        /* Documentation UI theme adaptation */
+        .sidebar { border-right: 1px solid var(--border); background: var(--background); }
 
         @media (max-width: 1024px) {
             aside { display: none; }
