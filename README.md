@@ -1,87 +1,60 @@
-<div align="center">
-  <img src="https://ravn-ui.vercel.app/logo.png" alt="RAVN UI Logo" width="120" />
-  <h1>RAVN UI</h1>
-  <p><strong>From blank HTML to SaaS Dashboard in 5 minutes.</strong></p>
-  <p>
-    <img src="https://img.shields.io/npm/v/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="NPM Version" />
-    <img src="https://img.shields.io/npm/l/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="License" />
-  </p>
-</div>
+# RAVN UI
+
+**From blank HTML to SaaS Dashboard in 5 minutes.** 
+
+RAVN UI is a zero-config, CDN-first UI system for building production-ready SaaS interfaces without Tailwind, without build tools, and without setup hell.
 
 ---
 
-## ⚡ The Death of Setup Hell
+## ⚡ 10-Second Quickstart
 
-Stop fighting with `tailwind.config.js` and PostCSS plugins. RAVN UI is a zero-config UI system for developers who need to ship SaaS dashboards **now**, not in three hours.
-
-- **No Tailwind Config.**
-- **No Build Step.**
-- **No Setup.**
-- **Just Paste and Ship.**
-
-## 🚀 The 10-Second Quickstart
-
-Copy this into your `index.html` and you have a production-ready SaaS core instantly.
+Copy this into your `index.html`. You now have a responsive, high-density SaaS shell.
 
 ```html
 <head>
-    <!-- Core SaaS Engine -->
     <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
     <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
 </head>
 <body>
     <div class="layout-shell">
-        <aside class="layout-sidebar">...</aside>
-        <main class="layout-main">...</main>
+        <!-- Sidebar (Drawer on mobile) -->
+        <aside class="layout-sidebar">
+            <nav class="sidebar-nav">
+                <a class="sidebar-item active">Dashboard</a>
+                <a class="sidebar-item">Analytics</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="layout-main">
+            <header class="layout-header">
+                <button data-layout-toggle class="btn btn-sm">Menu</button>
+                <h1 class="text-sm">Overview</h1>
+            </header>
+            <div class="layout-content">
+                <!-- Your SaaS metrics, tables, and cards go here -->
+            </div>
+        </main>
     </div>
     <script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
 </body>
 ```
 
-## ✨ Why RAVN UI? (The Value)
+---
 
-- **Instant SaaS Layouts**: Use `.layout-shell` to get a production sidebar/header layout in 1 second.
-- **Zero Framework Lock-in**: Works with React, Vue, HTMX, or pure HTML. No dependencies.
-- **High-Density Design**: Inspired by the density of Linear. Built for professional admin panels, not consumer fluff.
-- **13 "Elite" Themes**: Switch your entire UI style instantly with `data-theme`.
+## 🚀 Why RAVN?
 
-
-| Theme | Aesthetic | Primary Color |
-| :--- | :--- | :--- |
-| `light` | Clean SaaS | Neutral Black |
-| `midnight` | OLED Depth | Paper White |
-| `supabase` | Developer Focus | Emerald Green |
-| `linear` | Enterprise Grade | Indigo Blue |
-| `claude` | Academic Minimal | Amber Glow |
-| `zinc` | Industrial Cold | Zinc Gray |
-| `forest` | Organic Growth | Deep Green |
-
-## 🛠️ Modular Usage
-
-Import only what you need using our modular CSS source:
-
-```css
-@import "@ravn-ui/core/src/css/tokens.css";
-@import "@ravn-ui/core/src/css/base.css";
-@import "@ravn-ui/core/src/css/components.css";
-```
-
-## 📖 Documentation
-
-Explore our interactive component playground and live previews:
-
-👉 **[ravn-ui.vercel.app](https://ravn-ui.vercel.app)**
+- **Zero Build Step**: No `npm install`, no `postcss.config.js`. Just a CDN link.
+- **SaaS Shell Included**: Responsive sidebars and headers are core primitives, not examples.
+- **13 Elite Themes**: Use `data-theme="midnight"` or `data-theme="supabase"` on the `<html>` tag to flip your style instantly.
+- **Under 25KB**: Fast, lean, and 0 dependencies.
 
 ---
 
-## 🤝 Contributing
+## 🎨 Themes
+Try these in your `<html>` tag:
+`light`, `dark`, `zinc`, `claude`, `midnight`, `forest`, `indigo`, `supabase`, `linear`, `retro`, `pixel-craft`, `rose-pine`, `nord`.
 
-We welcome contributions from the community. Whether it's a new component, a theme, or a bug fix, feel free to open a PR.
+---
 
-## 📄 License
-
-RAVN UI is open-source software licensed under the [MIT License](LICENSE).
-
-<div align="center">
-  <p>Built for those who build the future. &copy; 2026 RAVN UI.</p>
-</div>
+[Documentation](https://ravn-ui.vercel.app) | [License: MIT](LICENSE)
