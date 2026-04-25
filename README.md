@@ -23,15 +23,7 @@ RAVN UI is a strictly designed, high-performance, and CDN-first UI library inspi
 
 ## 🚀 Quickstart
 
-### 1. The Five-Minute Setup (CLI)
-The fastest way to spin up a professional SaaS dashboard or landing page:
-
-```bash
-npx ravn
-```
-Follow the prompts to name your project and select a high-fidelity starter template.
-
-### 2. Manual Integration (CDN)
+### Via CDN (Recommended)
 Add the following to your `<head>`:
 
 ```html

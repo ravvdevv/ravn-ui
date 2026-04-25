@@ -5,30 +5,30 @@
 
     <div class="mockup-container">
         <div class="mockup-tabs">
-            <div class="mockup-tab active" onclick="showTab(this, 'inst-cli', 'inst-cdn', 'inst-npm', 'inst-html')">CLI</div>
-            <div class="mockup-tab" onclick="showTab(this, 'inst-cdn', 'inst-cli', 'inst-npm', 'inst-html')">CDN</div>
-            <div class="mockup-tab" onclick="showTab(this, 'inst-npm', 'inst-cli', 'inst-cdn', 'inst-html')">Package Manager</div>
-            <div class="mockup-tab" onclick="showTab(this, 'inst-html', 'inst-cli', 'inst-cdn', 'inst-npm')">Starter HTML</div>
-            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyActiveInstall()">Copy</div>
+            <div class="mockup-tab active" onclick="showTab(this, 'inst-cdn', 'inst-npm', 'inst-html')">CDN
+            </div>
+            <div class="mockup-tab" onclick="showTab(this, 'inst-npm', 'inst-cdn', 'inst-html')">Package Manager
+            </div>
+            <div class="mockup-tab" onclick="showTab(this, 'inst-html', 'inst-cdn', 'inst-npm')">Starter HTML
+            </div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyActiveInstall()">Copy
+            </div>
         </div>
 
-        <div id="inst-cli" class="mockup-code" style="display: block;"><code># Start a professional project in seconds
-npx ravn</code></div>
-
-        <div id="inst-cdn" class="mockup-code" style="display: none;"><code>&lt;!-- Core Styles --&gt;
+        <div id="inst-cdn" class="mockup-code" style="display: block;"><code>&lt;!-- Core Styles --&gt;
 &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css"&gt;
 &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css"&gt;
 
 &lt;!-- Core Logic --&gt;
 &lt;script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"&gt;&lt;/script&gt;</code></div>
 
-        <div id="inst-npm" class="mockup-code" style="display: none;"><code># Using Bun (Recommended)
+        <div id="inst-npm" class="mockup-code"><code># Using Bun (Recommended)
 bun add @ravn-ui/core
 
 # Using NPM
 npm install @ravn-ui/core</code></div>
 
-        <div id="inst-html" class="mockup-code" style="display: none;"><code>&lt;!DOCTYPE html&gt;
+        <div id="inst-html" class="mockup-code"><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="en" data-theme="light"&gt;
 &lt;head&gt;
     &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css"&gt;
