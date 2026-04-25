@@ -204,6 +204,19 @@ const MINIMAL_HTML = `<!DOCTYPE html>
 
 console.log(BANNER);
 
+rl.on('close', () => process.exit(0));
+
+const args = process.argv.slice(2);
+const firstArg = args[0];
+
+if (firstArg === '.') {
+    askTemplate('.');
+} else {
+    rl.question('\x1b[1mProject name:\x1b[0m ', (name) => {
+        askTemplate(name);
+    });
+}
+
 function askTemplate(projectName) {
     console.log('\n\x1b[1mChoose a starter template:\x1b[0m');
     console.log('  \x1b[36m1)\x1b[0m SaaS Dashboard (Best for apps)');
@@ -225,27 +238,29 @@ function askTemplate(projectName) {
 }
 
 function createProject(name, content, templateName) {
-    const targetDir = path.join(process.cwd(), name || 'ravn-app');
+    const isCurrentDir = name === '.';
+    const targetDir = isCurrentDir ? process.cwd() : path.join(process.cwd(), name || 'ravn-app');
     
-    if (fs.existsSync(targetDir)) {
+    if (!isCurrentDir && fs.existsSync(targetDir)) {
         console.error(`\x1b[31mError: Directory ${name} already exists.\x1b[0m`);
         process.exit(1);
     }
 
-    console.log(`\x1b[34mCreating ${templateName} in ${targetDir}...\x1b[0m`);
+    console.log(`\x1b[34mCreating ${templateName} in ${isCurrentDir ? 'current directory' : targetDir}...\x1b[0m`);
     
-    fs.mkdirSync(targetDir);
+    if (!isCurrentDir) {
+        fs.mkdirSync(targetDir);
+    }
+    
     fs.writeFileSync(path.join(targetDir, 'index.html'), content);
     
     console.log('\n\x1b[32mSuccess! Your project is ready.\x1b[0m');
     console.log(`\x1b[1mNext steps:\x1b[0m`);
-    console.log(`  cd ${name || 'ravn-app'}`);
+    if (!isCurrentDir) {
+        console.log(`  cd ${name || 'ravn-app'}`);
+    }
     console.log(`  Open index.html in your browser\n`);
     console.log(`\x1b[35mHappy building with RAVN UI!\x1b[0m\n`);
     
     process.exit(0);
 }
-
-rl.question('\x1b[1mProject name:\x1b[0m ', (name) => {
-    askTemplate(name);
-});
