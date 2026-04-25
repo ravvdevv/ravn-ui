@@ -5,7 +5,7 @@ Minimal, premium, CDN-first UI library built for high-performance SaaS interface
 RAVN UI provides a strict, production-grade component set with zero framework overhead. It is built on a modular CSS architecture and a robust design token system.
 
 - **Technology**: Vanilla CSS + JS (CDN-First)
-- **Size**: < 15KB (Uncompressed), ~7KB (Gzipped)
+- **Size**: < 25KB (Uncompressed), ~10KB (Gzipped)
 - **Dependencies**: 0
 - **Philosophy**: Neutral palettes, high-end typography (Inter), zero emojis.
 
