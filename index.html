@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,6 +46,7 @@
             position: relative;
             margin-bottom: var(--space-8);
         }
+
         .search-input {
             width: 100%;
             height: 2rem;
@@ -55,11 +57,39 @@
             background: var(--muted);
         }
 
-        .nav-group { margin-bottom: var(--space-8); }
-        .nav-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-foreground); margin-bottom: var(--space-4); }
-        .nav-item { display: block; padding: var(--space-2) 0; font-size: 0.85rem; color: var(--foreground); text-decoration: none; opacity: 0.6; transition: all 0.2s; }
-        .nav-item:hover { opacity: 1; color: var(--primary); }
-        .nav-item.active { opacity: 1; font-weight: 600; color: var(--primary); }
+        .nav-group {
+            margin-bottom: var(--space-8);
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted-foreground);
+            margin-bottom: var(--space-4);
+        }
+
+        .nav-item {
+            display: block;
+            padding: var(--space-2) 0;
+            font-size: 0.85rem;
+            color: var(--foreground);
+            text-decoration: none;
+            opacity: 0.6;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .nav-item.active {
+            opacity: 1;
+            font-weight: 600;
+            color: var(--primary);
+        }
 
         /* Main Content */
         main {
@@ -70,13 +100,36 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .hero { margin-bottom: var(--space-16); }
-        .hero h1 { font-size: 4rem; font-weight: 900; letter-spacing: -0.06em; line-height: 0.9; margin-bottom: var(--space-6); }
-        .hero p { font-size: 1.25rem; color: var(--muted-foreground); max-width: 560px; line-height: 1.6; margin-bottom: var(--space-8); }
+        .hero {
+            margin-bottom: var(--space-16);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -0.06em;
+            line-height: 0.9;
+            margin-bottom: var(--space-6);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            max-width: 560px;
+            line-height: 1.6;
+            margin-bottom: var(--space-8);
+        }
 
         .install-command {
             display: inline-flex;
@@ -90,12 +143,27 @@
             cursor: pointer;
             transition: border-color 0.2s;
         }
-        .install-command:hover { border-color: var(--primary); }
+
+        .install-command:hover {
+            border-color: var(--primary);
+        }
 
         /* Component Section */
-        .component-section { margin-bottom: var(--space-20); }
-        .component-title { font-size: 1.5rem; font-weight: 700; margin-bottom: var(--space-1); }
-        .component-desc { font-size: 0.95rem; color: var(--muted-foreground); margin-bottom: var(--space-6); }
+        .component-section {
+            margin-bottom: var(--space-20);
+        }
+
+        .component-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-1);
+        }
+
+        .component-desc {
+            font-size: 0.95rem;
+            color: var(--muted-foreground);
+            margin-bottom: var(--space-6);
+        }
 
         /* Mockup Box */
         .mockup-container {
@@ -125,7 +193,10 @@
             border-bottom: 2px solid transparent;
         }
 
-        .mockup-tab.active { opacity: 1; border-color: var(--primary); }
+        .mockup-tab.active {
+            opacity: 1;
+            border-color: var(--primary);
+        }
 
         .mockup-preview {
             padding: var(--space-12);
@@ -150,6 +221,7 @@
             overflow-x: auto;
             line-height: 1.6;
             white-space: pre;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .theme-swatch {
@@ -160,12 +232,17 @@
             transition: all 0.2s;
             border: 1px solid var(--border);
         }
-        .theme-swatch:hover { transform: scale(1.2); }
+
+        .theme-swatch:hover {
+            transform: scale(1.2);
+        }
 
         /* Logo Dark Mode Fix */
-        .brand img, .hero img {
+        .brand img,
+        .hero img {
             transition: filter 0.3s ease, mix-blend-mode 0.3s ease;
-            mix-blend-mode: multiply; /* Light mode seamlessness */
+            mix-blend-mode: multiply;
+            /* Light mode seamlessness */
         }
 
         [data-theme="dark"] .brand img,
@@ -186,14 +263,23 @@
         }
 
         /* Documentation UI theme adaptation */
-        .sidebar { border-right: 1px solid var(--border); background: var(--background); }
+        .sidebar {
+            border-right: 1px solid var(--border);
+            background: var(--background);
+        }
 
         @media (max-width: 1024px) {
-            aside { display: none; }
-            main { padding: var(--space-8); }
+            aside {
+                display: none;
+            }
+
+            main {
+                padding: var(--space-8);
+            }
         }
     </style>
 </head>
+
 <body>
     <aside>
         <div class="brand">
@@ -229,23 +315,33 @@
         <nav class="nav-group">
             <div class="nav-label">Themes</div>
             <div class="flex flex-wrap gap-2 mt-4" style="gap: 6px;">
-                <button class="theme-swatch" title="Slate" onclick="RAVN.setTheme('light')" style="background: #ffffff;"></button>
-                <button class="theme-swatch" title="Dark" onclick="RAVN.setTheme('dark')" style="background: #020617;"></button>
-                <button class="theme-swatch" title="Claude" onclick="RAVN.setTheme('claude')" style="background: #fbfaf9; border-color: #d97706;"></button>
-                <button class="theme-swatch" title="Midnight" onclick="RAVN.setTheme('midnight')" style="background: #000000; border-color: #ffffff;"></button>
-                <button class="theme-swatch" title="Zinc" onclick="RAVN.setTheme('zinc')" style="background: #f4f4f5;"></button>
-                <button class="theme-swatch" title="Supabase" onclick="RAVN.setTheme('supabase')" style="background: #1c1c1c; border-color: #3ecf8e;"></button>
-                <button class="theme-swatch" title="Linear" onclick="RAVN.setTheme('linear')" style="background: #08090a; border-color: #5e6ad2;"></button>
-                <button class="theme-swatch" title="Forest" onclick="RAVN.setTheme('forest')" style="background: #ffffff; border-color: #166534;"></button>
+                <button class="theme-swatch" title="Slate" onclick="RAVN.setTheme('light')"
+                    style="background: #ffffff;"></button>
+                <button class="theme-swatch" title="Dark" onclick="RAVN.setTheme('dark')"
+                    style="background: #020617;"></button>
+                <button class="theme-swatch" title="Claude" onclick="RAVN.setTheme('claude')"
+                    style="background: #fbfaf9; border-color: #d97706;"></button>
+                <button class="theme-swatch" title="Midnight" onclick="RAVN.setTheme('midnight')"
+                    style="background: #000000; border-color: #ffffff;"></button>
+                <button class="theme-swatch" title="Zinc" onclick="RAVN.setTheme('zinc')"
+                    style="background: #f4f4f5;"></button>
+                <button class="theme-swatch" title="Supabase" onclick="RAVN.setTheme('supabase')"
+                    style="background: #1c1c1c; border-color: #3ecf8e;"></button>
+                <button class="theme-swatch" title="Linear" onclick="RAVN.setTheme('linear')"
+                    style="background: #08090a; border-color: #5e6ad2;"></button>
+                <button class="theme-swatch" title="Forest" onclick="RAVN.setTheme('forest')"
+                    style="background: #ffffff; border-color: #166534;"></button>
             </div>
         </nav>
     </aside>
 
     <main>
         <section id="hero" class="hero">
-            <img src="logo.png" alt="RAVN Logo" style="width: 80px; height: 80px; margin-bottom: var(--space-8); object-fit: contain;">
+            <img src="logo.png" alt="RAVN Logo"
+                style="width: 80px; height: 80px; margin-bottom: var(--space-8); object-fit: contain;">
             <h1>The design core for Elite SaaS.</h1>
-            <p>Strictly designed, highly performant UI components built for clarity and scale. No fluff, no emojis, just production-grade interfaces.</p>
+            <p>Strictly designed, highly performant UI components built for clarity and scale. No fluff, no emojis, just
+                production-grade interfaces.</p>
             <div class="install-command" onclick="RAVN.copy('bun add @ravn-ui/core', 'Install command copied')">
                 <span style="opacity: 0.5; margin-right: 8px;">$</span> bun add @ravn-ui/core
             </div>
@@ -254,16 +350,21 @@
         <!-- Installation -->
         <section id="install" class="component-section">
             <h2 class="component-title">Installation</h2>
-            <p class="component-desc">Integrate RAVN UI into your project in seconds. No build tools required for CDN usage.</p>
-            
+            <p class="component-desc">Integrate RAVN UI into your project in seconds. No build tools required for CDN
+                usage.</p>
+
             <div class="mockup-container">
                 <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'inst-cdn', 'inst-npm', 'inst-html')">CDN</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'inst-npm', 'inst-cdn', 'inst-html')">Package Manager</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'inst-html', 'inst-cdn', 'inst-npm')">Starter HTML</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyActiveInstall()">Copy</div>
+                    <div class="mockup-tab active" onclick="showTab(this, 'inst-cdn', 'inst-npm', 'inst-html')">CDN
+                    </div>
+                    <div class="mockup-tab" onclick="showTab(this, 'inst-npm', 'inst-cdn', 'inst-html')">Package Manager
+                    </div>
+                    <div class="mockup-tab" onclick="showTab(this, 'inst-html', 'inst-cdn', 'inst-npm')">Starter HTML
+                    </div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyActiveInstall()">Copy
+                    </div>
                 </div>
-                
+
                 <div id="inst-cdn" class="mockup-code" style="display: block;"><code>&lt;!-- Core Styles --&gt;
 &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css"&gt;
 &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css"&gt;
@@ -290,19 +391,21 @@ npm install @ravn-ui/core</code></div>
 &lt;/html&gt;</code></div>
             </div>
         </section>
-        
+
         <!-- Theming -->
         <section id="theming" class="component-section">
             <h2 class="component-title">Theming</h2>
-            <p class="component-desc">RAVN UI is built on a robust token system. Apply themes globally via the data-theme attribute.</p>
-            
+            <p class="component-desc">RAVN UI is built on a robust token system. Apply themes globally via the
+                data-theme attribute.</p>
+
             <div class="mockup-container">
                 <div class="mockup-tabs">
                     <div class="mockup-tab active" onclick="showTab(this, 'theme-html', 'theme-js')">HTML</div>
                     <div class="mockup-tab" onclick="showTab(this, 'theme-js', 'theme-html')">JavaScript</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('theme-html')">Copy</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('theme-html')">
+                        Copy</div>
                 </div>
-                
+
                 <div id="theme-html" class="mockup-code" style="display: block;"><code>&lt;!-- Apply midnight theme globally --&gt;
 &lt;html data-theme="midnight"&gt;
 ...
@@ -319,12 +422,14 @@ RAVN.setTheme('supabase');
         <!-- Buttons -->
         <section id="buttons" class="component-section">
             <h2 class="component-title">Buttons</h2>
-            <p class="component-desc">High-precision action triggers with consistent internal padding and clear focus states.</p>
+            <p class="component-desc">High-precision action triggers with consistent internal padding and clear focus
+                states.</p>
             <div class="mockup-container">
                 <div class="mockup-tabs">
                     <div class="mockup-tab active" onclick="showTab(this, 'btn-preview', 'btn-code')">Preview</div>
                     <div class="mockup-tab" onclick="showTab(this, 'btn-code', 'btn-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('btn-code')">Copy</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('btn-code')">Copy
+                    </div>
                 </div>
                 <div id="btn-preview" class="mockup-preview">
                     <button class="btn btn-primary">Primary</button>
@@ -345,7 +450,8 @@ RAVN.setTheme('supabase');
                 <div class="mockup-tabs">
                     <div class="mockup-tab active" onclick="showTab(this, 'card-preview', 'card-code')">Preview</div>
                     <div class="mockup-tab" onclick="showTab(this, 'card-code', 'card-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('card-code')">Copy</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('card-code')">
+                        Copy</div>
                 </div>
                 <div id="card-preview" class="mockup-preview">
                     <div class="card" style="width: 100%; max-width: 380px;">
@@ -355,10 +461,12 @@ RAVN.setTheme('supabase');
                         </div>
                         <div class="card-content">
                             <div style="font-size: 1.5rem; font-weight: 700;">$14,290.00</div>
-                            <div style="font-size: 0.75rem; color: #10b981; margin-top: 4px;">+12.5% from last month</div>
+                            <div style="font-size: 0.75rem; color: var(--success); margin-top: 4px;">+12.5% from last month
+                            </div>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-outline btn-sm w-full" style="width: 100%;" onclick="RAVN.showToast('Generating report...')">View Full Report</button>
+                            <button class="btn btn-outline btn-sm w-full" style="width: 100%;"
+                                onclick="RAVN.showToast('Generating report...')">View Full Report</button>
                         </div>
                     </div>
                 </div>
@@ -386,7 +494,8 @@ RAVN.setTheme('supabase');
                 <div class="mockup-tabs">
                     <div class="mockup-tab active" onclick="showTab(this, 'table-preview', 'table-code')">Preview</div>
                     <div class="mockup-tab" onclick="showTab(this, 'table-code', 'table-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('table-code')">Copy</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('table-code')">
+                        Copy</div>
                 </div>
                 <div id="table-preview" class="mockup-preview">
                     <div class="table-container">
@@ -442,7 +551,8 @@ RAVN.setTheme('supabase');
                 <div class="mockup-tabs">
                     <div class="mockup-tab active" onclick="showTab(this, 'tg-preview', 'tg-code')">Preview</div>
                     <div class="mockup-tab" onclick="showTab(this, 'tg-code', 'tg-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('tg-code')">Copy</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('tg-code')">Copy
+                    </div>
                 </div>
                 <div id="tg-preview" class="mockup-preview">
                     <div class="flex items-center gap-8">
@@ -477,17 +587,20 @@ RAVN.setTheme('supabase');
                 <div class="mockup-tabs">
                     <div class="mockup-tab active" onclick="showTab(this, 'ac-preview', 'ac-code')">Preview</div>
                     <div class="mockup-tab" onclick="showTab(this, 'ac-code', 'ac-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('ac-code')">Copy</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('ac-code')">Copy
+                    </div>
                 </div>
                 <div id="ac-preview" class="mockup-preview">
                     <div class="accordion" style="width: 100%; max-width: 500px;">
                         <div class="accordion-item">
                             <button class="accordion-trigger">How do I export my data?</button>
-                            <div class="accordion-content">You can export your data at any time via the API settings page in CSV or JSON format.</div>
+                            <div class="accordion-content">You can export your data at any time via the API settings
+                                page in CSV or JSON format.</div>
                         </div>
                         <div class="accordion-item">
                             <button class="accordion-trigger">Is there a rate limit?</button>
-                            <div class="accordion-content">Standard accounts are limited to 1,000 requests per minute. Contact us for enterprise limits.</div>
+                            <div class="accordion-content">Standard accounts are limited to 1,000 requests per minute.
+                                Contact us for enterprise limits.</div>
                         </div>
                     </div>
                 </div>
@@ -516,7 +629,8 @@ RAVN.setTheme('supabase');
                 <div class="mockup-tabs">
                     <div class="mockup-tab active" onclick="showTab(this, 'form-preview', 'form-code')">Preview</div>
                     <div class="mockup-tab" onclick="showTab(this, 'form-code', 'form-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('form-code')">Copy</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('form-code')">
+                        Copy</div>
                 </div>
                 <div id="form-preview" class="mockup-preview">
                     <div style="width: 100%; max-width: 400px;">
@@ -532,7 +646,8 @@ RAVN.setTheme('supabase');
                                 <span class="text-sm">Make profile public</span>
                             </div>
                         </div>
-                        <button class="btn btn-primary w-full mt-4" style="width: 100%;" onclick="RAVN.showToast('Settings saved')">Save Changes</button>
+                        <button class="btn btn-primary w-full mt-4" style="width: 100%;"
+                            onclick="RAVN.showToast('Settings saved')">Save Changes</button>
                     </div>
                 </div>
                 <pre id="form-code" class="mockup-code"><code>&lt;div class="form-group"&gt;
@@ -559,7 +674,8 @@ RAVN.setTheme('supabase');
                 <div class="mockup-tabs">
                     <div class="mockup-tab active" onclick="showTab(this, 'av-preview', 'av-code')">Preview</div>
                     <div class="mockup-tab" onclick="showTab(this, 'av-code', 'av-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('av-code')">Copy</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('av-code')">Copy
+                    </div>
                 </div>
                 <div id="av-preview" class="mockup-preview">
                     <div class="flex items-center gap-4">
@@ -580,7 +696,8 @@ RAVN.setTheme('supabase');
             </div>
         </section>
 
-        <footer style="margin-top: 120px; padding: 60px 0; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--muted-foreground);">
+        <footer
+            style="margin-top: 120px; padding: 60px 0; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--muted-foreground);">
             RAVN UI. Designed for those who build the future.
         </footer>
     </main>
@@ -592,7 +709,7 @@ RAVN.setTheme('supabase');
             const tabs = el.parentElement.querySelectorAll('.mockup-tab');
             tabs.forEach(t => t.classList.remove('active'));
             el.classList.add('active');
-            
+
             document.getElementById(showId).style.display = showId.includes('preview') ? 'flex' : 'block';
             hideIds.forEach(id => {
                 const target = document.getElementById(id);
@@ -650,4 +767,5 @@ RAVN.setTheme('supabase');
         document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
     </script>
 </body>
+
 </html>

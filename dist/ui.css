@@ -38,6 +38,11 @@
     --input: var(--gray-200);
     --ring: var(--gray-950);
 
+    /* Status Colors */
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+
     /* Tokens */
     --radius: 0.375rem;
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -337,9 +342,9 @@ small {
     font-weight: 500;
 }
 .status-dot { width: 8px; height: 8px; border-radius: 50%; }
-.status-online { background-color: #10b981; }
+.status-online { background-color: var(--success); }
 .status-offline { background-color: var(--gray-400); }
-.status-busy { background-color: #ef4444; }
+.status-busy { background-color: var(--error); }
 
 /* Accordion */
 .accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }

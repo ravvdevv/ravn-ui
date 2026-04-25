@@ -53,7 +53,38 @@
 .switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: calc(1.25rem - 6px); height: calc(1.25rem - 6px); background: white; border-radius: 50%; transition: transform 0.2s; }
 .switch:checked::after { transform: translateX(1rem); }
 
+/* Status Indicators */
+.status { display: inline-flex; align-items: center; gap: var(--space-2); font-size: 0.75rem; font-weight: 500; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; }
+.status-online { background-color: var(--success); }
+.status-offline { background-color: var(--gray-400); }
+.status-busy { background-color: var(--error); }
+
+/* Accordion */
+.accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.accordion-item { border-bottom: 1px solid var(--border); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-trigger {
+    width: 100%; padding: var(--space-4); display: flex; justify-content: space-between;
+    align-items: center; background: none; border: none; font-weight: 500; cursor: pointer; text-align: left;
+}
+.accordion-content { padding: 0 var(--space-4) var(--space-4) var(--space-4); font-size: 0.875rem; color: var(--muted-foreground); display: none; }
+.accordion-item.open .accordion-content { display: block; }
+
+/* Form Group */
+.form-group { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-4); }
+.label { font-size: 0.75rem; font-weight: 600; color: var(--foreground); }
+.helper-text { font-size: 0.7rem; color: var(--muted-foreground); }
+
 /* Toasts */
 .toast-container { position: fixed; bottom: var(--space-8); right: var(--space-8); display: flex; flex-direction: column; gap: var(--space-2); z-index: 1000; }
-.toast { background: var(--gray-900); color: white; padding: var(--space-3) var(--space-6); border-radius: var(--radius); font-size: 0.85rem; font-weight: 500; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); animation: toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+.toast {
+    background: var(--foreground); color: var(--background); padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius); font-size: 0.85rem; font-weight: 600;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    animation: toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid var(--border);
+}
+[data-theme="dark"] .toast, [data-theme="midnight"] .toast, [data-theme="supabase"] .toast, [data-theme="linear"] .toast {
+    background: white; color: black;
+}
 @keyframes toast-in { from { opacity: 0; transform: translateY(10px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
