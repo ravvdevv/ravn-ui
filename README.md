@@ -5,6 +5,7 @@
   <p>
     <img src="https://img.shields.io/npm/v/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="NPM Version" />
     <img src="https://img.shields.io/npm/l/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="License" />
+    <a href="https://ravn-ui.vercel.app"><img src="https://img.shields.io/badge/docs-live-black?style=flat-square" alt="Documentation" /></a>
   </p>
 </div>
 
