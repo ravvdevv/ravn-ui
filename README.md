@@ -20,11 +20,11 @@ Add the following to your `<head>`:
 
 ```html
 <!-- Core Styles -->
-<link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core@1.0.0/dist/ui.css">
-<link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core@1.0.0/dist/themes.css">
+<link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
+<link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
 
 <!-- Core Logic -->
-<script src="https://unpkg.com/@ravn-ui/core@1.0.0/dist/ui.js"></script>
+<script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
 ```
 
 ### Via Package Manager

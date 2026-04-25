@@ -258,11 +258,11 @@
                 </div>
                 
                 <div id="inst-cdn" class="mockup-code" style="display: block;"><code>&lt;!-- Core Styles --&gt;
-&lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core@1.0.0/dist/ui.css"&gt;
-&lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core@1.0.0/dist/themes.css"&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css"&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css"&gt;
 
 &lt;!-- Core Logic --&gt;
-&lt;script src="https://unpkg.com/@ravn-ui/core@1.0.0/dist/ui.js"&gt;&lt;/script&gt;</code></div>
+&lt;script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"&gt;&lt;/script&gt;</code></div>
 
                 <div id="inst-npm" class="mockup-code"><code># Using Bun (Recommended)
 bun add @ravn-ui/core
@@ -273,18 +273,12 @@ npm install @ravn-ui/core</code></div>
                 <div id="inst-html" class="mockup-code"><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="en" data-theme="light"&gt;
 &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core@1.0.0/dist/ui.css"&gt;
-    &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core@1.0.0/dist/themes.css"&gt;
+    &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css"&gt;
+    &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div class="container py-12"&gt;
-        &lt;h1 class="mb-4"&gt;Hello RAVN&lt;/h1&gt;
-        &lt;button class="btn btn-primary" onclick="RAVN.showToast('It works!')"&gt;Action&lt;/button&gt;
-    &lt;/div&gt;
-    &lt;script src="https://unpkg.com/@ravn-ui/core@1.0.0/dist/ui.js"&gt;&lt;/script&gt;
-    &lt;script&gt;window.RAVN.initTheme();&lt;/script&gt;
+    &lt;button class="btn btn-primary"&gt;Hello RAVN&lt;/button&gt;
+    &lt;script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></div>
             </div>
@@ -338,9 +332,16 @@ npm install @ravn-ui/core</code></div>
                 </div>
                 <pre id="card-code" class="mockup-code"><code>&lt;div class="card"&gt;
   &lt;div class="card-header"&gt;
-    &lt;h3&gt;Title&lt;/h3&gt;
+    &lt;h3&gt;Revenue Stream&lt;/h3&gt;
+    &lt;small&gt;Monthly recurring revenue analysis.&lt;/small&gt;
   &lt;/div&gt;
-  &lt;div class="card-content"&gt;...&lt;/div&gt;
+  &lt;div class="card-content"&gt;
+    &lt;div style="font-size: 1.5rem; font-weight: 700;"&gt;$14,290.00&lt;/div&gt;
+    &lt;div style="color: #10b981; font-size: 0.75rem;"&gt;+12.5% from last month&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="card-footer"&gt;
+    &lt;button class="btn btn-outline btn-sm w-full"&gt;View Full Report&lt;/button&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
             </div>
         </section>
@@ -353,6 +354,7 @@ npm install @ravn-ui/core</code></div>
                 <div class="mockup-tabs">
                     <div class="mockup-tab active" onclick="showTab(this, 'table-preview', 'table-code')">Preview</div>
                     <div class="mockup-tab" onclick="showTab(this, 'table-code', 'table-preview')">Source</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('table-code')">Copy</div>
                 </div>
                 <div id="table-preview" class="mockup-preview">
                     <div class="table-container">
@@ -381,7 +383,20 @@ npm install @ravn-ui/core</code></div>
                 </div>
                 <pre id="table-code" class="mockup-code"><code>&lt;div class="table-container"&gt;
   &lt;table class="table"&gt;
-    &lt;thead&gt;...&lt;/thead&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Customer&lt;/th&gt;
+        &lt;th&gt;Status&lt;/th&gt;
+        &lt;th&gt;Amount&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;Alex Rivera&lt;/td&gt;
+        &lt;td&gt;&lt;span class="badge"&gt;Paid&lt;/span&gt;&lt;/td&gt;
+        &lt;td&gt;$240.00&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
   &lt;/table&gt;
 &lt;/div&gt;</code></pre>
             </div>
@@ -489,6 +504,7 @@ npm install @ravn-ui/core</code></div>
                 <div class="mockup-tabs">
                     <div class="mockup-tab active" onclick="showTab(this, 'av-preview', 'av-code')">Preview</div>
                     <div class="mockup-tab" onclick="showTab(this, 'av-code', 'av-preview')">Source</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('av-code')">Copy</div>
                 </div>
                 <div id="av-preview" class="mockup-preview">
                     <div class="flex items-center gap-4">
@@ -499,8 +515,13 @@ npm install @ravn-ui/core</code></div>
                         </div>
                     </div>
                 </div>
-                <pre id="av-code" class="mockup-code"><code>&lt;div class="avatar"&gt;JD&lt;/div&gt;
-&lt;div class="skeleton" style="width: 100px; height: 16px;"&gt;&lt;/div&gt;</code></pre>
+                <pre id="av-code" class="mockup-code"><code>&lt;div class="flex items-center gap-4"&gt;
+  &lt;div class="avatar"&gt;JD&lt;/div&gt;
+  &lt;div class="flex flex-col gap-1"&gt;
+    &lt;div class="skeleton" style="width: 120px; height: 16px;"&gt;&lt;/div&gt;
+    &lt;div class="skeleton" style="width: 80px; height: 12px;"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
         </section>
 
