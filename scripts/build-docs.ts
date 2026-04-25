@@ -31,7 +31,8 @@ function build() {
         'progress.html',
         'tooltips.html',
         'breadcrumbs.html',
-        'sidebar.html'
+        'sidebar.html',
+        'dashboard.html'
     ];
 
     let componentsHtml = '';

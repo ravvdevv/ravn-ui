@@ -453,6 +453,7 @@
             <a href="#tooltips" class="nav-item">Tooltips</a>
             <a href="#breadcrumbs" class="nav-item">Breadcrumbs</a>
             <a href="#sidebar" class="nav-item">Sidebar</a>
+            <a href="#dashboard" class="nav-item">Dashboard Patterns</a>
         </nav>
 
         <nav class="nav-group">
@@ -803,7 +804,7 @@ RAVN.setTheme('supabase');
         <!-- Section: accordions.html -->
         <section id="accordions" class="component-section">
     <h2 class="component-title">Accordions</h2>
-    <p class="component-desc">Expandable containers for hierarchical information or FAQs.</p>
+    <p class="component-desc">Expandable containers for hierarchical information or FAQs. Optimized for accessibility with Space/Enter trigger support.</p>
     <div class="mockup-container">
         <div class="mockup-tabs">
             <div class="mockup-tab active" onclick="showTab(this, 'ac-preview', 'ac-code')">Preview</div>
@@ -1157,6 +1158,102 @@ RAVN.setTheme('supabase');
     &lt;a href="#" class="sidebar-item"&gt;Projects&lt;/a&gt;
   &lt;/nav&gt;
 &lt;/aside&gt;</code></pre>
+    </div>
+</section>
+
+
+        <!-- Section: dashboard.html -->
+        <section id="dashboard" class="component-section">
+    <h2 class="component-title">Dashboard Patterns</h2>
+    <p class="component-desc">High-density SaaS layout patterns for complex data interfaces.</p>
+    
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'db-preview', 'db-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'db-code', 'db-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('db-code')">Copy</div>
+        </div>
+        
+        <div id="db-preview" class="mockup-preview" style="padding: 0; background: var(--muted); align-items: stretch; justify-content: flex-start; height: 500px; overflow: hidden;">
+            <!-- Sidebar -->
+            <aside class="sidebar" style="height: 100%; width: 200px; border-right: 1px solid var(--border); background: var(--background);">
+                <div class="sidebar-header" style="padding: var(--space-6); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-foreground);">
+                    RAVN OS
+                </div>
+                <nav class="sidebar-nav" style="padding: var(--space-2);">
+                    <a href="#" class="sidebar-item active">Overview</a>
+                    <a href="#" class="sidebar-item">Analytics</a>
+                    <a href="#" class="sidebar-item">Customers</a>
+                    <a href="#" class="sidebar-item">Settings</a>
+                </nav>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div style="flex: 1; display: flex; flex-direction: column; height: 100%; overflow-y: auto;">
+                <!-- Internal Header -->
+                <header style="height: 56px; border-bottom: 1px solid var(--border); background: var(--background); display: flex; align-items: center; padding: 0 var(--space-6); justify-content: space-between;">
+                    <div class="breadcrumbs">
+                        <a href="#" class="breadcrumb-item">Project</a>
+                        <span class="breadcrumb-item active">Overview</span>
+                    </div>
+                    <button class="btn btn-sm btn-outline">Export</button>
+                </header>
+
+                <!-- Dashboard Content -->
+                <div style="padding: var(--space-6); background: var(--background); flex: 1;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-bottom: var(--space-8);">
+                        <div class="card" style="padding: var(--space-4);">
+                            <div style="font-size: 0.7rem; color: var(--muted-foreground); text-transform: uppercase;">Total Revenue</div>
+                            <div style="font-size: 1.5rem; font-weight: 700;">$45,231.89</div>
+                            <div class="trend trend-up">+20.1% from last month</div>
+                        </div>
+                        <div class="card" style="padding: var(--space-4);">
+                            <div style="font-size: 0.7rem; color: var(--muted-foreground); text-transform: uppercase;">Subscriptions</div>
+                            <div style="font-size: 1.5rem; font-weight: 700;">+2,350</div>
+                            <div class="trend trend-up">+180.1% from last month</div>
+                        </div>
+                        <div class="card" style="padding: var(--space-4);">
+                            <div style="font-size: 0.7rem; color: var(--muted-foreground); text-transform: uppercase;">Active Now</div>
+                            <div style="font-size: 1.5rem; font-weight: 700;">+573</div>
+                            <div class="trend trend-down">-12 since last hour</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><h3>Recent Transactions</h3></div>
+                        <div class="table-container" style="border: none; border-radius: 0;">
+                            <table class="table">
+                                <thead>
+                                    <tr><th>Customer</th><th>Status</th><th>Amount</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Alex Rivera</td><td><span class="badge badge-secondary">Paid</span></td><td>$240.00</td></tr>
+                                    <tr><td>Sarah Chen</td><td><span class="badge badge-secondary">Pending</span></td><td>$1,200.00</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <pre id="db-code" class="mockup-code"><code>&lt;!-- Shell Layout --&gt;
+&lt;div class="flex h-screen"&gt;
+  &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+  &lt;main class="flex-1 flex flex-col"&gt;
+    &lt;header class="h-14 border-b flex items-center px-6"&gt;...&lt;/header&gt;
+    &lt;div class="p-6 overflow-auto"&gt;
+      &lt;!-- Metrics Grid --&gt;
+      &lt;div class="grid grid-cols-3 gap-4"&gt;
+        &lt;div class="card p-4"&gt;
+          &lt;div class="text-xs text-muted"&gt;Revenue&lt;/div&gt;
+          &lt;div class="text-2xl font-bold"&gt;$45,231&lt;/div&gt;
+          &lt;div class="trend trend-up"&gt;+20.1%&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/div&gt;</code></pre>
     </div>
 </section>
 
