@@ -1,6 +1,6 @@
 # RAVN UI
 
-![RAVN Logo](logo.png)
+<img src="logo.png" alt="RAVN Logo" width="120">
 
 The design core for **Elite SaaS**. 
 

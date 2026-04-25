@@ -6,6 +6,7 @@
   "style": "dist/ui.css",
   "files": [
     "dist",
+    "src",
     "logo.png",
     "favicon.png"
   ],
