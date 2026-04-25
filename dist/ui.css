@@ -58,6 +58,16 @@ html {
     scroll-padding-top: var(--space-8);
 }
 
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    line-height: 1.5;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
