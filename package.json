@@ -4,6 +4,9 @@
   "description": "Minimal, premium, CDN-first UI library inspired by DaisyUI and shadcn/ui.",
   "main": "dist/ui.js",
   "style": "dist/ui.css",
+  "bin": {
+    "ravn": "bin/ravn.js"
+  },
   "scripts": {
     "build:docs": "bun scripts/build-docs.ts"
   },
