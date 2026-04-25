@@ -1,0 +1,33 @@
+<section id="accordions" class="component-section">
+    <h2 class="component-title">Accordions</h2>
+    <p class="component-desc">Expandable containers for hierarchical information or FAQs.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'ac-preview', 'ac-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'ac-code', 'ac-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('ac-code')">Copy</div>
+        </div>
+        <div id="ac-preview" class="mockup-preview">
+            <div class="accordion" style="width: 100%; max-width: 500px;">
+                <div class="accordion-item">
+                    <div class="accordion-trigger">How do I install RAVN UI?</div>
+                    <div class="accordion-content">
+                        You can install RAVN UI via Bun, NPM, or simply by including the CDN links in your HTML head.
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-trigger">Is it compatible with Tailwind?</div>
+                    <div class="accordion-content">
+                        Yes, RAVN UI uses standard CSS variables and classes that can coexist perfectly with Tailwind or any other CSS framework.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <pre id="ac-code" class="mockup-code"><code>&lt;div class="accordion"&gt;
+  &lt;div class="accordion-item"&gt;
+    &lt;div class="accordion-trigger"&gt;Title&lt;/div&gt;
+    &lt;div class="accordion-content"&gt;Content...&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</section>

@@ -1,0 +1,26 @@
+<section id="avatars" class="component-section">
+    <h2 class="component-title">Avatars</h2>
+    <p class="component-desc">High-fidelity profile representation.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'av-preview-simple', 'av-code-simple')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'av-code-simple', 'av-preview-simple')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('av-code-simple')">Copy</div>
+        </div>
+        <div id="av-preview-simple" class="mockup-preview">
+            <div class="flex items-center gap-4">
+                <div class="avatar">JD</div>
+                <div class="avatar" style="background: var(--primary); color: var(--primary-foreground);">RV</div>
+                <div class="avatar">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&h=80&fit=crop" alt="User">
+                </div>
+            </div>
+        </div>
+        <pre id="av-code-simple" class="mockup-code"><code>&lt;div class="avatar"&gt;JD&lt;/div&gt;
+
+&lt;!-- Image variant --&gt;
+&lt;div class="avatar"&gt;
+  &lt;img src="user.jpg" alt="Avatar"&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</section>

@@ -1,0 +1,50 @@
+<section id="forms" class="component-section">
+    <h2 class="component-title">Forms</h2>
+    <p class="component-desc">High-density form layouts for enterprise configuration.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'form-preview', 'form-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'form-code', 'form-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('form-code')">Copy
+            </div>
+        </div>
+        <div id="form-preview" class="mockup-preview">
+            <div class="card" style="width: 100%; max-width: 440px;">
+                <div class="card-header">
+                    <h3 style="font-size: 1rem;">Project Settings</h3>
+                    <small>Manage your workspace configuration.</small>
+                </div>
+                <div class="card-content">
+                    <div class="form-group">
+                        <label class="label">Organization Name</label>
+                        <input type="text" class="input" placeholder="e.g. Acme Corp">
+                        <span class="helper-text">This will be visible on your invoices.</span>
+                    </div>
+                    <div class="form-group" style="margin-top: var(--space-4);">
+                        <label class="label">Visibility</label>
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" class="switch">
+                            <span class="text-sm">Make profile public</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary w-full" style="width: 100%;"
+                        onclick="RAVN.showToast('Settings saved')">Save Changes</button>
+                </div>
+            </div>
+        </div>
+        <pre id="form-code" class="mockup-code"><code>&lt;div class="form-group"&gt;
+  &lt;label class="label"&gt;Organization Name&lt;/label&gt;
+  &lt;input type="text" class="input" placeholder="e.g. Acme Corp"&gt;
+&lt;/div&gt;
+
+&lt;div class="form-group"&gt;
+  &lt;label class="label"&gt;Visibility&lt;/label&gt;
+  &lt;div class="flex items-center gap-3"&gt;
+    &lt;input type="checkbox" class="switch"&gt;
+    &lt;span class="text-sm"&gt;Public&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</section>

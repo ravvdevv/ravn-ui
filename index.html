@@ -242,7 +242,6 @@
         .hero img {
             transition: filter 0.3s ease, mix-blend-mode 0.3s ease;
             mix-blend-mode: multiply;
-            /* Light mode seamlessness */
         }
 
         [data-theme="dark"] .brand img,
@@ -253,7 +252,6 @@
         [data-theme="linear"] .brand img,
         [data-theme="linear"] .hero img,
         [data-theme="dark-zinc"] .brand img,
-        /* Theme-aware logo inversion */
         [data-theme="dark"] .sidebar img,
         [data-theme="midnight"] .sidebar img,
         [data-theme="supabase"] .sidebar img,
@@ -341,49 +339,52 @@
     </aside>
 
     <main>
+        
+        <!-- Section: hero.html -->
         <section id="hero" class="hero">
-            <img src="logo.png" alt="RAVN Logo"
-                style="width: 80px; height: 80px; margin-bottom: var(--space-8); object-fit: contain;">
-            <h1>The design core for Elite SaaS.</h1>
-            <p>Strictly designed, highly performant UI components built for clarity and scale. No fluff, no emojis, just
-                production-grade interfaces.</p>
-            <div class="install-command" onclick="RAVN.copy('bun add @ravn-ui/core', 'Install command copied')">
-                <span style="opacity: 0.5; margin-right: 8px;">$</span> bun add @ravn-ui/core
-            </div>
-        </section>
+    <img src="logo.png" alt="RAVN Logo"
+        style="width: 80px; height: 80px; margin-bottom: var(--space-8); object-fit: contain;">
+    <h1>The design core for Elite SaaS.</h1>
+    <p>Strictly designed, highly performant UI components built for clarity and scale. No fluff, no emojis, just
+        production-grade interfaces.</p>
+    <div class="install-command" onclick="RAVN.copy('bun add @ravn-ui/core', 'Install command copied')">
+        <span style="opacity: 0.5; margin-right: 8px;">$</span> bun add @ravn-ui/core
+    </div>
+</section>
 
-        <!-- Installation -->
+
+        <!-- Section: install.html -->
         <section id="install" class="component-section">
-            <h2 class="component-title">Installation</h2>
-            <p class="component-desc">Integrate RAVN UI into your project in seconds. No build tools required for CDN
-                usage.</p>
+    <h2 class="component-title">Installation</h2>
+    <p class="component-desc">Integrate RAVN UI into your project in seconds. No build tools required for CDN
+        usage.</p>
 
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'inst-cdn', 'inst-npm', 'inst-html')">CDN
-                    </div>
-                    <div class="mockup-tab" onclick="showTab(this, 'inst-npm', 'inst-cdn', 'inst-html')">Package Manager
-                    </div>
-                    <div class="mockup-tab" onclick="showTab(this, 'inst-html', 'inst-cdn', 'inst-npm')">Starter HTML
-                    </div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyActiveInstall()">Copy
-                    </div>
-                </div>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'inst-cdn', 'inst-npm', 'inst-html')">CDN
+            </div>
+            <div class="mockup-tab" onclick="showTab(this, 'inst-npm', 'inst-cdn', 'inst-html')">Package Manager
+            </div>
+            <div class="mockup-tab" onclick="showTab(this, 'inst-html', 'inst-cdn', 'inst-npm')">Starter HTML
+            </div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyActiveInstall()">Copy
+            </div>
+        </div>
 
-                <div id="inst-cdn" class="mockup-code" style="display: block;"><code>&lt;!-- Core Styles --&gt;
+        <div id="inst-cdn" class="mockup-code" style="display: block;"><code>&lt;!-- Core Styles --&gt;
 &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css"&gt;
 &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css"&gt;
 
 &lt;!-- Core Logic --&gt;
 &lt;script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"&gt;&lt;/script&gt;</code></div>
 
-                <div id="inst-npm" class="mockup-code"><code># Using Bun (Recommended)
+        <div id="inst-npm" class="mockup-code"><code># Using Bun (Recommended)
 bun add @ravn-ui/core
 
 # Using NPM
 npm install @ravn-ui/core</code></div>
 
-                <div id="inst-html" class="mockup-code"><code>&lt;!DOCTYPE html&gt;
+        <div id="inst-html" class="mockup-code"><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="en" data-theme="light"&gt;
 &lt;head&gt;
     &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css"&gt;
@@ -394,89 +395,122 @@ npm install @ravn-ui/core</code></div>
     &lt;script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></div>
-            </div>
-        </section>
+    </div>
+</section>
 
-        <!-- Theming -->
+
+        <!-- Section: theming.html -->
         <section id="theming" class="component-section">
-            <h2 class="component-title">Theming</h2>
-            <p class="component-desc">RAVN UI is built on a robust token system. Apply themes globally via the
-                data-theme attribute.</p>
+    <h2 class="component-title">Theming</h2>
+    <p class="component-desc">RAVN UI is built on a robust token system. Apply themes globally via the
+        data-theme attribute.</p>
 
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'theme-html', 'theme-js')">HTML</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'theme-js', 'theme-html')">JavaScript</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('theme-html')">
-                        Copy</div>
-                </div>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'theme-html', 'theme-js')">HTML</div>
+            <div class="mockup-tab" onclick="showTab(this, 'theme-js', 'theme-html')">JavaScript</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('theme-html')">
+                Copy</div>
+        </div>
 
-                <div id="theme-html" class="mockup-code" style="display: block;"><code>&lt;!-- Apply midnight theme globally --&gt;
+        <div id="theme-html" class="mockup-code" style="display: block;"><code>&lt;!-- Apply midnight theme globally --&gt;
 &lt;html data-theme="midnight"&gt;
 ...
 &lt;/html&gt;</code></div>
 
-                <div id="theme-js" class="mockup-code"><code>// Switch themes dynamically with persistence
+        <div id="theme-js" class="mockup-code"><code>// Switch themes dynamically with persistence
 RAVN.setTheme('supabase');
 
 // Available: light, dark, claude, midnight, 
 // supabase, linear, zinc, forest, indigo</code></div>
-            </div>
-        </section>
+    </div>
+</section>
 
-        <!-- Buttons -->
+
+        <!-- Section: buttons.html -->
         <section id="buttons" class="component-section">
-            <h2 class="component-title">Buttons</h2>
-            <p class="component-desc">High-precision action triggers with consistent internal padding and clear focus
-                states.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'btn-preview', 'btn-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'btn-code', 'btn-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('btn-code')">Copy
-                    </div>
-                </div>
-                <div id="btn-preview" class="mockup-preview">
-                    <button class="btn btn-primary">Primary</button>
-                    <button class="btn btn-outline">Secondary</button>
-                    <button class="btn btn-ghost">Ghost</button>
-                    <button class="btn btn-primary btn-sm">Small</button>
-                </div>
-                <pre id="btn-code" class="mockup-code"><code>&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
-&lt;button class="btn btn-outline"&gt;Secondary&lt;/button&gt;</code></pre>
+    <h2 class="component-title">Buttons</h2>
+    <p class="component-desc">High-precision action triggers with consistent internal padding and clear focus
+        states.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'btn-preview', 'btn-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'btn-code', 'btn-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('btn-code')">Copy
             </div>
-        </section>
+        </div>
+        <div id="btn-preview" class="mockup-preview">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-outline">Secondary</button>
+            <button class="btn btn-ghost">Ghost</button>
+            <button class="btn btn-primary btn-sm">Small</button>
+        </div>
+        <pre id="btn-code" class="mockup-code"><code>&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-outline"&gt;Secondary&lt;/button&gt;</code></pre>
+    </div>
+</section>
 
-        <!-- Cards -->
+
+        <!-- Section: inputs.html -->
+        <section id="inputs" class="component-section">
+    <h2 class="component-title">Inputs</h2>
+    <p class="component-desc">Refined data entry fields with consistent focus rings and utility states.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'in-preview', 'in-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'in-code', 'in-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('in-code')">Copy</div>
+        </div>
+        <div id="in-preview" class="mockup-preview" style="flex-direction: column; align-items: stretch; max-width: 400px; margin: 0 auto;">
+            <div class="form-group">
+                <label class="label">Project Name</label>
+                <input type="text" class="input" placeholder="e.g. Apollo Dashboard">
+                <span class="helper-text">Unique name for your workspace.</span>
+            </div>
+            <div class="form-group">
+                <label class="label">API Key</label>
+                <input type="password" class="input" value="••••••••••••••••">
+            </div>
+        </div>
+        <pre id="in-code" class="mockup-code"><code>&lt;div class="form-group"&gt;
+  &lt;label class="label"&gt;Label&lt;/label&gt;
+  &lt;input type="text" class="input" placeholder="Placeholder..."&gt;
+  &lt;span class="helper-text"&gt;Optional helper text&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</section>
+
+
+        <!-- Section: cards.html -->
         <section id="cards" class="component-section">
-            <h2 class="component-title">Cards</h2>
-            <p class="component-desc">Modular containers designed for data density and hierarchical clarity.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'card-preview', 'card-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'card-code', 'card-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('card-code')">
-                        Copy</div>
+    <h2 class="component-title">Cards</h2>
+    <p class="component-desc">Modular containers designed for data density and hierarchical clarity.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'card-preview', 'card-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'card-code', 'card-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('card-code')">
+                Copy</div>
+        </div>
+        <div id="card-preview" class="mockup-preview">
+            <div class="card" style="width: 100%; max-width: 380px;">
+                <div class="card-header">
+                    <h3 style="font-size: 1rem;">Revenue Stream</h3>
+                    <small>Monthly recurring revenue analysis.</small>
                 </div>
-                <div id="card-preview" class="mockup-preview">
-                    <div class="card" style="width: 100%; max-width: 380px;">
-                        <div class="card-header">
-                            <h3 style="font-size: 1rem;">Revenue Stream</h3>
-                            <small>Monthly recurring revenue analysis.</small>
-                        </div>
-                        <div class="card-content">
-                            <div style="font-size: 1.5rem; font-weight: 700;">$14,290.00</div>
-                            <div style="font-size: 0.75rem; color: var(--success); margin-top: 4px;">+12.5% from last
-                                month
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-outline btn-sm w-full" style="width: 100%;"
-                                onclick="RAVN.showToast('Generating report...')">View Full Report</button>
-                        </div>
+                <div class="card-content">
+                    <div style="font-size: 1.5rem; font-weight: 700;">$14,290.00</div>
+                    <div style="font-size: 0.75rem; color: var(--success); margin-top: 4px;">+12.5% from last
+                        month
                     </div>
                 </div>
-                <pre id="card-code" class="mockup-code"><code>&lt;div class="card"&gt;
+                <div class="card-footer">
+                    <button class="btn btn-outline btn-sm w-full" style="width: 100%;"
+                        onclick="RAVN.showToast('Generating report...')">View Full Report</button>
+                </div>
+            </div>
+        </div>
+        <pre id="card-code" class="mockup-code"><code>&lt;div class="card"&gt;
   &lt;div class="card-header"&gt;
     &lt;h3&gt;Revenue Stream&lt;/h3&gt;
     &lt;small&gt;Monthly recurring revenue analysis.&lt;/small&gt;
@@ -489,46 +523,47 @@ RAVN.setTheme('supabase');
     &lt;button class="btn btn-outline btn-sm w-full"&gt;View Full Report&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-            </div>
-        </section>
+    </div>
+</section>
 
-        <!-- Tables -->
+
+        <!-- Section: tables.html -->
         <section id="tables" class="component-section">
-            <h2 class="component-title">Tables</h2>
-            <p class="component-desc">High-density data grids with refined hover states and header alignment.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'table-preview', 'table-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'table-code', 'table-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('table-code')">
-                        Copy</div>
-                </div>
-                <div id="table-preview" class="mockup-preview">
-                    <div class="table-container">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Customer</th>
-                                    <th>Status</th>
-                                    <th>Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Alex Rivera</td>
-                                    <td><span class="badge">Paid</span></td>
-                                    <td>$240.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Sarah Chen</td>
-                                    <td><span class="badge badge-secondary">Pending</span></td>
-                                    <td>$1,200.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <pre id="table-code" class="mockup-code"><code>&lt;div class="table-container"&gt;
+    <h2 class="component-title">Tables</h2>
+    <p class="component-desc">High-density data grids with refined hover states and header alignment.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'table-preview', 'table-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'table-code', 'table-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('table-code')">
+                Copy</div>
+        </div>
+        <div id="table-preview" class="mockup-preview">
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Status</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Alex Rivera</td>
+                            <td><span class="badge">Paid</span></td>
+                            <td>$240.00</td>
+                        </tr>
+                        <tr>
+                            <td>Sarah Chen</td>
+                            <td><span class="badge badge-secondary">Pending</span></td>
+                            <td>$1,200.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <pre id="table-code" class="mockup-code"><code>&lt;div class="table-container"&gt;
   &lt;table class="table"&gt;
     &lt;thead&gt;
       &lt;tr&gt;
@@ -546,33 +581,63 @@ RAVN.setTheme('supabase');
     &lt;/tbody&gt;
   &lt;/table&gt;
 &lt;/div&gt;</code></pre>
-            </div>
-        </section>
+    </div>
+</section>
 
-        <!-- Toggles & Status -->
+
+        <!-- Section: avatars.html -->
+        <section id="avatars" class="component-section">
+    <h2 class="component-title">Avatars</h2>
+    <p class="component-desc">High-fidelity profile representation.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'av-preview-simple', 'av-code-simple')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'av-code-simple', 'av-preview-simple')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('av-code-simple')">Copy</div>
+        </div>
+        <div id="av-preview-simple" class="mockup-preview">
+            <div class="flex items-center gap-4">
+                <div class="avatar">JD</div>
+                <div class="avatar" style="background: var(--primary); color: var(--primary-foreground);">RV</div>
+                <div class="avatar">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&h=80&fit=crop" alt="User">
+                </div>
+            </div>
+        </div>
+        <pre id="av-code-simple" class="mockup-code"><code>&lt;div class="avatar"&gt;JD&lt;/div&gt;
+
+&lt;!-- Image variant --&gt;
+&lt;div class="avatar"&gt;
+  &lt;img src="user.jpg" alt="Avatar"&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</section>
+
+
+        <!-- Section: toggles.html -->
         <section id="toggles" class="component-section">
-            <h2 class="component-title">Toggles & Status</h2>
-            <p class="component-desc">High-fidelity binary controls and real-time state indicators.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'tg-preview', 'tg-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'tg-code', 'tg-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('tg-code')">Copy
-                    </div>
+    <h2 class="component-title">Toggles & Status</h2>
+    <p class="component-desc">High-fidelity binary controls and real-time state indicators.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'tg-preview', 'tg-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'tg-code', 'tg-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('tg-code')">Copy
+            </div>
+        </div>
+        <div id="tg-preview" class="mockup-preview">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" class="switch" checked>
+                    <span class="text-sm">Push Notifications</span>
                 </div>
-                <div id="tg-preview" class="mockup-preview">
-                    <div class="flex items-center gap-8">
-                        <div class="flex items-center gap-3">
-                            <input type="checkbox" class="switch" checked>
-                            <span class="text-sm">Push Notifications</span>
-                        </div>
-                        <div class="status">
-                            <div class="status-dot status-online"></div>
-                            System Live
-                        </div>
-                    </div>
+                <div class="status">
+                    <div class="status-dot status-online"></div>
+                    System Live
                 </div>
-                <pre id="tg-code" class="mockup-code"><code>&lt;div class="flex items-center gap-8"&gt;
+            </div>
+        </div>
+        <pre id="tg-code" class="mockup-code"><code>&lt;div class="flex items-center gap-8"&gt;
   &lt;div class="flex items-center gap-3"&gt;
     &lt;input type="checkbox" class="switch" checked&gt;
     &lt;span class="text-sm"&gt;Push Notifications&lt;/span&gt;
@@ -582,150 +647,153 @@ RAVN.setTheme('supabase');
     System Live
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-            </div>
-        </section>
+    </div>
+</section>
 
-        <!-- Accordions -->
+
+        <!-- Section: accordions.html -->
         <section id="accordions" class="component-section">
-            <h2 class="component-title">Accordions</h2>
-            <p class="component-desc">Expandable containers for hierarchical information or FAQs.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'ac-preview', 'ac-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'ac-code', 'ac-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('ac-code')">Copy
+    <h2 class="component-title">Accordions</h2>
+    <p class="component-desc">Expandable containers for hierarchical information or FAQs.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'ac-preview', 'ac-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'ac-code', 'ac-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('ac-code')">Copy</div>
+        </div>
+        <div id="ac-preview" class="mockup-preview">
+            <div class="accordion" style="width: 100%; max-width: 500px;">
+                <div class="accordion-item">
+                    <div class="accordion-trigger">How do I install RAVN UI?</div>
+                    <div class="accordion-content">
+                        You can install RAVN UI via Bun, NPM, or simply by including the CDN links in your HTML head.
                     </div>
                 </div>
-                <div id="ac-preview" class="mockup-preview">
-                    <div class="accordion" style="width: 100%; max-width: 500px;">
-                        <div class="accordion-item">
-                            <button class="accordion-trigger">How do I export my data?</button>
-                            <div class="accordion-content">You can export your data at any time via the API settings
-                                page in CSV or JSON format.</div>
-                        </div>
-                        <div class="accordion-item">
-                            <button class="accordion-trigger">Is there a rate limit?</button>
-                            <div class="accordion-content">Standard accounts are limited to 1,000 requests per minute.
-                                Contact us for enterprise limits.</div>
-                        </div>
+                <div class="accordion-item">
+                    <div class="accordion-trigger">Is it compatible with Tailwind?</div>
+                    <div class="accordion-content">
+                        Yes, RAVN UI uses standard CSS variables and classes that can coexist perfectly with Tailwind or any other CSS framework.
                     </div>
                 </div>
-                <pre id="ac-code" class="mockup-code"><code>&lt;div class="accordion"&gt;
+            </div>
+        </div>
+        <pre id="ac-code" class="mockup-code"><code>&lt;div class="accordion"&gt;
   &lt;div class="accordion-item"&gt;
-    &lt;button class="accordion-trigger"&gt;How do I export my data?&lt;/button&gt;
-    &lt;div class="accordion-content"&gt;
-      You can export your data at any time via the API settings page in CSV or JSON format.
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class="accordion-item"&gt;
-    &lt;button class="accordion-trigger"&gt;Is there a rate limit?&lt;/button&gt;
-    &lt;div class="accordion-content"&gt;
-      Standard accounts are limited to 1,000 requests per minute.
-    &lt;/div&gt;
+    &lt;div class="accordion-trigger"&gt;Title&lt;/div&gt;
+    &lt;div class="accordion-content"&gt;Content...&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-            </div>
-        </section>
+    </div>
+</section>
 
-        <!-- Forms -->
-        <section id="forms" class="component-section">
-            <h2 class="component-title">Forms & Layouts</h2>
-            <p class="component-desc">Structural helpers for building complex, accessible entry interfaces.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'form-preview', 'form-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'form-code', 'form-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('form-code')">
-                        Copy</div>
+
+        <!-- Section: skeletons.html -->
+        <section id="skeletons" class="component-section">
+    <h2 class="component-title">Skeletons</h2>
+    <p class="component-desc">Progressive loading states with smooth pulse animations.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'sk-preview', 'sk-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'sk-code', 'sk-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('sk-code')">Copy</div>
+        </div>
+        <div id="sk-preview" class="mockup-preview">
+            <div class="flex items-center gap-4">
+                <div class="avatar skeleton"></div>
+                <div class="flex flex-col gap-1">
+                    <div class="skeleton" style="width: 120px; height: 16px;"></div>
+                    <div class="skeleton" style="width: 80px; height: 12px;"></div>
                 </div>
-                <div id="form-preview" class="mockup-preview">
-                    <div style="width: 100%; max-width: 400px;">
-                        <div class="form-group">
-                            <label class="label">Organization Name</label>
-                            <input type="text" class="input" placeholder="e.g. Acme Corp">
-                            <span class="helper-text">This will be visible on your invoices.</span>
+            </div>
+        </div>
+        <pre id="sk-code" class="mockup-code"><code>&lt;div class="flex items-center gap-4"&gt;
+  &lt;div class="avatar skeleton"&gt;&lt;/div&gt;
+  &lt;div class="flex flex-col gap-1"&gt;
+    &lt;div class="skeleton" style="width: 120px; height: 16px;"&gt;&lt;/div&gt;
+    &lt;div class="skeleton" style="width: 80px; height: 12px;"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</section>
+
+
+        <!-- Section: forms.html -->
+        <section id="forms" class="component-section">
+    <h2 class="component-title">Forms</h2>
+    <p class="component-desc">High-density form layouts for enterprise configuration.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'form-preview', 'form-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'form-code', 'form-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('form-code')">Copy
+            </div>
+        </div>
+        <div id="form-preview" class="mockup-preview">
+            <div class="card" style="width: 100%; max-width: 440px;">
+                <div class="card-header">
+                    <h3 style="font-size: 1rem;">Project Settings</h3>
+                    <small>Manage your workspace configuration.</small>
+                </div>
+                <div class="card-content">
+                    <div class="form-group">
+                        <label class="label">Organization Name</label>
+                        <input type="text" class="input" placeholder="e.g. Acme Corp">
+                        <span class="helper-text">This will be visible on your invoices.</span>
+                    </div>
+                    <div class="form-group" style="margin-top: var(--space-4);">
+                        <label class="label">Visibility</label>
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" class="switch">
+                            <span class="text-sm">Make profile public</span>
                         </div>
-                        <div class="form-group">
-                            <label class="label">Visibility</label>
-                            <div class="flex items-center gap-3">
-                                <input type="checkbox" class="switch">
-                                <span class="text-sm">Make profile public</span>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary w-full mt-4" style="width: 100%;"
-                            onclick="RAVN.showToast('Settings saved')">Save Changes</button>
                     </div>
                 </div>
-                <pre id="form-code" class="mockup-code"><code>&lt;div class="form-group"&gt;
+                <div class="card-footer">
+                    <button class="btn btn-primary w-full" style="width: 100%;"
+                        onclick="RAVN.showToast('Settings saved')">Save Changes</button>
+                </div>
+            </div>
+        </div>
+        <pre id="form-code" class="mockup-code"><code>&lt;div class="form-group"&gt;
   &lt;label class="label"&gt;Organization Name&lt;/label&gt;
   &lt;input type="text" class="input" placeholder="e.g. Acme Corp"&gt;
-  &lt;span class="helper-text"&gt;This will be visible on your invoices.&lt;/span&gt;
 &lt;/div&gt;
 
 &lt;div class="form-group"&gt;
   &lt;label class="label"&gt;Visibility&lt;/label&gt;
   &lt;div class="flex items-center gap-3"&gt;
     &lt;input type="checkbox" class="switch"&gt;
-    &lt;span class="text-sm"&gt;Make profile public&lt;/span&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;button class="btn btn-primary w-full"&gt;Save Changes&lt;/button&gt;</code></pre>
-            </div>
-        </section>
-        <section id="avatars" class="component-section">
-            <h2 class="component-title">Avatars & Skeletons</h2>
-            <p class="component-desc">Essential for profile representation and progressive loading states.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'av-preview', 'av-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'av-code', 'av-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('av-code')">Copy
-                    </div>
-                </div>
-                <div id="av-preview" class="mockup-preview">
-                    <div class="flex items-center gap-4">
-                        <div class="avatar">JD</div>
-                        <div class="flex flex-col gap-1">
-                            <div class="skeleton" style="width: 120px; height: 16px;"></div>
-                            <div class="skeleton" style="width: 80px; height: 12px;"></div>
-                        </div>
-                    </div>
-                </div>
-                <pre id="av-code" class="mockup-code"><code>&lt;div class="flex items-center gap-4"&gt;
-  &lt;div class="avatar"&gt;JD&lt;/div&gt;
-  &lt;div class="flex flex-col gap-1"&gt;
-    &lt;div class="skeleton" style="width: 120px; height: 16px;"&gt;&lt;/div&gt;
-    &lt;div class="skeleton" style="width: 80px; height: 12px;"&gt;&lt;/div&gt;
+    &lt;span class="text-sm"&gt;Public&lt;/span&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-            </div>
-        </section>
+    </div>
+</section>
 
-        <!-- Alerts -->
+
+        <!-- Section: alerts.html -->
         <section id="alerts" class="component-section">
-            <h2 class="component-title">Alerts</h2>
-            <p class="component-desc">Contextual feedback messages for user actions and system states.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'alert-preview', 'alert-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'alert-code', 'alert-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('alert-code')">Copy
-                    </div>
-                </div>
-                <div id="alert-preview" class="mockup-preview"
-                    style="flex-direction: column; align-items: stretch; max-width: 600px; margin: 0 auto;">
-                    <div class="alert">
-                        <span>Terminal access has been granted to this session.</span>
-                    </div>
-                    <div class="alert alert-success">
-                        <span>Payment processed successfully. Transaction ID: #8291.</span>
-                    </div>
-                    <div class="alert alert-error">
-                        <span>Failed to sync with the database. Please check your connection.</span>
-                    </div>
-                </div>
-                <pre id="alert-code" class="mockup-code"><code>&lt;div class="alert"&gt;
+    <h2 class="component-title">Alerts</h2>
+    <p class="component-desc">Contextual feedback messages for user actions and system states.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'alert-preview', 'alert-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'alert-code', 'alert-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('alert-code')">Copy
+            </div>
+        </div>
+        <div id="alert-preview" class="mockup-preview"
+            style="flex-direction: column; align-items: stretch; max-width: 600px; margin: 0 auto;">
+            <div class="alert">
+                <span>Terminal access has been granted to this session.</span>
+            </div>
+            <div class="alert alert-success">
+                <span>Payment processed successfully. Transaction ID: #8291.</span>
+            </div>
+            <div class="alert alert-error">
+                <span>Failed to sync with the database. Please check your connection.</span>
+            </div>
+        </div>
+        <pre id="alert-code" class="mockup-code"><code>&lt;div class="alert"&gt;
   &lt;span&gt;Terminal access granted.&lt;/span&gt;
 &lt;/div&gt;
 
@@ -736,35 +804,36 @@ RAVN.setTheme('supabase');
 &lt;div class="alert alert-error"&gt;
   &lt;span&gt;Failed to sync with database.&lt;/span&gt;
 &lt;/div&gt;</code></pre>
-            </div>
-        </section>
+    </div>
+</section>
 
-        <!-- Modals -->
+
+        <!-- Section: modals.html -->
         <section id="modals" class="component-section">
-            <h2 class="component-title">Modals</h2>
-            <p class="component-desc">High-fidelity dialogs for critical actions and focused tasks.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'modal-preview', 'modal-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'modal-code', 'modal-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('modal-code')">Copy</div>
-                </div>
-                <div id="modal-preview" class="mockup-preview">
-                    <button class="btn btn-primary" data-modal-target="demo-modal">Launch Modal</button>
-                    
-                    <div id="demo-modal" class="modal">
-                        <div class="modal-backdrop"></div>
-                        <div class="modal-content">
-                            <h3 style="margin-bottom: var(--space-2);">Confirm Deletion</h3>
-                            <p style="color: var(--muted-foreground); margin-bottom: var(--space-8);">Are you sure you want to delete this project? This action cannot be undone.</p>
-                            <div class="flex justify-end gap-2">
-                                <button class="btn btn-ghost" data-modal-close>Cancel</button>
-                                <button class="btn btn-primary" style="background: var(--error);" onclick="RAVN.showToast('Project deleted.')">Delete Project</button>
-                            </div>
-                        </div>
+    <h2 class="component-title">Modals</h2>
+    <p class="component-desc">High-fidelity dialogs for critical actions and focused tasks.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'modal-preview', 'modal-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'modal-code', 'modal-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('modal-code')">Copy</div>
+        </div>
+        <div id="modal-preview" class="mockup-preview">
+            <button class="btn btn-primary" data-modal-target="demo-modal">Launch Modal</button>
+            
+            <div id="demo-modal" class="modal">
+                <div class="modal-backdrop"></div>
+                <div class="modal-content">
+                    <h3 style="margin-bottom: var(--space-2);">Confirm Deletion</h3>
+                    <p style="color: var(--muted-foreground); margin-bottom: var(--space-8);">Are you sure you want to delete this project? This action cannot be undone.</p>
+                    <div class="flex justify-end gap-2">
+                        <button class="btn btn-ghost" data-modal-close>Cancel</button>
+                        <button class="btn btn-primary" style="background: var(--error);" onclick="RAVN.showToast('Project deleted.')">Delete Project</button>
                     </div>
                 </div>
-                <pre id="modal-code" class="mockup-code"><code>&lt;!-- Trigger --&gt;
+            </div>
+        </div>
+        <pre id="modal-code" class="mockup-code"><code>&lt;!-- Trigger --&gt;
 &lt;button class="btn btn-primary" data-modal-target="my-modal"&gt;Open&lt;/button&gt;
 
 &lt;!-- Modal Structure --&gt;
@@ -779,31 +848,32 @@ RAVN.setTheme('supabase');
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-            </div>
-        </section>
+    </div>
+</section>
 
-        <!-- Dropdowns -->
+
+        <!-- Section: dropdowns.html -->
         <section id="dropdowns" class="component-section">
-            <h2 class="component-title">Dropdowns</h2>
-            <p class="component-desc">Contextual menus for actions and navigation.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'dd-preview', 'dd-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'dd-code', 'dd-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('dd-code')">Copy</div>
+    <h2 class="component-title">Dropdowns</h2>
+    <p class="component-desc">Contextual menus for actions and navigation.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'dd-preview', 'dd-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'dd-code', 'dd-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('dd-code')">Copy</div>
+        </div>
+        <div id="dd-preview" class="mockup-preview">
+            <div class="dropdown">
+                <button class="btn btn-outline" data-dropdown>Actions <span style="font-size: 0.6rem; opacity: 0.5; margin-left: 8px;">▼</span></button>
+                <div class="dropdown-menu">
+                    <button class="dropdown-item">Edit Profile</button>
+                    <button class="dropdown-item">Project Settings</button>
+                    <div style="height: 1px; background: var(--border); margin: var(--space-1) 0;"></div>
+                    <button class="dropdown-item" style="color: var(--error);">Delete Account</button>
                 </div>
-                <div id="dd-preview" class="mockup-preview">
-                    <div class="dropdown">
-                        <button class="btn btn-outline" data-dropdown>Actions <span style="font-size: 0.6rem; opacity: 0.5; margin-left: 8px;">▼</span></button>
-                        <div class="dropdown-menu">
-                            <button class="dropdown-item">Edit Profile</button>
-                            <button class="dropdown-item">Project Settings</button>
-                            <div style="height: 1px; background: var(--border); margin: var(--space-1) 0;"></div>
-                            <button class="dropdown-item" style="color: var(--error);">Delete Account</button>
-                        </div>
-                    </div>
-                </div>
-                <pre id="dd-code" class="mockup-code"><code>&lt;div class="dropdown"&gt;
+            </div>
+        </div>
+        <pre id="dd-code" class="mockup-code"><code>&lt;div class="dropdown"&gt;
   &lt;button class="btn btn-outline" data-dropdown&gt;Actions&lt;/button&gt;
   &lt;div class="dropdown-menu"&gt;
     &lt;button class="dropdown-item"&gt;Edit&lt;/button&gt;
@@ -811,36 +881,37 @@ RAVN.setTheme('supabase');
     &lt;button class="dropdown-item" style="color: var(--error);"&gt;Delete&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-            </div>
-        </section>
+    </div>
+</section>
 
-        <!-- Progress -->
+
+        <!-- Section: progress.html -->
         <section id="progress" class="component-section">
-            <h2 class="component-title">Progress</h2>
-            <p class="component-desc">Visual indicators for task completion and capacity.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'prog-preview', 'prog-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'prog-code', 'prog-preview')">Source</div>
-                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('prog-code')">Copy</div>
+    <h2 class="component-title">Progress</h2>
+    <p class="component-desc">Visual indicators for task completion and capacity.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'prog-preview', 'prog-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'prog-code', 'prog-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('prog-code')">Copy</div>
+        </div>
+        <div id="prog-preview" class="mockup-preview" style="flex-direction: column; align-items: stretch; max-width: 400px; margin: 0 auto; gap: var(--space-8);">
+            <div>
+                <div class="flex justify-between mb-2">
+                    <span class="text-sm font-medium">Storage Limit</span>
+                    <span class="text-sm text-muted-foreground">75%</span>
                 </div>
-                <div id="prog-preview" class="mockup-preview" style="flex-direction: column; align-items: stretch; max-width: 400px; margin: 0 auto; gap: var(--space-8);">
-                    <div>
-                        <div class="flex justify-between mb-2">
-                            <span class="text-sm font-medium">Storage Limit</span>
-                            <span class="text-sm text-muted-foreground">75%</span>
-                        </div>
-                        <div class="progress"><div class="progress-bar" style="width: 75%;"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-2">
-                            <span class="text-sm font-medium">System Uptime</span>
-                            <span class="text-sm text-muted-foreground" style="color: var(--success);">99.9%</span>
-                        </div>
-                        <div class="progress"><div class="progress-bar" style="width: 99.9%; background: var(--success);"></div></div>
-                    </div>
+                <div class="progress"><div class="progress-bar" style="width: 75%;"></div></div>
+            </div>
+            <div>
+                <div class="flex justify-between mb-2">
+                    <span class="text-sm font-medium">System Uptime</span>
+                    <span class="text-sm text-muted-foreground" style="color: var(--success);">99.9%</span>
                 </div>
-                <pre id="prog-code" class="mockup-code"><code>&lt;div class="progress"&gt;
+                <div class="progress"><div class="progress-bar" style="width: 99.9%; background: var(--success);"></div></div>
+            </div>
+        </div>
+        <pre id="prog-code" class="mockup-code"><code>&lt;div class="progress"&gt;
   &lt;div class="progress-bar" style="width: 75%;"&gt;&lt;/div&gt;
 &lt;/div&gt;
 
@@ -848,67 +919,75 @@ RAVN.setTheme('supabase');
 &lt;div class="progress"&gt;
   &lt;div class="progress-bar" style="width: 99%; background: var(--success);"&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
-            </div>
-        </section>
+    </div>
+</section>
 
-        <!-- Tooltips -->
+
+        <!-- Section: tooltips.html -->
         <section id="tooltips" class="component-section">
-            <h2 class="component-title">Tooltips</h2>
-            <p class="component-desc">Zero-JS contextual information on hover.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'tt-preview', 'tt-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'tt-code', 'tt-preview')">Source</div>
-                </div>
-                <div id="tt-preview" class="mockup-preview">
-                    <div class="flex gap-12">
-                        <span data-tooltip="This is a top tooltip" class="text-sm font-medium">Hover me</span>
-                        <button class="btn btn-primary" data-tooltip="Saves your changes">Save Changes</button>
-                    </div>
-                </div>
-                <pre id="tt-code" class="mockup-code"><code>&lt;!-- Basic Text --&gt;
+    <h2 class="component-title">Tooltips</h2>
+    <p class="component-desc">Zero-JS contextual information on hover.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'tt-preview', 'tt-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'tt-code', 'tt-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('tt-code')">Copy</div>
+        </div>
+        <div id="tt-preview" class="mockup-preview">
+            <div class="flex gap-12">
+                <span data-tooltip="This is a top tooltip" class="text-sm font-medium">Hover me</span>
+                <button class="btn btn-primary" data-tooltip="Saves your changes">Save Changes</button>
+            </div>
+        </div>
+        <pre id="tt-code" class="mockup-code"><code>&lt;!-- Basic Text --&gt;
 &lt;span data-tooltip="Information here"&gt;Hover me&lt;/span&gt;
 
 &lt;!-- On a button --&gt;
 &lt;button class="btn" data-tooltip="Tooltip content"&gt;Action&lt;/button&gt;</code></pre>
-            </div>
-        </section>
+    </div>
+</section>
 
-        <!-- Sidebar Navigation -->
+
+        <!-- Section: sidebar.html -->
         <section id="sidebar" class="component-section">
-            <h2 class="component-title">Sidebar Layout</h2>
-            <p class="component-desc">High-density navigation for SaaS platforms.</p>
-            <div class="mockup-container">
-                <div class="mockup-tabs">
-                    <div class="mockup-tab active" onclick="showTab(this, 'sb-preview', 'sb-code')">Preview</div>
-                    <div class="mockup-tab" onclick="showTab(this, 'sb-code', 'sb-preview')">Source</div>
+    <h2 class="component-title">Sidebar Layout</h2>
+    <p class="component-desc">High-density navigation for SaaS platforms.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'sb-preview', 'sb-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'sb-code', 'sb-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('sb-code')">Copy</div>
+        </div>
+        <div id="sb-preview" class="mockup-preview" style="padding: 0; background: var(--muted); align-items: stretch; justify-content: flex-start;">
+            <aside class="sidebar" style="height: 400px; width: 220px; border-right: 1px solid var(--border);">
+                <div class="sidebar-header" style="padding: var(--space-4);">
+                    <div style="font-weight: 700; font-size: 0.9rem;">Acme Corp</div>
                 </div>
-                <div id="sb-preview" class="mockup-preview" style="padding: 0; background: var(--muted); align-items: stretch; justify-content: flex-start;">
-                    <aside class="sidebar" style="height: 400px; width: 220px; border-right: 1px solid var(--border);">
-                        <div class="sidebar-header" style="padding: var(--space-4);">
-                            <div style="font-weight: 700; font-size: 0.9rem;">Acme Corp</div>
-                        </div>
-                        <nav class="sidebar-nav" style="padding: var(--space-2);">
-                            <a href="#" class="sidebar-item active">Dashboard</a>
-                            <a href="#" class="sidebar-item">Projects</a>
-                            <a href="#" class="sidebar-item">Deployments</a>
-                            <a href="#" class="sidebar-item">Settings</a>
-                        </nav>
-                    </aside>
-                    <div style="flex: 1; padding: var(--space-8); background: var(--background);">
-                        <h4 style="margin-bottom: var(--space-4);">Dashboard Preview</h4>
-                        <div class="skeleton" style="width: 100%; height: 100px;"></div>
-                    </div>
-                </div>
-                <pre id="sb-code" class="mockup-code"><code>&lt;aside class="sidebar"&gt;
+                <nav class="sidebar-nav" style="padding: var(--space-2);">
+                    <a href="#" class="sidebar-item active">Dashboard</a>
+                    <a href="#" class="sidebar-item">Projects</a>
+                    <a href="#" class="sidebar-item">Deployments</a>
+                    <a href="#" class="sidebar-item">Settings</a>
+                </nav>
+            </aside>
+            <div style="flex: 1; padding: var(--space-8); background: var(--background);">
+                <h4 style="margin-bottom: var(--space-4);">Dashboard Preview</h4>
+                <div class="skeleton" style="width: 100%; height: 100px;"></div>
+            </div>
+        </div>
+        <pre id="sb-code" class="mockup-code"><code>&lt;aside class="sidebar"&gt;
   &lt;div class="sidebar-header"&gt;...&lt;/div&gt;
   &lt;nav class="sidebar-nav"&gt;
     &lt;a href="#" class="sidebar-item active"&gt;Dashboard&lt;/a&gt;
     &lt;a href="#" class="sidebar-item"&gt;Projects&lt;/a&gt;
   &lt;/nav&gt;
 &lt;/aside&gt;</code></pre>
-            </div>
-        </section>
+    </div>
+</section>
+
+
+
+        <footer
             style="margin-top: 120px; padding: 60px 0; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--muted-foreground);">
             RAVN UI. Designed for those who build the future.
         </footer>

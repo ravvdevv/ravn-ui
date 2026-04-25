@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAVN UI | Documentation</title>
+    <link rel="stylesheet" href="dist/ui.css">
+    <link rel="stylesheet" href="dist/themes.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        :root {
+            --sidebar-width: 280px;
+        }
+
+        body {
+            background-color: var(--background);
+            display: flex;
+            color: var(--foreground);
+        }
+
+        /* Sidebar */
+        aside {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            border-right: 1px solid var(--border);
+            padding: var(--space-8) var(--space-6);
+            overflow-y: auto;
+            background: var(--background);
+            z-index: 10;
+        }
+
+        .brand {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: var(--space-8);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: var(--space-8);
+        }
+
+        .search-input {
+            width: 100%;
+            height: 2rem;
+            padding: 0 var(--space-3);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.75rem;
+            background: var(--muted);
+        }
+
+        .nav-group {
+            margin-bottom: var(--space-8);
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted-foreground);
+            margin-bottom: var(--space-4);
+        }
+
+        .nav-item {
+            display: block;
+            padding: var(--space-2) 0;
+            font-size: 0.85rem;
+            color: var(--foreground);
+            text-decoration: none;
+            opacity: 0.6;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .nav-item.active {
+            opacity: 1;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: var(--space-12) 8%;
+            max-width: 1200px;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            margin-bottom: var(--space-16);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -0.06em;
+            line-height: 0.9;
+            margin-bottom: var(--space-6);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            max-width: 560px;
+            line-height: 1.6;
+            margin-bottom: var(--space-8);
+        }
+
+        .install-command {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: var(--muted);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-family: ui-monospace, monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .install-command:hover {
+            border-color: var(--primary);
+        }
+
+        /* Component Section */
+        .component-section {
+            margin-bottom: var(--space-20);
+        }
+
+        .component-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-1);
+        }
+
+        .component-desc {
+            font-size: 0.95rem;
+            color: var(--muted-foreground);
+            margin-bottom: var(--space-6);
+        }
+
+        /* Mockup Box */
+        .mockup-container {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--background);
+        }
+
+        .mockup-tabs {
+            display: flex;
+            background: var(--muted);
+            padding: 0 var(--space-4);
+            border-bottom: 1px solid var(--border);
+            gap: var(--space-4);
+        }
+
+        .mockup-tab {
+            padding: var(--space-3) 0;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            opacity: 0.4;
+            transition: opacity 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .mockup-tab.active {
+            opacity: 1;
+            border-color: var(--primary);
+        }
+
+        .mockup-preview {
+            padding: var(--space-12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            background-color: var(--background);
+            background-image: radial-gradient(var(--border) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        .mockup-code {
+            padding: var(--space-8);
+            background: #0d0d0d;
+            color: #e0e0e0;
+            font-family: ui-monospace, monospace;
+            font-size: 0.8rem;
+            margin: 0;
+            display: none;
+            overflow-x: auto;
+            line-height: 1.6;
+            white-space: pre;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .theme-swatch {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+        }
+
+        .theme-swatch:hover {
+            transform: scale(1.2);
+        }
+
+        /* Logo Dark Mode Fix */
+        .brand img,
+        .hero img {
+            transition: filter 0.3s ease, mix-blend-mode 0.3s ease;
+            mix-blend-mode: multiply;
+        }
+
+        [data-theme="dark"] .brand img,
+        [data-theme="dark"] .hero img,
+        [data-theme="midnight"] .brand img,
+        [data-theme="supabase"] .brand img,
+        [data-theme="supabase"] .hero img,
+        [data-theme="linear"] .brand img,
+        [data-theme="linear"] .hero img,
+        [data-theme="dark-zinc"] .brand img,
+        [data-theme="dark"] .sidebar img,
+        [data-theme="midnight"] .sidebar img,
+        [data-theme="supabase"] .sidebar img,
+        [data-theme="linear"] .sidebar img {
+            filter: invert(1) grayscale(1);
+            mix-blend-mode: screen;
+        }
+
+        /* Documentation UI theme adaptation */
+        .sidebar {
+            border-right: 1px solid var(--border);
+            background: var(--background);
+        }
+
+        @media (max-width: 1024px) {
+            aside {
+                display: none;
+            }
+
+            main {
+                padding: var(--space-8);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <aside>
+        <div class="brand">
+            <img src="logo.png" alt="RAVN Logo" style="width: 24px; height: 24px; object-fit: contain;">
+            RAVN UI
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search documentation...">
+        </div>
+
+        <nav class="nav-group">
+            <div class="nav-label">Core</div>
+            <a href="#hero" class="nav-item active">Introduction</a>
+            <a href="#install" class="nav-item">Installation</a>
+            <a href="#theming" class="nav-item">Theming</a>
+        </nav>
+
+        <nav class="nav-group">
+            <div class="nav-label">Components</div>
+            <a href="#buttons" class="nav-item">Buttons</a>
+            <a href="#inputs" class="nav-item">Inputs</a>
+            <a href="#cards" class="nav-item">Cards</a>
+            <a href="#tables" class="nav-item">Tables</a>
+            <a href="#avatars" class="nav-item">Avatars</a>
+            <a href="#toggles" class="nav-item">Toggles</a>
+            <a href="#accordions" class="nav-item">Accordions</a>
+            <a href="#skeletons" class="nav-item">Skeletons</a>
+            <a href="#forms" class="nav-item">Forms</a>
+            <a href="#alerts" class="nav-item">Alerts</a>
+            <a href="#modals" class="nav-item">Modals</a>
+            <a href="#dropdowns" class="nav-item">Dropdowns</a>
+            <a href="#progress" class="nav-item">Progress</a>
+            <a href="#tooltips" class="nav-item">Tooltips</a>
+            <a href="#sidebar" class="nav-item">Sidebar</a>
+        </nav>
+
+        <nav class="nav-group">
+            <div class="nav-label">Themes</div>
+            <div class="flex flex-wrap gap-2 mt-4" style="gap: 6px;">
+                <button class="theme-swatch" title="Slate" onclick="RAVN.setTheme('light')"
+                    style="background: #ffffff;"></button>
+                <button class="theme-swatch" title="Dark" onclick="RAVN.setTheme('dark')"
+                    style="background: #020617;"></button>
+                <button class="theme-swatch" title="Claude" onclick="RAVN.setTheme('claude')"
+                    style="background: #fbfaf9; border-color: #d97706;"></button>
+                <button class="theme-swatch" title="Midnight" onclick="RAVN.setTheme('midnight')"
+                    style="background: #000000; border-color: #ffffff;"></button>
+                <button class="theme-swatch" title="Zinc" onclick="RAVN.setTheme('zinc')"
+                    style="background: #f4f4f5;"></button>
+                <button class="theme-swatch" title="Supabase" onclick="RAVN.setTheme('supabase')"
+                    style="background: #1c1c1c; border-color: #3ecf8e;"></button>
+                <button class="theme-swatch" title="Linear" onclick="RAVN.setTheme('linear')"
+                    style="background: #08090a; border-color: #5e6ad2;"></button>
+                <button class="theme-swatch" title="Forest" onclick="RAVN.setTheme('forest')"
+                    style="background: #ffffff; border-color: #166534;"></button>
+            </div>
+        </nav>
+    </aside>
+
+    <main>
+        {{COMPONENTS}}
+
+        <footer
+            style="margin-top: 120px; padding: 60px 0; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--muted-foreground);">
+            RAVN UI. Designed for those who build the future.
+        </footer>
+    </main>
+
+    <script src="dist/ui.js"></script>
+    <script>
+        // Tab switching
+        function showTab(el, showId, ...hideIds) {
+            const tabs = el.parentElement.querySelectorAll('.mockup-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+
+            document.getElementById(showId).style.display = showId.includes('preview') ? 'flex' : 'block';
+            hideIds.forEach(id => {
+                const target = document.getElementById(id);
+                if (target) target.style.display = 'none';
+            });
+        }
+
+        // Copy code helper
+        function copyCode(id) {
+            const code = document.getElementById(id).innerText.trim();
+            RAVN.copy(code, 'Source code copied');
+        }
+
+        function copyActiveInstall() {
+            const visibleCode = Array.from(document.querySelectorAll('#install .mockup-code')).find(el => window.getComputedStyle(el).display !== 'none');
+            if (visibleCode) {
+                const code = visibleCode.querySelector('code').innerText.trim();
+                RAVN.copy(code, 'Installation steps copied');
+            }
+        }
+
+        // Sidebar search filter
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.nav-item').forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(term) ? 'block' : 'none';
+            });
+            // Hide group labels if no items visible
+            document.querySelectorAll('.nav-group').forEach(group => {
+                const hasVisible = Array.from(group.querySelectorAll('.nav-item')).some(i => i.style.display !== 'none');
+                group.style.display = hasVisible ? 'block' : 'none';
+            });
+        });
+
+        // Scroll highlight sync
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.nav-item').forEach(item => {
+                        item.classList.toggle('active', item.getAttribute('href') === `#${id}`);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<section id="sidebar" class="component-section">
+    <h2 class="component-title">Sidebar Layout</h2>
+    <p class="component-desc">High-density navigation for SaaS platforms.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'sb-preview', 'sb-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'sb-code', 'sb-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('sb-code')">Copy</div>
+        </div>
+        <div id="sb-preview" class="mockup-preview" style="padding: 0; background: var(--muted); align-items: stretch; justify-content: flex-start;">
+            <aside class="sidebar" style="height: 400px; width: 220px; border-right: 1px solid var(--border);">
+                <div class="sidebar-header" style="padding: var(--space-4);">
+                    <div style="font-weight: 700; font-size: 0.9rem;">Acme Corp</div>
+                </div>
+                <nav class="sidebar-nav" style="padding: var(--space-2);">
+                    <a href="#" class="sidebar-item active">Dashboard</a>
+                    <a href="#" class="sidebar-item">Projects</a>
+                    <a href="#" class="sidebar-item">Deployments</a>
+                    <a href="#" class="sidebar-item">Settings</a>
+                </nav>
+            </aside>
+            <div style="flex: 1; padding: var(--space-8); background: var(--background);">
+                <h4 style="margin-bottom: var(--space-4);">Dashboard Preview</h4>
+                <div class="skeleton" style="width: 100%; height: 100px;"></div>
+            </div>
+        </div>
+        <pre id="sb-code" class="mockup-code"><code>&lt;aside class="sidebar"&gt;
+  &lt;div class="sidebar-header"&gt;...&lt;/div&gt;
+  &lt;nav class="sidebar-nav"&gt;
+    &lt;a href="#" class="sidebar-item active"&gt;Dashboard&lt;/a&gt;
+    &lt;a href="#" class="sidebar-item"&gt;Projects&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/aside&gt;</code></pre>
+    </div>
+</section>

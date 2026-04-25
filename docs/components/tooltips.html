@@ -1,0 +1,22 @@
+<section id="tooltips" class="component-section">
+    <h2 class="component-title">Tooltips</h2>
+    <p class="component-desc">Zero-JS contextual information on hover.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'tt-preview', 'tt-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'tt-code', 'tt-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('tt-code')">Copy</div>
+        </div>
+        <div id="tt-preview" class="mockup-preview">
+            <div class="flex gap-12">
+                <span data-tooltip="This is a top tooltip" class="text-sm font-medium">Hover me</span>
+                <button class="btn btn-primary" data-tooltip="Saves your changes">Save Changes</button>
+            </div>
+        </div>
+        <pre id="tt-code" class="mockup-code"><code>&lt;!-- Basic Text --&gt;
+&lt;span data-tooltip="Information here"&gt;Hover me&lt;/span&gt;
+
+&lt;!-- On a button --&gt;
+&lt;button class="btn" data-tooltip="Tooltip content"&gt;Action&lt;/button&gt;</code></pre>
+    </div>
+</section>

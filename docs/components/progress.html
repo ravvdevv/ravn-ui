@@ -1,0 +1,35 @@
+<section id="progress" class="component-section">
+    <h2 class="component-title">Progress</h2>
+    <p class="component-desc">Visual indicators for task completion and capacity.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'prog-preview', 'prog-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'prog-code', 'prog-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('prog-code')">Copy</div>
+        </div>
+        <div id="prog-preview" class="mockup-preview" style="flex-direction: column; align-items: stretch; max-width: 400px; margin: 0 auto; gap: var(--space-8);">
+            <div>
+                <div class="flex justify-between mb-2">
+                    <span class="text-sm font-medium">Storage Limit</span>
+                    <span class="text-sm text-muted-foreground">75%</span>
+                </div>
+                <div class="progress"><div class="progress-bar" style="width: 75%;"></div></div>
+            </div>
+            <div>
+                <div class="flex justify-between mb-2">
+                    <span class="text-sm font-medium">System Uptime</span>
+                    <span class="text-sm text-muted-foreground" style="color: var(--success);">99.9%</span>
+                </div>
+                <div class="progress"><div class="progress-bar" style="width: 99.9%; background: var(--success);"></div></div>
+            </div>
+        </div>
+        <pre id="prog-code" class="mockup-code"><code>&lt;div class="progress"&gt;
+  &lt;div class="progress-bar" style="width: 75%;"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Colored variant --&gt;
+&lt;div class="progress"&gt;
+  &lt;div class="progress-bar" style="width: 99%; background: var(--success);"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</section>

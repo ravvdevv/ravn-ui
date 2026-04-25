@@ -1,0 +1,35 @@
+<section id="alerts" class="component-section">
+    <h2 class="component-title">Alerts</h2>
+    <p class="component-desc">Contextual feedback messages for user actions and system states.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'alert-preview', 'alert-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'alert-code', 'alert-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('alert-code')">Copy
+            </div>
+        </div>
+        <div id="alert-preview" class="mockup-preview"
+            style="flex-direction: column; align-items: stretch; max-width: 600px; margin: 0 auto;">
+            <div class="alert">
+                <span>Terminal access has been granted to this session.</span>
+            </div>
+            <div class="alert alert-success">
+                <span>Payment processed successfully. Transaction ID: #8291.</span>
+            </div>
+            <div class="alert alert-error">
+                <span>Failed to sync with the database. Please check your connection.</span>
+            </div>
+        </div>
+        <pre id="alert-code" class="mockup-code"><code>&lt;div class="alert"&gt;
+  &lt;span&gt;Terminal access granted.&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="alert alert-success"&gt;
+  &lt;span&gt;Payment processed successfully.&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="alert alert-error"&gt;
+  &lt;span&gt;Failed to sync with database.&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</section>

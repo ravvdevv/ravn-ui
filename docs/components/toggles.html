@@ -1,0 +1,34 @@
+<section id="toggles" class="component-section">
+    <h2 class="component-title">Toggles & Status</h2>
+    <p class="component-desc">High-fidelity binary controls and real-time state indicators.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'tg-preview', 'tg-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'tg-code', 'tg-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('tg-code')">Copy
+            </div>
+        </div>
+        <div id="tg-preview" class="mockup-preview">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" class="switch" checked>
+                    <span class="text-sm">Push Notifications</span>
+                </div>
+                <div class="status">
+                    <div class="status-dot status-online"></div>
+                    System Live
+                </div>
+            </div>
+        </div>
+        <pre id="tg-code" class="mockup-code"><code>&lt;div class="flex items-center gap-8"&gt;
+  &lt;div class="flex items-center gap-3"&gt;
+    &lt;input type="checkbox" class="switch" checked&gt;
+    &lt;span class="text-sm"&gt;Push Notifications&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="status"&gt;
+    &lt;div class="status-dot status-online"&gt;&lt;/div&gt;
+    System Live
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+</section>
