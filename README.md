@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://ravn-ui.vercel.app/logo.png" alt="RAVN UI Logo" width="120" />
   <h1>RAVN UI</h1>
-  <p><strong>Strictly designed, high-performance, and CDN-first.</strong></p>
+  <p><strong>A zero-config UI library you can use instantly without Tailwind or React.</strong></p>
   <p>
     <img src="https://img.shields.io/npm/v/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="NPM Version" />
     <img src="https://img.shields.io/npm/l/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="License" />
