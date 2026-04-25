@@ -1,6 +1,6 @@
 {
   "name": "@ravn-ui/core",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Minimal, premium, CDN-first UI library inspired by DaisyUI and shadcn/ui.",
   "main": "dist/ui.js",
   "style": "dist/ui.css",

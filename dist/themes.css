@@ -31,6 +31,8 @@
     --input: #e4e4e7;
     --primary: #18181b;
     --primary-foreground: #fafafa;
+    --secondary: #f4f4f5;
+    --secondary-foreground: #18181b;
 }
 
 /* Claude - Refined & Paper-like (TweakCN Favorite) */
@@ -47,6 +49,8 @@
     --input: #e5e5e5;
     --primary: #d97706;
     --primary-foreground: #ffffff;
+    --secondary: #ebe9e7;
+    --secondary-foreground: #1a1a1a;
 }
 
 /* Midnight - Deepest Black (TweakCN Top Rated) */
@@ -63,6 +67,8 @@
     --input: #222222;
     --primary: #ffffff;
     --primary-foreground: #000000;
+    --secondary: #222222;
+    --secondary-foreground: #ffffff;
 }
 
 /* Forest - Professional Organic (TweakCN Favorite) */
@@ -79,6 +85,8 @@
     --input: #dcfce7;
     --primary: #166534;
     --primary-foreground: #ffffff;
+    --secondary: #dcfce7;
+    --secondary-foreground: #166534;
 }
 
 /* Indigo - Classic SaaS */
@@ -95,6 +103,8 @@
     --input: #e2e8f0;
     --primary: #4f46e5;
     --primary-foreground: #ffffff;
+    --secondary: #e2e8f0;
+    --secondary-foreground: #0f172a;
 }
 
 /* Supabase - Emerald & Deep Black */
@@ -111,6 +121,8 @@
     --input: #333333;
     --primary: #3ecf8e;
     --primary-foreground: #1c1c1c;
+    --secondary: #2e2e2e;
+    --secondary-foreground: #ededed;
 }
 
 /* Linear - Deep Navy & Purple */
@@ -127,6 +139,8 @@
     --input: #242526;
     --primary: #5e6ad2;
     --primary-foreground: #ffffff;
+    --secondary: #1a1b1c;
+    --secondary-foreground: #f7f8f8;
 }
 
 /* Retro - 70s/80s Warm Classic */
@@ -143,6 +157,8 @@
     --input: #d6cbb0;
     --primary: #d48d62;
     --primary-foreground: #ffffff;
+    --secondary: #d6cbb0;
+    --secondary-foreground: #433422;
 }
 
 /* Pixel Craft - Terminal & Game Dev Aesthetic */
@@ -159,6 +175,8 @@
     --input: #333333;
     --primary: #00ff00;
     --primary-foreground: #000000;
+    --secondary: #2a2a2a;
+    --secondary-foreground: #33ff33;
 }
 
 /* Rose Pine - Dreamy & Sophisticated */
@@ -175,6 +193,8 @@
     --input: #403d52;
     --primary: #c4a7e7;
     --primary-foreground: #191724;
+    --secondary: #26233a;
+    --secondary-foreground: #e0def4;
 }
 
 /* Nord - Arctic Frost */
@@ -191,4 +211,6 @@
     --input: #4c566a;
     --primary: #88c0d0;
     --primary-foreground: #2e3440;
+    --secondary: #3b4252;
+    --secondary-foreground: #eceff4;
 }

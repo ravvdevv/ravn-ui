@@ -644,19 +644,33 @@ RAVN.setTheme('supabase');
             <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('card-code')">
                 Copy</div>
         </div>
-        <div id="card-preview" class="mockup-preview">
-            <div class="card" style="width: 100%; max-width: 380px;">
+        <div id="card-preview" class="mockup-preview" style="gap: var(--space-4); flex-wrap: wrap;">
+            <!-- Metric Card -->
+            <div class="card" style="width: 320px;">
                 <div class="card-header">
                     <h3 style="font-size: 1rem;">Revenue Stream</h3>
                     <small>Monthly recurring revenue analysis.</small>
                 </div>
                 <div class="card-content">
                     <div style="font-size: 1.5rem; font-weight: 700;">$14,290.00</div>
-                    <div class="trend trend-up" style="margin-top: 4px;">12.5%</div>
+                    <div class="trend trend-up">↑ 12.5% from last month</div>
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-outline btn-sm w-full" style="width: 100%;"
                         onclick="RAVN.showToast('Generating report...')">View Full Report</button>
+                </div>
+            </div>
+
+            <!-- Quick Actions Card -->
+            <div class="card" style="width: 320px;">
+                <div class="card-header">
+                    <h3 style="font-size: 1rem;">Quick Actions</h3>
+                    <small>Common operations for this project.</small>
+                </div>
+                <div class="card-content" style="display: flex; gap: var(--space-2);">
+                    <button class="btn btn-primary btn-sm">Primary</button>
+                    <button class="btn btn-secondary btn-sm">Invite</button>
+                    <button class="btn btn-secondary btn-sm">Archive</button>
                 </div>
             </div>
         </div>
@@ -1205,17 +1219,17 @@ RAVN.setTheme('supabase');
                         <div class="card" style="padding: var(--space-4);">
                             <div style="font-size: 0.7rem; color: var(--muted-foreground); text-transform: uppercase;">Total Revenue</div>
                             <div style="font-size: 1.5rem; font-weight: 700;">$45,231.89</div>
-                            <div class="trend trend-up">+20.1% from last month</div>
+                            <div class="trend trend-up">↑ 20.1% from last month</div>
                         </div>
                         <div class="card" style="padding: var(--space-4);">
                             <div style="font-size: 0.7rem; color: var(--muted-foreground); text-transform: uppercase;">Subscriptions</div>
                             <div style="font-size: 1.5rem; font-weight: 700;">+2,350</div>
-                            <div class="trend trend-up">+180.1% from last month</div>
+                            <div class="trend trend-up">↑ 180.1% from last month</div>
                         </div>
                         <div class="card" style="padding: var(--space-4);">
                             <div style="font-size: 0.7rem; color: var(--muted-foreground); text-transform: uppercase;">Active Now</div>
                             <div style="font-size: 1.5rem; font-weight: 700;">+573</div>
-                            <div class="trend trend-down">-12 since last hour</div>
+                            <div class="trend trend-down">↓ 12 since last hour</div>
                         </div>
                     </div>
 
