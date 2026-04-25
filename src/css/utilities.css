@@ -1,0 +1,16 @@
+/* RAVN UI - Layout Utilities */
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--space-6); }
+.grid { display: grid; gap: var(--space-6); }
+.flex { display: flex; gap: var(--space-4); }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.w-full { width: 100%; }
+
+.mt-4 { margin-top: var(--space-4); }
+.mb-4 { margin-bottom: var(--space-4); }
+.py-12 { padding-top: var(--space-12); padding-bottom: var(--space-12); }
+
+.text-sm { font-size: 0.875rem; }
+.text-muted { color: var(--muted-foreground); }

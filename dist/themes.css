@@ -1,0 +1,130 @@
+/* RAVN UI - Professional Themes */
+
+/* Dark - High Contrast Deep Space */
+[data-theme="dark"] {
+    --background: #020617;
+    --foreground: #f8fafc;
+    --card: #020617;
+    --card-foreground: #f8fafc;
+    --muted: #0f172a;
+    --muted-foreground: #94a3b8;
+    --accent: #0f172a;
+    --accent-foreground: #f8fafc;
+    --border: #1e293b;
+    --input: #1e293b;
+    --primary: #f8fafc;
+    --primary-foreground: #020617;
+    --ring: #cbd5e1;
+}
+
+/* Zinc - Neutral Professional */
+[data-theme="zinc"] {
+    --background: #ffffff;
+    --foreground: #09090b;
+    --card: #ffffff;
+    --card-foreground: #09090b;
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+    --accent: #f4f4f5;
+    --accent-foreground: #18181b;
+    --border: #e4e4e7;
+    --input: #e4e4e7;
+    --primary: #18181b;
+    --primary-foreground: #fafafa;
+}
+
+/* Claude - Refined & Paper-like (TweakCN Favorite) */
+[data-theme="claude"] {
+    --background: #fbfaf9;
+    --foreground: #1a1a1a;
+    --card: #ffffff;
+    --card-foreground: #1a1a1a;
+    --muted: #f3f2f1;
+    --muted-foreground: #6b6b6b;
+    --accent: #f3f2f1;
+    --accent-foreground: #1a1a1a;
+    --border: #e5e5e5;
+    --input: #e5e5e5;
+    --primary: #d97706;
+    --primary-foreground: #ffffff;
+}
+
+/* Midnight - Deepest Black (TweakCN Top Rated) */
+[data-theme="midnight"] {
+    --background: #000000;
+    --foreground: #ffffff;
+    --card: #0a0a0a;
+    --card-foreground: #ffffff;
+    --muted: #111111;
+    --muted-foreground: #888888;
+    --accent: #111111;
+    --accent-foreground: #ffffff;
+    --border: #222222;
+    --input: #222222;
+    --primary: #ffffff;
+    --primary-foreground: #000000;
+}
+
+/* Forest - Professional Organic (TweakCN Favorite) */
+[data-theme="forest"] {
+    --background: #ffffff;
+    --foreground: #052e16;
+    --card: #ffffff;
+    --card-foreground: #052e16;
+    --muted: #f0fdf4;
+    --muted-foreground: #15803d;
+    --accent: #f0fdf4;
+    --accent-foreground: #166534;
+    --border: #dcfce7;
+    --input: #dcfce7;
+    --primary: #166534;
+    --primary-foreground: #ffffff;
+}
+
+/* Indigo - Classic SaaS */
+[data-theme="indigo"] {
+    --background: #ffffff;
+    --foreground: #0f172a;
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --accent: #e0e7ff;
+    --accent-foreground: #4338ca;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --primary: #4f46e5;
+    --primary-foreground: #ffffff;
+}
+
+/* Supabase - Emerald & Deep Black */
+[data-theme="supabase"] {
+    --background: #1c1c1c;
+    --foreground: #ededed;
+    --card: #1c1c1c;
+    --card-foreground: #ededed;
+    --muted: #2e2e2e;
+    --muted-foreground: #999999;
+    --accent: #2e2e2e;
+    --accent-foreground: #3ecf8e;
+    --border: #333333;
+    --input: #333333;
+    --primary: #3ecf8e;
+    --primary-foreground: #1c1c1c;
+}
+
+/* Linear - Deep Navy & Purple */
+[data-theme="linear"] {
+    --background: #08090a;
+    --foreground: #f7f8f8;
+    --card: #08090a;
+    --card-foreground: #f7f8f8;
+    --muted: #151515;
+    --muted-foreground: #8a8f98;
+    --accent: #5e6ad2;
+    --accent-foreground: #ffffff;
+    --border: #242526;
+    --input: #242526;
+    --primary: #5e6ad2;
+    --primary-foreground: #ffffff;
+}

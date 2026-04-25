@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAVN UI | Documentation</title>
+    <link rel="stylesheet" href="dist/ui.css">
+    <link rel="stylesheet" href="dist/themes.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        :root {
+            --sidebar-width: 280px;
+        }
+
+        body {
+            background-color: var(--background);
+            display: flex;
+            color: var(--foreground);
+        }
+
+        /* Sidebar */
+        aside {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            border-right: 1px solid var(--border);
+            padding: var(--space-8) var(--space-6);
+            overflow-y: auto;
+            background: var(--background);
+            z-index: 10;
+        }
+
+        .brand {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: var(--space-8);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: var(--space-8);
+        }
+        .search-input {
+            width: 100%;
+            height: 2rem;
+            padding: 0 var(--space-3);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.75rem;
+            background: var(--muted);
+        }
+
+        .nav-group { margin-bottom: var(--space-8); }
+        .nav-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-foreground); margin-bottom: var(--space-4); }
+        .nav-item { display: block; padding: var(--space-2) 0; font-size: 0.85rem; color: var(--foreground); text-decoration: none; opacity: 0.6; transition: all 0.2s; }
+        .nav-item:hover { opacity: 1; color: var(--primary); }
+        .nav-item.active { opacity: 1; font-weight: 600; color: var(--primary); }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: var(--space-12) 8%;
+            max-width: 1200px;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero { margin-bottom: var(--space-16); }
+        .hero h1 { font-size: 4rem; font-weight: 900; letter-spacing: -0.06em; line-height: 0.9; margin-bottom: var(--space-6); }
+        .hero p { font-size: 1.25rem; color: var(--muted-foreground); max-width: 560px; line-height: 1.6; margin-bottom: var(--space-8); }
+
+        .install-command {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--space-3) var(--space-4);
+            background: var(--muted);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-family: ui-monospace, monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .install-command:hover { border-color: var(--primary); }
+
+        /* Component Section */
+        .component-section { margin-bottom: var(--space-20); }
+        .component-title { font-size: 1.5rem; font-weight: 700; margin-bottom: var(--space-1); }
+        .component-desc { font-size: 0.95rem; color: var(--muted-foreground); margin-bottom: var(--space-6); }
+
+        /* Mockup Box */
+        .mockup-container {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--background);
+        }
+
+        .mockup-tabs {
+            display: flex;
+            background: var(--muted);
+            padding: 0 var(--space-4);
+            border-bottom: 1px solid var(--border);
+            gap: var(--space-4);
+        }
+
+        .mockup-tab {
+            padding: var(--space-3) 0;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            opacity: 0.4;
+            transition: opacity 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .mockup-tab.active { opacity: 1; border-color: var(--primary); }
+
+        .mockup-preview {
+            padding: var(--space-12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            background-color: var(--background);
+            background-image: radial-gradient(var(--border) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        .mockup-code {
+            padding: var(--space-8);
+            background: #0d0d0d;
+            color: #e0e0e0;
+            font-family: ui-monospace, monospace;
+            font-size: 0.8rem;
+            margin: 0;
+            display: none;
+            overflow-x: auto;
+            line-height: 1.6;
+            white-space: pre;
+        }
+
+        .theme-swatch {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+        }
+        .theme-swatch:hover { transform: scale(1.2); }
+
+        /* Logo Dark Mode Fix */
+        .brand img, .hero img {
+            transition: filter 0.3s ease, mix-blend-mode 0.3s ease;
+            mix-blend-mode: multiply; /* Light mode seamlessness */
+        }
+
+        [data-theme="dark"] .brand img,
+        [data-theme="dark"] .hero img,
+        [data-theme="midnight"] .brand img,
+        [data-theme="midnight"] .hero img,
+        [data-theme="supabase"] .brand img,
+        [data-theme="supabase"] .hero img,
+        [data-theme="linear"] .brand img,
+        [data-theme="linear"] .hero img,
+        [data-theme="dark-zinc"] .brand img,
+        [data-theme="dark-zinc"] .hero img {
+            filter: invert(1) grayscale(1);
+            mix-blend-mode: screen; /* Dark mode seamlessness */
+        }
+
+        @media (max-width: 1024px) {
+            aside { display: none; }
+            main { padding: var(--space-8); }
+        }
+    </style>
+</head>
+<body>
+    <aside>
+        <div class="brand">
+            <img src="logo.png" alt="RAVN Logo" style="width: 24px; height: 24px; object-fit: contain;">
+            RAVN UI
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search documentation...">
+        </div>
+
+        <nav class="nav-group">
+            <div class="nav-label">Core</div>
+            <a href="#hero" class="nav-item active">Introduction</a>
+            <a href="#install" class="nav-item">Installation</a>
+        </nav>
+
+        <nav class="nav-group">
+            <div class="nav-label">Components</div>
+            <a href="#buttons" class="nav-item">Buttons</a>
+            <a href="#inputs" class="nav-item">Inputs</a>
+            <a href="#cards" class="nav-item">Cards</a>
+            <a href="#tables" class="nav-item">Tables</a>
+            <a href="#avatars" class="nav-item">Avatars</a>
+            <a href="#toggles" class="nav-item">Toggles</a>
+            <a href="#accordions" class="nav-item">Accordions</a>
+            <a href="#skeletons" class="nav-item">Skeletons</a>
+            <a href="#forms" class="nav-item">Forms</a>
+            <a href="#alerts" class="nav-item">Alerts</a>
+        </nav>
+
+        <nav class="nav-group">
+            <div class="nav-label">Themes</div>
+            <div class="flex flex-wrap gap-2 mt-4" style="gap: 6px;">
+                <button class="theme-swatch" title="Slate" onclick="RAVN.setTheme('light')" style="background: #ffffff;"></button>
+                <button class="theme-swatch" title="Dark" onclick="RAVN.setTheme('dark')" style="background: #020617;"></button>
+                <button class="theme-swatch" title="Claude" onclick="RAVN.setTheme('claude')" style="background: #fbfaf9; border-color: #d97706;"></button>
+                <button class="theme-swatch" title="Midnight" onclick="RAVN.setTheme('midnight')" style="background: #000000; border-color: #ffffff;"></button>
+                <button class="theme-swatch" title="Zinc" onclick="RAVN.setTheme('zinc')" style="background: #f4f4f5;"></button>
+                <button class="theme-swatch" title="Supabase" onclick="RAVN.setTheme('supabase')" style="background: #1c1c1c; border-color: #3ecf8e;"></button>
+                <button class="theme-swatch" title="Linear" onclick="RAVN.setTheme('linear')" style="background: #08090a; border-color: #5e6ad2;"></button>
+                <button class="theme-swatch" title="Forest" onclick="RAVN.setTheme('forest')" style="background: #ffffff; border-color: #166534;"></button>
+            </div>
+        </nav>
+    </aside>
+
+    <main>
+        <section id="hero" class="hero">
+            <img src="logo.png" alt="RAVN Logo" style="width: 80px; height: 80px; margin-bottom: var(--space-8); object-fit: contain;">
+            <h1>The design core for Elite SaaS.</h1>
+            <p>Strictly designed, highly performant UI components built for clarity and scale. No fluff, no emojis, just production-grade interfaces.</p>
+            <div class="install-command" onclick="RAVN.copy('bun add @ravn-ui/core', 'Install command copied')">
+                <span style="opacity: 0.5; margin-right: 8px;">$</span> bun add @ravn-ui/core
+            </div>
+        </section>
+
+        <!-- Installation -->
+        <section id="install" class="component-section">
+            <h2 class="component-title">Installation</h2>
+            <p class="component-desc">Integrate RAVN UI into your project in seconds. No build tools required for CDN usage.</p>
+            
+            <div class="mockup-container">
+                <div class="mockup-tabs">
+                    <div class="mockup-tab active" onclick="showTab(this, 'inst-cdn', 'inst-npm', 'inst-html')">CDN</div>
+                    <div class="mockup-tab" onclick="showTab(this, 'inst-npm', 'inst-cdn', 'inst-html')">Package Manager</div>
+                    <div class="mockup-tab" onclick="showTab(this, 'inst-html', 'inst-cdn', 'inst-npm')">Starter HTML</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyActiveInstall()">Copy</div>
+                </div>
+                
+                <div id="inst-cdn" class="mockup-code" style="display: block;"><code>&lt;!-- Core Styles --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css"&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css"&gt;
+
+&lt;!-- Core Logic --&gt;
+&lt;script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"&gt;&lt;/script&gt;</code></div>
+
+                <div id="inst-npm" class="mockup-code"><code># Using Bun (Recommended)
+bun add @ravn-ui/core
+
+# Using NPM
+npm install @ravn-ui/core</code></div>
+
+                <div id="inst-html" class="mockup-code"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en" data-theme="light"&gt;
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css"&gt;
+    &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;button class="btn btn-primary"&gt;Hello RAVN&lt;/button&gt;
+    &lt;script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></div>
+            </div>
+        </section>
+
+        <!-- Buttons -->
+        <section id="buttons" class="component-section">
+            <h2 class="component-title">Buttons</h2>
+            <p class="component-desc">High-precision action triggers with consistent internal padding and clear focus states.</p>
+            <div class="mockup-container">
+                <div class="mockup-tabs">
+                    <div class="mockup-tab active" onclick="showTab(this, 'btn-preview', 'btn-code')">Preview</div>
+                    <div class="mockup-tab" onclick="showTab(this, 'btn-code', 'btn-preview')">Source</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('btn-code')">Copy</div>
+                </div>
+                <div id="btn-preview" class="mockup-preview">
+                    <button class="btn btn-primary">Primary</button>
+                    <button class="btn btn-outline">Secondary</button>
+                    <button class="btn btn-ghost">Ghost</button>
+                    <button class="btn btn-primary btn-sm">Small</button>
+                </div>
+                <pre id="btn-code" class="mockup-code"><code>&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-outline"&gt;Secondary&lt;/button&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- Cards -->
+        <section id="cards" class="component-section">
+            <h2 class="component-title">Cards</h2>
+            <p class="component-desc">Modular containers designed for data density and hierarchical clarity.</p>
+            <div class="mockup-container">
+                <div class="mockup-tabs">
+                    <div class="mockup-tab active" onclick="showTab(this, 'card-preview', 'card-code')">Preview</div>
+                    <div class="mockup-tab" onclick="showTab(this, 'card-code', 'card-preview')">Source</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('card-code')">Copy</div>
+                </div>
+                <div id="card-preview" class="mockup-preview">
+                    <div class="card" style="width: 100%; max-width: 380px;">
+                        <div class="card-header">
+                            <h3 style="font-size: 1rem;">Revenue Stream</h3>
+                            <small>Monthly recurring revenue analysis.</small>
+                        </div>
+                        <div class="card-content">
+                            <div style="font-size: 1.5rem; font-weight: 700;">$14,290.00</div>
+                            <div style="font-size: 0.75rem; color: #10b981; margin-top: 4px;">+12.5% from last month</div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-outline btn-sm w-full" style="width: 100%;" onclick="RAVN.showToast('Generating report...')">View Full Report</button>
+                        </div>
+                    </div>
+                </div>
+                <pre id="card-code" class="mockup-code"><code>&lt;div class="card"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;h3&gt;Title&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="card-content"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- Tables -->
+        <section id="tables" class="component-section">
+            <h2 class="component-title">Tables</h2>
+            <p class="component-desc">High-density data grids with refined hover states and header alignment.</p>
+            <div class="mockup-container">
+                <div class="mockup-tabs">
+                    <div class="mockup-tab active" onclick="showTab(this, 'table-preview', 'table-code')">Preview</div>
+                    <div class="mockup-tab" onclick="showTab(this, 'table-code', 'table-preview')">Source</div>
+                </div>
+                <div id="table-preview" class="mockup-preview">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Status</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Alex Rivera</td>
+                                    <td><span class="badge">Paid</span></td>
+                                    <td>$240.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Sarah Chen</td>
+                                    <td><span class="badge badge-secondary">Pending</span></td>
+                                    <td>$1,200.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <pre id="table-code" class="mockup-code"><code>&lt;div class="table-container"&gt;
+  &lt;table class="table"&gt;
+    &lt;thead&gt;...&lt;/thead&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- Toggles & Status -->
+        <section id="toggles" class="component-section">
+            <h2 class="component-title">Toggles & Status</h2>
+            <p class="component-desc">High-fidelity binary controls and real-time state indicators.</p>
+            <div class="mockup-container">
+                <div class="mockup-tabs">
+                    <div class="mockup-tab active" onclick="showTab(this, 'tg-preview', 'tg-code')">Preview</div>
+                    <div class="mockup-tab" onclick="showTab(this, 'tg-code', 'tg-preview')">Source</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('tg-code')">Copy</div>
+                </div>
+                <div id="tg-preview" class="mockup-preview">
+                    <div class="flex items-center gap-8">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" class="switch" checked>
+                            <span class="text-sm">Push Notifications</span>
+                        </div>
+                        <div class="status">
+                            <div class="status-dot status-online"></div>
+                            System Live
+                        </div>
+                    </div>
+                </div>
+                <pre id="tg-code" class="mockup-code"><code>&lt;input type="checkbox" class="switch" checked&gt;
+&lt;div class="status"&gt;
+  &lt;div class="status-dot status-online"&gt;&lt;/div&gt;
+  System Live
+&lt;/div&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- Accordions -->
+        <section id="accordions" class="component-section">
+            <h2 class="component-title">Accordions</h2>
+            <p class="component-desc">Expandable containers for hierarchical information or FAQs.</p>
+            <div class="mockup-container">
+                <div class="mockup-tabs">
+                    <div class="mockup-tab active" onclick="showTab(this, 'ac-preview', 'ac-code')">Preview</div>
+                    <div class="mockup-tab" onclick="showTab(this, 'ac-code', 'ac-preview')">Source</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('ac-code')">Copy</div>
+                </div>
+                <div id="ac-preview" class="mockup-preview">
+                    <div class="accordion" style="width: 100%; max-width: 500px;">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">How do I export my data?</button>
+                            <div class="accordion-content">You can export your data at any time via the API settings page in CSV or JSON format.</div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger">Is there a rate limit?</button>
+                            <div class="accordion-content">Standard accounts are limited to 1,000 requests per minute. Contact us for enterprise limits.</div>
+                        </div>
+                    </div>
+                </div>
+                <pre id="ac-code" class="mockup-code"><code>&lt;div class="accordion"&gt;
+  &lt;div class="accordion-item"&gt;
+    &lt;button class="accordion-trigger"&gt;Title&lt;/button&gt;
+    &lt;div class="accordion-content"&gt;Content&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- Forms -->
+        <section id="forms" class="component-section">
+            <h2 class="component-title">Forms & Layouts</h2>
+            <p class="component-desc">Structural helpers for building complex, accessible entry interfaces.</p>
+            <div class="mockup-container">
+                <div class="mockup-tabs">
+                    <div class="mockup-tab active" onclick="showTab(this, 'form-preview', 'form-code')">Preview</div>
+                    <div class="mockup-tab" onclick="showTab(this, 'form-code', 'form-preview')">Source</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('form-code')">Copy</div>
+                </div>
+                <div id="form-preview" class="mockup-preview">
+                    <div style="width: 100%; max-width: 400px;">
+                        <div class="form-group">
+                            <label class="label">Organization Name</label>
+                            <input type="text" class="input" placeholder="e.g. Acme Corp">
+                            <span class="helper-text">This will be visible on your invoices.</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="label">Visibility</label>
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" class="switch">
+                                <span class="text-sm">Make profile public</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-full mt-4" style="width: 100%;" onclick="RAVN.showToast('Settings saved')">Save Changes</button>
+                    </div>
+                </div>
+                <pre id="form-code" class="mockup-code"><code>&lt;div class="form-group"&gt;
+  &lt;label class="label"&gt;Name&lt;/label&gt;
+  &lt;input type="text" class="input"&gt;
+  &lt;span class="helper-text"&gt;Hint...&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </section>
+        <section id="avatars" class="component-section">
+            <h2 class="component-title">Avatars & Skeletons</h2>
+            <p class="component-desc">Essential for profile representation and progressive loading states.</p>
+            <div class="mockup-container">
+                <div class="mockup-tabs">
+                    <div class="mockup-tab active" onclick="showTab(this, 'av-preview', 'av-code')">Preview</div>
+                    <div class="mockup-tab" onclick="showTab(this, 'av-code', 'av-preview')">Source</div>
+                </div>
+                <div id="av-preview" class="mockup-preview">
+                    <div class="flex items-center gap-4">
+                        <div class="avatar">JD</div>
+                        <div class="flex flex-col gap-1">
+                            <div class="skeleton" style="width: 120px; height: 16px;"></div>
+                            <div class="skeleton" style="width: 80px; height: 12px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <pre id="av-code" class="mockup-code"><code>&lt;div class="avatar"&gt;JD&lt;/div&gt;
+&lt;div class="skeleton" style="width: 100px; height: 16px;"&gt;&lt;/div&gt;</code></pre>
+            </div>
+        </section>
+
+        <footer style="margin-top: 120px; padding: 60px 0; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--muted-foreground);">
+            RAVN UI. Designed for those who build the future.
+        </footer>
+    </main>
+
+    <script src="dist/ui.js"></script>
+    <script>
+        // Tab switching
+        function showTab(el, showId, ...hideIds) {
+            const tabs = el.parentElement.querySelectorAll('.mockup-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            
+            document.getElementById(showId).style.display = showId.includes('preview') ? 'flex' : 'block';
+            hideIds.forEach(id => {
+                const target = document.getElementById(id);
+                if (target) target.style.display = 'none';
+            });
+        }
+
+        // Copy code helper
+        function copyCode(id) {
+            const code = document.getElementById(id).innerText.trim();
+            RAVN.copy(code, 'Source code copied');
+        }
+
+        function copyActiveInstall() {
+            const visibleCode = Array.from(document.querySelectorAll('#install .mockup-code')).find(el => window.getComputedStyle(el).display !== 'none');
+            if (visibleCode) {
+                const code = visibleCode.querySelector('code').innerText.trim();
+                RAVN.copy(code, 'Installation steps copied');
+            }
+        }
+
+        // Sidebar search filter
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.nav-item').forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(term) ? 'block' : 'none';
+            });
+            // Hide group labels if no items visible
+            document.querySelectorAll('.nav-group').forEach(group => {
+                const hasVisible = Array.from(group.querySelectorAll('.nav-item')).some(i => i.style.display !== 'none');
+                group.style.display = hasVisible ? 'block' : 'none';
+            });
+        });
+
+        // Scroll highlight sync
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.nav-item').forEach(item => {
+                        item.classList.toggle('active', item.getAttribute('href') === `#${id}`);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "@ravn-ui/core",
+  "version": "1.0.0",
+  "description": "Minimal, premium, CDN-first UI library inspired by DaisyUI and shadcn/ui.",
+  "main": "dist/ui.js",
+  "style": "dist/ui.css",
+  "files": [
+    "dist",
+    "logo.png",
+    "favicon.png"
+  ],
+  "keywords": [
+    "ui",
+    "css",
+    "framework",
+    "components",
+    "themes",
+    "cdn-first",
+    "minimal"
+  ],
+  "author": "RAVN UI Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ravn-ui/core"
+  }
+}
