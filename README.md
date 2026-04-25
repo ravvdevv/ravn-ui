@@ -20,28 +20,28 @@ Add the following to your `<head>`:
 
 ```html
 <!-- Core Styles -->
-<link rel="stylesheet" href="https://unpkg.com/@ravvdevv/ravn-ui/dist/ui.css">
-<link rel="stylesheet" href="https://unpkg.com/@ravvdevv/ravn-ui/dist/themes.css">
+<link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
+<link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
 
 <!-- Core Logic -->
-<script src="https://unpkg.com/@ravvdevv/ravn-ui/dist/ui.js"></script>
+<script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
 ```
 
 ### Via Package Manager
 ```bash
 # Using Bun
-bun add @ravvdevv/ravn-ui
+bun add @ravn-ui/core
 
 # Using NPM
-npm install @ravvdevv/ravn-ui
+npm install @ravn-ui/core
 ```
 
 ## Modular Usage
 If you prefer to use the modular source files:
 ```css
-@import "@ravvdevv/ravn-ui/src/css/tokens.css";
-@import "@ravvdevv/ravn-ui/src/css/base.css";
-@import "@ravvdevv/ravn-ui/src/css/components.css";
+@import "@ravn-ui/core/src/css/tokens.css";
+@import "@ravn-ui/core/src/css/base.css";
+@import "@ravn-ui/core/src/css/components.css";
 ```
 
 ## Documentation
