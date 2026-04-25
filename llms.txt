@@ -1,37 +1,99 @@
-# RAVN UI
+# RAVN UI: Comprehensive AI & Developer Guide
 
-Minimal, premium, CDN-first UI library inspired by DaisyUI and shadcn/ui. Designed for building elite SaaS dashboards in minutes without Tailwind, build steps, or bloat.
+RAVN UI is a high-fidelity, minimal, and "CDN-first" UI system designed for building elite SaaS dashboards in minutes. It eliminates the complexity of modern build chains (Tailwind, Webpack, PostCSS) in favor of pure, semantic CSS and high-performance Javascript.
 
-## Philosophy
-- **No Build Steps**: Works directly in the browser via CDN.
-- **No Tailwind**: Pure, semantic CSS classes.
-- **Premium Aesthetics**: High-density, high-fidelity design out of the box.
-- **SPA Ready**: Built-in utilities for view-switching and sidebar management.
+## 🎯 Purpose & Philosophy
+The primary goal of RAVN UI is **speed to high-fidelity**. 
+- **No Tailwind Dependency**: Avoids utility-class bloat while maintaining a professional look.
+- **Zero Configuration**: A fully functional, themed environment is one `<link>` tag away.
+- **SaaS First**: Every component is optimized for high-density, data-heavy dashboard interfaces.
+- **PHP-Style Organization**: Encourages a clean, logical file structure (Assets/Pages/Functions) that is easy for both humans and AI to navigate.
 
-## Core Components
-- **Layout**: `.layout-shell`, `.layout-sidebar`, `.layout-main`, `.layout-header`, `.layout-content`.
-- **UI**: `.card`, `.btn`, `.table`, `.avatar`, `.badge`, `.skeleton`, `.breadcrumb`, `.metrics-grid`.
-- **States**: `.active`, `.disabled`, `.sidebar-collapsed` (on body).
+---
 
-## Layout Utilities
-- **Flexbox**: `.flex`, `.items-center`, `.justify-between`, `.flex-wrap`.
-- **Grid**: `.grid`, `.grid-2`, `.grid-3`.
-- **Spacing**: `.gap-1` to `.gap-12`, `.mt-*`, `.mb-*`, etc.
-- **Typography**: `.text-sm`, `.text-muted`, `.font-bold`.
+## 🏗️ Core Architecture
 
-## Javascript API (RAVN)
-- `RAVN.view(targetId)`: Swaps the active view (elements with `data-view`).
-- `RAVN.toggleSidebar()`: Toggles the `.sidebar-collapsed` class on the body.
-- `RAVN.showToast(message)`: Displays a notification (if implemented).
+### 1. The Design System (CSS)
+The CSS is split into four layers:
+- **Tokens (`tokens.css`)**: Defines the core design language—colors, spacing scale (1-12), typography, and shadows using CSS variables.
+- **Base (`base.css`)**: Resets the browser defaults and sets up the foundation (typography, scrollbars, etc.).
+- **Components (`components.css`)**: Semantic classes for complex elements (`.card`, `.btn`, `.sidebar`, `.layout-shell`, `.table`).
+- **Utilities (`utilities.css`)**: Low-level helper classes for layout (`.flex`, `.grid`, `.gap-*`, `.mt-*`, `.text-*`).
 
-## Directory Structure (Recommended)
-- `index.html`: Main entry point.
-- `assets/css/app.css`: Custom user styles.
-- `assets/js/app.js`: Custom app logic.
-- `pages/`: Sub-pages and secondary views.
-- `functions/`: Reusable Javascript utilities.
+### 2. Theming System (`themes.css`)
+RAVN UI supports 12+ premium themes (Dark, Zinc, Claude, Midnight, Indigo, etc.) via the `data-theme` attribute on the `<html>` or `<body>` tag. 
+- Themes redefine the core semantic variables (e.g., `--primary`, `--background`, `--card`).
+- The library uses **glassmorphism** and subtle gradients in dark modes for a premium feel.
 
-## CDN Links
-- CSS: `https://unpkg.com/@ravn-ui/core/dist/ui.css`
-- Themes: `https://unpkg.com/@ravn-ui/core/dist/themes.css`
-- JS: `https://unpkg.com/@ravn-ui/core/dist/ui.js`
+### 3. Logic & SPA Utilities (`ui.js`)
+The `RAVN` global object provides high-level control:
+- **`RAVN.view(targetId)`**: Handles Single Page App (SPA) style navigation. It looks for elements with `data-view="id"` and swaps their visibility with a fade-in animation.
+- **`RAVN.toggleSidebar()`**: Manages the `.sidebar-collapsed` state. It toggles a class on the `<body>` which shrinks the sidebar to an icon-only view and expands the main content.
+- **Automatic Listeners**: Any element with `data-target-view="id"` will automatically trigger a view switch on click.
+
+---
+
+## 📂 Project Structure (Recommended)
+When an AI or developer works on a RAVN UI project, they should adhere to this "Classic/PHP-style" organization:
+- `/index.html`: The root entry point (usually the Dashboard shell).
+- `/assets/css/app.css`: Custom project-specific overrides.
+- `/assets/js/app.js`: Application logic and API integrations.
+- `/pages/`: Secondary HTML views (e.g., `settings.html`, `users.html`).
+- `/functions/`: Reusable Javascript utility modules (e.g., `api.js`, `utils.js`).
+
+---
+
+## 🧩 Key Components for AI to Know
+
+### The Layout Shell
+```html
+<div class="layout-shell">
+    <aside class="layout-sidebar">...</aside>
+    <main class="layout-main">
+        <header class="layout-header">...</header>
+        <div class="layout-content">...</div>
+    </main>
+</div>
+```
+- **`.layout-shell`**: Flex container for the entire app.
+- **`.layout-sidebar`**: Fixed-width navigation area. Supports collapse.
+- **`.layout-main`**: Scrollable content area.
+
+### Dashboard Metrics
+```html
+<div class="metrics-grid">
+    <div class="card">
+        <div class="text-muted">REVENUE</div>
+        <div class="font-bold">$45,231.89</div>
+        <div class="trend trend-up">↑ 12%</div>
+    </div>
+</div>
+```
+- **`.metrics-grid`**: Responsive grid (usually 2 or 3 columns) optimized for "at-a-glance" stats.
+
+---
+
+## 🛠️ CLI Operations (`bin/ravn.js`)
+The CLI is a project initializer that handles:
+1. **Name/Path**: Supports `.` for current directory initialization.
+2. **Templates**: Choice of SaaS Dashboard (SPA-ready), Landing Page (Marketing), or Minimal.
+3. **Themes**: Injects the selected theme into the `data-theme` attribute.
+4. **Install Method**: 
+   - **CDN**: Uses remote `unpkg` links.
+   - **Local**: Runs `bun add @ravn-ui/core` and configures local `node_modules` paths for offline development.
+
+---
+
+## 🤖 Instructions for AI Assistants
+When assisting with a RAVN UI project:
+1. **Prefer Semantic Classes**: Use `.card`, `.btn`, `.table` before reaching for utility classes.
+2. **Leverage SPA Logic**: For dashboard navigation, use `data-target-view` and `data-view` blocks within a single `index.html` unless a multi-page app (MPA) is explicitly requested.
+3. **Theming Consistency**: Never hardcode colors. Use the semantic variables (e.g., `var(--primary)`, `var(--border)`, `var(--muted-foreground)`).
+4. **Layout Utilities**: Use the gap scale (e.g., `.gap-4`) and flex helpers (`.flex`, `.items-center`) to manage spacing between cards and components.
+5. **Offline Awareness**: If the project has a `package.json`, assume it's a **Local** install and link to `node_modules`. If not, use **CDN** links.
+
+---
+
+## 🔗 Official Distribution
+- **NPM**: `@ravn-ui/core`
+- **CDN Base**: `https://unpkg.com/@ravn-ui/core/dist/`
