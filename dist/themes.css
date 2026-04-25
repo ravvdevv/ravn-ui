@@ -160,3 +160,35 @@
     --primary: #00ff00;
     --primary-foreground: #000000;
 }
+
+/* Rose Pine - Dreamy & Sophisticated */
+[data-theme="rose-pine"] {
+    --background: #191724;
+    --foreground: #e0def4;
+    --card: #1f1d2e;
+    --card-foreground: #e0def4;
+    --muted: #26233a;
+    --muted-foreground: #908caa;
+    --accent: #ebbcba;
+    --accent-foreground: #191724;
+    --border: #403d52;
+    --input: #403d52;
+    --primary: #c4a7e7;
+    --primary-foreground: #191724;
+}
+
+/* Nord - Arctic Frost */
+[data-theme="nord"] {
+    --background: #2e3440;
+    --foreground: #eceff4;
+    --card: #3b4252;
+    --card-foreground: #eceff4;
+    --muted: #434c5e;
+    --muted-foreground: #d8dee9;
+    --accent: #88c0d0;
+    --accent-foreground: #2e3440;
+    --border: #4c566a;
+    --input: #4c566a;
+    --primary: #88c0d0;
+    --primary-foreground: #2e3440;
+}
