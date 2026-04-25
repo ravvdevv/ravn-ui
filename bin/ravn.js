@@ -21,12 +21,12 @@ const BANNER = `
  ------------------------------------------
 `;
 
-const SAMPLE_PAGE_HTML = `<!DOCTYPE html>
+const USERS_PAGE_HTML = `<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users — RAVN UI</title>
+    <title>Users — Boilerplate</title>
     <link rel="stylesheet" href="../node_modules/@ravn-ui/core/dist/ui.css">
     <link rel="stylesheet" href="../node_modules/@ravn-ui/core/dist/themes.css">
     <link rel="stylesheet" href="../assets/css/app.css">
@@ -39,27 +39,89 @@ const SAMPLE_PAGE_HTML = `<!DOCTYPE html>
                 <nav class="sidebar-nav">
                     <a href="../index.html" class="sidebar-item">Dashboard</a>
                     <a href="javascript:void(0)" class="sidebar-item active">Users</a>
+                    <a href="./settings.html" class="sidebar-item">Settings</a>
                 </nav>
             </div>
         </aside>
         <main class="layout-main">
             <header class="layout-header">
-                <div class="breadcrumbs">
-                    <a href="../index.html" class="breadcrumb-item">Dashboard</a>
-                    <span class="breadcrumb-item active">Users</span>
-                </div>
+                <div class="breadcrumbs"><a href="../index.html" class="breadcrumb-item">App</a><span class="breadcrumb-item active">Users</span></div>
             </header>
             <div class="layout-content">
                 <div class="card">
-                    <div class="card-header"><h3>User Management</h3></div>
+                    <div class="card-header" style="justify-content: space-between; display: flex;">
+                        <h3>Team Members</h3>
+                        <button class="btn btn-primary btn-sm">+ Add User</button>
+                    </div>
                     <div class="table-container" style="border: none;">
                         <table class="table">
-                            <thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead>
+                            <thead><tr><th>User</th><th>Role</th><th>Status</th><th>Joined</th></tr></thead>
                             <tbody>
-                                <tr><td>Jane Doe</td><td>Admin</td><td><span class="badge badge-secondary">Active</span></td></tr>
-                                <tr><td>John Smith</td><td>Editor</td><td><span class="badge">Offline</span></td></tr>
+                                <tr><td>Jane Cooper</td><td>Admin</td><td><span class="badge badge-secondary">Active</span></td><td>Jan 12, 2024</td></tr>
+                                <tr><td>Cody Fisher</td><td>Editor</td><td><span class="badge">Offline</span></td><td>Feb 1, 2024</td></tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../node_modules/@ravn-ui/core/dist/ui.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>`;
+
+const SETTINGS_PAGE_HTML = `<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings — Boilerplate</title>
+    <link rel="stylesheet" href="../node_modules/@ravn-ui/core/dist/ui.css">
+    <link rel="stylesheet" href="../node_modules/@ravn-ui/core/dist/themes.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div class="layout-shell">
+        <aside class="layout-sidebar sidebar">
+            <div class="sidebar-header"><div style="font-weight: 900; font-size: 1.5rem; color: var(--primary);">RAVN</div></div>
+            <div class="sidebar-content">
+                <nav class="sidebar-nav">
+                    <a href="../index.html" class="sidebar-item">Dashboard</a>
+                    <a href="./users.html" class="sidebar-item">Users</a>
+                    <a href="javascript:void(0)" class="sidebar-item active">Settings</a>
+                </nav>
+            </div>
+        </aside>
+        <main class="layout-main">
+            <header class="layout-header">
+                <div class="breadcrumbs"><a href="../index.html" class="breadcrumb-item">App</a><span class="breadcrumb-item active">Settings</span></div>
+            </header>
+            <div class="layout-content" style="max-width: 800px;">
+                <div class="card mb-8">
+                    <div class="card-header"><h3>General Settings</h3></div>
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <label class="label">Organization Name</label>
+                            <input type="text" class="input w-full" value="Acme Corp">
+                        </div>
+                        <div class="mb-4">
+                            <label class="label">Primary Email</label>
+                            <input type="email" class="input w-full" value="admin@acme.com">
+                        </div>
+                        <button class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>Security</h3></div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="mb-1">Two-Factor Authentication</h4>
+                                <p class="text-sm text-muted">Add an extra layer of security to your account.</p>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Enable</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,21 +143,13 @@ const DASHBOARD_HTML = `<!DOCTYPE html>
 </head>
 <body>
     <div class="layout-shell">
-        <!-- Sidebar -->
         <aside class="layout-sidebar sidebar">
-            <div class="sidebar-header">
-                <div style="font-weight: 900; font-size: 1.5rem; letter-spacing: -0.05em; color: var(--primary);">RAVN</div>
-            </div>
+            <div class="sidebar-header"><div style="font-weight: 900; font-size: 1.5rem; color: var(--primary);">RAVN</div></div>
             <div class="sidebar-content">
                 <nav class="sidebar-nav">
-                    <a href="javascript:void(0)" class="sidebar-item active" data-target-view="overview">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="./pages/users.html" class="sidebar-item">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                        <span>Users (Sample Page)</span>
-                    </a>
+                    <a href="javascript:void(0)" class="sidebar-item active">Dashboard</a>
+                    <a href="./pages/users.html" class="sidebar-item">Users</a>
+                    <a href="./pages/settings.html" class="sidebar-item">Settings</a>
                 </nav>
             </div>
             <div style="padding: var(--space-4); border-top: 1px solid var(--border);">
@@ -105,41 +159,36 @@ const DASHBOARD_HTML = `<!DOCTYPE html>
                 </a>
             </div>
         </aside>
-
-        <!-- Main Content -->
         <main class="layout-main">
             <header class="layout-header" style="justify-content: space-between;">
-                <div class="breadcrumbs">
-                    <a href="#" class="breadcrumb-item">Project</a>
-                    <span class="breadcrumb-item active">Overview</span>
-                </div>
+                <div class="breadcrumbs"><span class="breadcrumb-item active">Overview</span></div>
                 <div class="flex items-center gap-4">
-                    <button class="btn btn-ghost btn-sm">Docs</button>
+                    <button class="btn btn-ghost btn-sm">Support</button>
                     <div class="avatar" style="width: 32px; height: 32px;">JD</div>
                 </div>
             </header>
-            
-            <div class="layout-content" id="main-content">
-                <!-- View: Overview -->
-                <div data-view="overview" style="display: block;">
-                    <div class="metrics-grid">
-                        <div class="card" style="padding: var(--space-4);">
-                            <div class="text-sm text-muted mb-1">REVENUE</div>
-                            <div style="font-size: 1.75rem; font-weight: 800;">$45,231.89</div>
-                            <div class="trend trend-up">↑ 12%</div>
-                        </div>
-                        <div class="card" style="padding: var(--space-4);">
-                            <div class="text-sm text-muted mb-1">SUBSCRIPTIONS</div>
-                            <div style="font-size: 1.75rem; font-weight: 800;">+2,350</div>
-                            <div class="trend trend-up">↑ 180%</div>
-                        </div>
+            <div class="layout-content">
+                <div class="metrics-grid">
+                    <div class="card" style="padding: var(--space-4);">
+                        <div class="text-sm text-muted mb-1">REVENUE</div>
+                        <div style="font-size: 1.75rem; font-weight: 800;">$45,231.89</div>
+                        <div class="trend trend-up">↑ 12%</div>
                     </div>
-
-                    <div class="card mt-6">
-                        <div class="card-header"><h3>Recent Activity</h3></div>
-                        <div class="p-6 text-center text-muted">
-                            <p>No recent activity found.</p>
-                            <a href="./pages/users.html" class="btn btn-primary btn-sm mt-4">Manage Users</a>
+                    <div class="card" style="padding: var(--space-4);">
+                        <div class="text-sm text-muted mb-1">ACTIVE USERS</div>
+                        <div style="font-size: 1.75rem; font-weight: 800;">2,350</div>
+                        <div class="trend trend-up">↑ 180%</div>
+                    </div>
+                </div>
+                <div class="card mt-6">
+                    <div class="card-header"><h3>Project Status</h3></div>
+                    <div class="p-12 text-center">
+                        <div class="skeleton mx-auto mb-6" style="width: 64px; height: 64px; border-radius: 50%;"></div>
+                        <h3>Welcome to your new SaaS!</h3>
+                        <p class="text-muted mb-6">This is your production-ready boilerplate. Start by editing <code>index.html</code>.</p>
+                        <div class="flex gap-4 justify-center">
+                            <a href="./pages/users.html" class="btn btn-primary">Manage Team</a>
+                            <a href="./pages/settings.html" class="btn btn-outline">Configure App</a>
                         </div>
                     </div>
                 </div>
@@ -360,15 +409,22 @@ export const formatCurrency = (val) => {
     fs.writeFileSync(path.join(cssDir, 'app.css'), appCss);
     fs.writeFileSync(path.join(functionsDir, 'utils.js'), utilsJs);
 
-    // Create sample page in pages/
-    let finalSampleContent = SAMPLE_PAGE_HTML;
-    if (!useLocal) {
-        finalSampleContent = SAMPLE_PAGE_HTML
-            .replace(/..\/node_modules\/@ravn-ui\/core\/dist\/ui\.css/g, 'https://unpkg.com/@ravn-ui/core/dist/ui.css')
-            .replace(/..\/node_modules\/@ravn-ui\/core\/dist\/themes\.css/g, 'https://unpkg.com/@ravn-ui/core/dist/themes.css')
-            .replace(/..\/node_modules\/@ravn-ui\/core\/dist\/ui\.js/g, 'https://unpkg.com/@ravn-ui/core/dist/ui.js');
-    }
-    fs.writeFileSync(path.join(pagesDir, 'users.html'), finalSampleContent);
+    // Create boilerplate pages in pages/
+    const pagesToCreate = [
+        { name: 'users.html', content: USERS_PAGE_HTML },
+        { name: 'settings.html', content: SETTINGS_PAGE_HTML }
+    ];
+
+    pagesToCreate.forEach(page => {
+        let pageContent = page.content;
+        if (!useLocal) {
+            pageContent = pageContent
+                .replace(/..\/node_modules\/@ravn-ui\/core\/dist\/ui\.css/g, 'https://unpkg.com/@ravn-ui/core/dist/ui.css')
+                .replace(/..\/node_modules\/@ravn-ui\/core\/dist\/themes.css/g, 'https://unpkg.com/@ravn-ui/core/dist/themes.css')
+                .replace(/..\/node_modules\/@ravn-ui\/core\/dist\/ui\.js/g, 'https://unpkg.com/@ravn-ui/core/dist/ui.js');
+        }
+        fs.writeFileSync(path.join(pagesDir, page.name), pageContent);
+    });
 
     if (useLocal) {
         // Create basic package.json
