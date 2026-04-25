@@ -101,10 +101,25 @@ window.RAVN = {
     initTheme: () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const savedTheme = localStorage.getItem('ravn-theme');
-        
-        // Only apply saved/default theme if the user hasn't hardcoded one in HTML
         if (!currentTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme || 'light');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        }
+    },
+    modal: (id, action) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (action === 'open') {
+            el.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        } else {
+            el.classList.remove('open');
+            document.body.style.overflow = '';
         }
     },
     showToast: (message) => {
@@ -129,5 +144,48 @@ window.RAVN = {
         });
     }
 };
+
+// Global Interactivity
+document.addEventListener('click', (e) => {
+    // Dropdowns
+    const dropdownToggle = e.target.closest('[data-dropdown]');
+    if (dropdownToggle) {
+        const dropdown = dropdownToggle.closest('.dropdown');
+        dropdown.classList.toggle('open');
+    } else if (!e.target.closest('.dropdown-menu')) {
+        document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+    }
+
+    // Modals
+    const modalTrigger = e.target.closest('[data-modal-target]');
+    if (modalTrigger) {
+        window.RAVN.modal(modalTrigger.getAttribute('data-modal-target'), 'open');
+    }
+    if (e.target.classList.contains('modal-backdrop') || e.target.closest('[data-modal-close]')) {
+        const modal = e.target.closest('.modal');
+        if (modal) window.RAVN.modal(modal.id, 'close');
+    }
+
+    // Accordions
+    const accordionTrigger = e.target.closest('.accordion-trigger');
+    if (accordionTrigger) {
+        accordionTrigger.parentElement.classList.toggle('open');
+    }
+});
+
+// Accessibility & Shortcuts
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.modal.open').forEach(m => window.RAVN.modal(m.id, 'close'));
+        document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+    }
+    
+    // Accordion Keyboard Support
+    const accordionTrigger = e.target.closest('.accordion-trigger');
+    if (accordionTrigger && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        accordionTrigger.parentElement.classList.toggle('open');
+    }
+});
 
 window.RAVN.initTheme();
