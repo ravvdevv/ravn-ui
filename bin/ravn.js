@@ -204,6 +204,8 @@ const MINIMAL_HTML = `<!DOCTYPE html>
 
 console.log(BANNER);
 
+const { execSync } = require('child_process');
+
 rl.on('close', () => process.exit(0));
 
 const args = process.argv.slice(2);
@@ -233,11 +235,22 @@ function askTemplate(projectName) {
             default: content = DASHBOARD_HTML; templateName = 'SaaS Dashboard'; break;
         }
 
-        createProject(projectName, content, templateName);
+        askInstallMethod(projectName, content, templateName);
     });
 }
 
-function createProject(name, content, templateName) {
+function askInstallMethod(projectName, content, templateName) {
+    console.log('\n\x1b[1mInstall method:\x1b[0m');
+    console.log('  \x1b[36m1)\x1b[0m CDN (Fastest, Online required)');
+    console.log('  \x1b[36m2)\x1b[0m Local (Offline ready, uses node_modules)');
+
+    rl.question('\n\x1b[1mSelect (1-2):\x1b[0m ', (method) => {
+        const useLocal = method === '2';
+        createProject(projectName, content, templateName, useLocal);
+    });
+}
+
+function createProject(name, content, templateName, useLocal) {
     const isCurrentDir = name === '.';
     const targetDir = isCurrentDir ? process.cwd() : path.join(process.cwd(), name || 'ravn-app');
     
@@ -251,15 +264,49 @@ function createProject(name, content, templateName) {
     if (!isCurrentDir) {
         fs.mkdirSync(targetDir);
     }
+
+    // Process content for local install
+    let finalContent = content;
+    if (useLocal) {
+        finalContent = content
+            .replace(/https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.css/g, './node_modules/@ravn-ui/core/dist/ui.css')
+            .replace(/https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/themes\.css/g, './node_modules/@ravn-ui/core/dist/themes.css')
+            .replace(/https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.js/g, './node_modules/@ravn-ui/core/dist/ui.js');
+        
+        // Create basic package.json
+        const pkg = {
+            name: name === '.' ? path.basename(process.cwd()) : name,
+            version: '0.1.0',
+            private: true,
+            scripts: {
+                "start": "npx serve ."
+            }
+        };
+        fs.writeFileSync(path.join(targetDir, 'package.json'), JSON.stringify(pkg, null, 2));
+    }
     
-    fs.writeFileSync(path.join(targetDir, 'index.html'), content);
+    fs.writeFileSync(path.join(targetDir, 'index.html'), finalContent);
+
+    if (useLocal) {
+        console.log(`\x1b[33mInstalling dependencies...\x1b[0m`);
+        try {
+            execSync('bun add @ravn-ui/core', { cwd: targetDir, stdio: 'inherit' });
+        } catch (e) {
+            console.log('\x1b[31mBun not found, falling back to npm...\x1b[0m');
+            execSync('npm install @ravn-ui/core', { cwd: targetDir, stdio: 'inherit' });
+        }
+    }
     
     console.log('\n\x1b[32mSuccess! Your project is ready.\x1b[0m');
     console.log(`\x1b[1mNext steps:\x1b[0m`);
     if (!isCurrentDir) {
         console.log(`  cd ${name || 'ravn-app'}`);
     }
-    console.log(`  Open index.html in your browser\n`);
+    if (useLocal) {
+        console.log(`  bun start (or npm start)`);
+    } else {
+        console.log(`  Open index.html in your browser\n`);
+    }
     console.log(`\x1b[35mHappy building with RAVN UI!\x1b[0m\n`);
     
     process.exit(0);
