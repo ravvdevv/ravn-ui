@@ -128,3 +128,35 @@
     --primary: #5e6ad2;
     --primary-foreground: #ffffff;
 }
+
+/* Retro - 70s/80s Warm Classic */
+[data-theme="retro"] {
+    --background: #ece3ca;
+    --foreground: #433422;
+    --card: #e4d9b9;
+    --card-foreground: #433422;
+    --muted: #e0d4b6;
+    --muted-foreground: #a6916b;
+    --accent: #d48d62;
+    --accent-foreground: #ffffff;
+    --border: #d6cbb0;
+    --input: #d6cbb0;
+    --primary: #d48d62;
+    --primary-foreground: #ffffff;
+}
+
+/* Pixel Craft - Terminal & Game Dev Aesthetic */
+[data-theme="pixel-craft"] {
+    --background: #121212;
+    --foreground: #33ff33;
+    --card: #1a1a1a;
+    --card-foreground: #33ff33;
+    --muted: #2a2a2a;
+    --muted-foreground: #008f11;
+    --accent: #00ff00;
+    --accent-foreground: #000000;
+    --border: #333333;
+    --input: #333333;
+    --primary: #00ff00;
+    --primary-foreground: #000000;
+}

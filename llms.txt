@@ -67,7 +67,7 @@ Toggle via `data-modal-target="id"` or programmatically.
 
 ## Theming System
 Apply themes via `data-theme` on the `html` tag.
-- **Available Themes**: `light`, `dark`, `claude`, `midnight`, `supabase`, `linear`, `zinc`, `forest`, `indigo`.
+- **Available Themes**: `light`, `dark`, `claude`, `midnight`, `supabase`, `linear`, `zinc`, `forest`, `indigo`, `retro`, `pixel-craft`.
 - **Auto-Detection**: Library respects `prefers-color-scheme` if no theme is hardcoded.
 
 ## JavaScript API (window.RAVN)
