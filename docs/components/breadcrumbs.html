@@ -1,0 +1,23 @@
+<section id="breadcrumbs" class="component-section">
+    <h2 class="component-title">Breadcrumbs</h2>
+    <p class="component-desc">Path-based navigation for hierarchical SaaS structures.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'bc-preview', 'bc-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'bc-code', 'bc-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('bc-code')">Copy</div>
+        </div>
+        <div id="bc-preview" class="mockup-preview">
+            <nav class="breadcrumbs">
+                <li class="breadcrumb-item"><a href="#">Settings</a></li>
+                <li class="breadcrumb-item"><a href="#">Billing</a></li>
+                <li class="breadcrumb-item active">Invoices</li>
+            </nav>
+        </div>
+        <pre id="bc-code" class="mockup-code"><code>&lt;nav class="breadcrumbs"&gt;
+  &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Settings&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Billing&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="breadcrumb-item active"&gt;Invoices&lt;/li&gt;
+&lt;/nav&gt;</code></pre>
+    </div>
+</section>

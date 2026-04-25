@@ -266,19 +266,77 @@
             background: var(--background);
         }
 
+        /* Responsive & Mobile Drawer */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 60px;
+            background: var(--background);
+            border-bottom: 1px solid var(--border);
+            padding: 0 var(--space-6);
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .menu-toggle {
+            background: none; border: none; color: var(--foreground);
+            cursor: pointer; padding: var(--space-2);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 40;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
         @media (max-width: 1024px) {
+            .mobile-header { display: flex; }
+            
             aside {
-                display: none;
+                position: fixed;
+                left: -100%;
+                top: 0;
+                bottom: 0;
+                width: 280px;
+                z-index: 50;
+                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                background: var(--background);
             }
 
+            body.menu-open aside { left: 0; }
+            body.menu-open .sidebar-overlay { display: block; opacity: 1; }
+
             main {
-                padding: var(--space-8);
+                padding: 80px var(--space-6) var(--space-12);
             }
+
+            .hero h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 
 <body>
+    <header class="mobile-header">
+        <div class="brand" style="margin-bottom: 0;">
+            <img src="logo.png" alt="RAVN Logo" style="width: 20px; height: 20px; object-fit: contain;">
+            RAVN
+        </div>
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+    </header>
+
+    <div class="sidebar-overlay" onclick="toggleMenu()"></div>
+
     <aside>
         <div class="brand">
             <img src="logo.png" alt="RAVN Logo" style="width: 24px; height: 24px; object-fit: contain;">
@@ -312,6 +370,7 @@
             <a href="#dropdowns" class="nav-item">Dropdowns</a>
             <a href="#progress" class="nav-item">Progress</a>
             <a href="#tooltips" class="nav-item">Tooltips</a>
+            <a href="#breadcrumbs" class="nav-item">Breadcrumbs</a>
             <a href="#sidebar" class="nav-item">Sidebar</a>
         </nav>
 
@@ -500,9 +559,7 @@ RAVN.setTheme('supabase');
                 </div>
                 <div class="card-content">
                     <div style="font-size: 1.5rem; font-weight: 700;">$14,290.00</div>
-                    <div style="font-size: 0.75rem; color: var(--success); margin-top: 4px;">+12.5% from last
-                        month
-                    </div>
+                    <div class="trend trend-up" style="margin-top: 4px;">12.5%</div>
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-outline btn-sm w-full" style="width: 100%;"
@@ -517,7 +574,7 @@ RAVN.setTheme('supabase');
   &lt;/div&gt;
   &lt;div class="card-content"&gt;
     &lt;div style="font-size: 1.5rem; font-weight: 700;"&gt;$14,290.00&lt;/div&gt;
-    &lt;div style="color: var(--success); font-size: 0.75rem;"&gt;+12.5% from last month&lt;/div&gt;
+    &lt;div class="trend trend-up"&gt;12.5%&lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="card-footer"&gt;
     &lt;button class="btn btn-outline btn-sm w-full"&gt;View Full Report&lt;/button&gt;
@@ -948,6 +1005,32 @@ RAVN.setTheme('supabase');
 </section>
 
 
+        <!-- Section: breadcrumbs.html -->
+        <section id="breadcrumbs" class="component-section">
+    <h2 class="component-title">Breadcrumbs</h2>
+    <p class="component-desc">Path-based navigation for hierarchical SaaS structures.</p>
+    <div class="mockup-container">
+        <div class="mockup-tabs">
+            <div class="mockup-tab active" onclick="showTab(this, 'bc-preview', 'bc-code')">Preview</div>
+            <div class="mockup-tab" onclick="showTab(this, 'bc-code', 'bc-preview')">Source</div>
+            <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('bc-code')">Copy</div>
+        </div>
+        <div id="bc-preview" class="mockup-preview">
+            <nav class="breadcrumbs">
+                <li class="breadcrumb-item"><a href="#">Settings</a></li>
+                <li class="breadcrumb-item"><a href="#">Billing</a></li>
+                <li class="breadcrumb-item active">Invoices</li>
+            </nav>
+        </div>
+        <pre id="bc-code" class="mockup-code"><code>&lt;nav class="breadcrumbs"&gt;
+  &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Settings&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Billing&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="breadcrumb-item active"&gt;Invoices&lt;/li&gt;
+&lt;/nav&gt;</code></pre>
+    </div>
+</section>
+
+
         <!-- Section: sidebar.html -->
         <section id="sidebar" class="component-section">
     <h2 class="component-title">Sidebar Layout</h2>
@@ -1054,6 +1137,20 @@ RAVN.setTheme('supabase');
                 }
             });
         }, observerOptions);
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.body.classList.toggle('menu-open');
+        }
+
+        // Close menu on nav click (mobile)
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 1024) {
+                    document.body.classList.remove('menu-open');
+                }
+            });
+        });
 
         document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
     </script>

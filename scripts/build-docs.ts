@@ -30,6 +30,7 @@ function build() {
         'dropdowns.html',
         'progress.html',
         'tooltips.html',
+        'breadcrumbs.html',
         'sidebar.html'
     ];
 
