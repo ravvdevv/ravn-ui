@@ -171,6 +171,13 @@ document.addEventListener('click', (e) => {
     if (accordionTrigger) {
         accordionTrigger.parentElement.classList.toggle('open');
     }
+
+    // Layout Sidebar Toggle (Mobile)
+    const layoutToggle = e.target.closest('[data-layout-toggle]');
+    if (layoutToggle) {
+        const sidebar = document.querySelector('.layout-sidebar');
+        if (sidebar) sidebar.classList.toggle('open');
+    }
 });
 
 // Accessibility & Shortcuts

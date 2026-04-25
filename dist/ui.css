@@ -529,11 +529,33 @@ textarea { height: auto; padding: var(--space-2) var(--space-3); }
 .sidebar-item.active { background: var(--primary); color: var(--primary-foreground); }
 
 /* Layout Shells - The SaaS "Fast Track" */
-.layout-shell { display: flex; height: 100vh; width: 100%; overflow: hidden; background: var(--background); }
-.layout-sidebar { width: var(--sidebar-width); height: 100%; border-right: 1px solid var(--border); display: flex; flex-direction: column; background: var(--background); flex-shrink: 0; }
-.layout-main { flex: 1; display: flex; flex-direction: column; height: 100%; min-width: 0; }
+.layout-shell { display: flex; height: 100vh; width: 100%; overflow: hidden; background: var(--background); position: relative; }
+
+.layout-sidebar { 
+    width: var(--sidebar-width); height: 100%; border-right: 1px solid var(--border); 
+    display: flex; flex-direction: column; background: var(--background); flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 50;
+}
+
+.layout-main { flex: 1; display: flex; flex-direction: column; height: 100%; min-width: 0; position: relative; }
 .layout-header { height: 3.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 var(--space-6); background: var(--background); flex-shrink: 0; }
 .layout-content { flex: 1; overflow-y: auto; padding: var(--space-8); }
+
+/* Mobile Adaptivity */
+@media (max-width: 1024px) {
+    .layout-sidebar {
+        position: absolute; left: 0; top: 0; bottom: 0;
+        transform: translateX(-100%);
+        box-shadow: 20px 0 50px rgba(0,0,0,0.1);
+    }
+    .layout-sidebar.open { transform: translateX(0); }
+    .layout-content { padding: var(--space-6) var(--space-4); }
+}
+
+.layout-mobile-header { display: none; height: 3.5rem; border-bottom: 1px solid var(--border); align-items: center; padding: 0 var(--space-4); background: var(--background); }
+@media (max-width: 1024px) { .layout-mobile-header { display: flex; gap: var(--space-4); } }
+
 
 /* Progress */
 .progress { height: 0.5rem; width: 100%; background: var(--muted); border-radius: 9999px; overflow: hidden; }
