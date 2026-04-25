@@ -1,0 +1,43 @@
+# RAVN UI - SaaS Core Design System
+Minimal, premium, CDN-first UI library built for high-performance SaaS interfaces.
+
+## Philosophy
+- Strict aesthetics: Neutral colors, high-end typography (Inter), zero emojis.
+- Performance: 15KB total, 0 dependencies, Vanilla CSS + JS.
+- CDN-First: Designed for unpkg/jsDelivr usage.
+
+## Design Tokens (CSS Variables)
+- --background: Base page color.
+- --foreground: Primary text.
+- --primary / --primary-foreground: Action color.
+- --muted / --muted-foreground: Secondary elements.
+- --border: Contextual borders.
+- --radius: 0.375rem (Standard SaaS roundedness).
+- --space-[1-12]: 4px base spacing scale.
+
+## Core Components
+- .btn: Base action trigger. Variants: .btn-primary, .btn-outline, .btn-ghost, .btn-sm.
+- .card: Container with .card-header, .card-content, .card-footer.
+- .input: Standard text field with .label and .helper-text.
+- .badge: Small status indicator. Variants: .badge-secondary, .badge-dot.
+- .alert: Feedback messages. Variants: .alert-success, .alert-warning, .alert-error.
+- .modal: Dialog overlay. Toggle via RAVN.modal(id, 'open'|'close') or data-modal-target.
+- .dropdown: Contextual menu. Toggle via data-dropdown.
+- .progress / .progress-bar: Task completion indicators.
+- .breadcrumbs: Navigation paths.
+- .sidebar: Vertical navigation pattern with .sidebar-item.
+- .skeleton: Loading placeholder with pulse animation.
+
+## Themes (data-theme)
+Available: light, dark, claude, midnight, supabase, linear, zinc, forest, indigo.
+
+## JavaScript API (window.RAVN)
+- .setTheme(name): Persistently switch themes.
+- .modal(id, action): Programmatic modal control.
+- .showToast(message): Trigger a system toast.
+- .copy(text, msg): Copy to clipboard with success toast.
+
+## Usage
+CDN: https://unpkg.com/@ravn-ui/core/dist/ui.css
+CDN: https://unpkg.com/@ravn-ui/core/dist/themes.css
+CDN: https://unpkg.com/@ravn-ui/core/dist/ui.js
