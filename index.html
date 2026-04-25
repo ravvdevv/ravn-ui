@@ -424,10 +424,15 @@ npm install @ravn-ui/core</code></div>
                         </div>
                     </div>
                 </div>
-                <pre id="tg-code" class="mockup-code"><code>&lt;input type="checkbox" class="switch" checked&gt;
-&lt;div class="status"&gt;
-  &lt;div class="status-dot status-online"&gt;&lt;/div&gt;
-  System Live
+                <pre id="tg-code" class="mockup-code"><code>&lt;div class="flex items-center gap-8"&gt;
+  &lt;div class="flex items-center gap-3"&gt;
+    &lt;input type="checkbox" class="switch" checked&gt;
+    &lt;span class="text-sm"&gt;Push Notifications&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="status"&gt;
+    &lt;div class="status-dot status-online"&gt;&lt;/div&gt;
+    System Live
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
             </div>
         </section>
@@ -456,8 +461,16 @@ npm install @ravn-ui/core</code></div>
                 </div>
                 <pre id="ac-code" class="mockup-code"><code>&lt;div class="accordion"&gt;
   &lt;div class="accordion-item"&gt;
-    &lt;button class="accordion-trigger"&gt;Title&lt;/button&gt;
-    &lt;div class="accordion-content"&gt;Content&lt;/div&gt;
+    &lt;button class="accordion-trigger"&gt;How do I export my data?&lt;/button&gt;
+    &lt;div class="accordion-content"&gt;
+      You can export your data at any time via the API settings page in CSV or JSON format.
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="accordion-item"&gt;
+    &lt;button class="accordion-trigger"&gt;Is there a rate limit?&lt;/button&gt;
+    &lt;div class="accordion-content"&gt;
+      Standard accounts are limited to 1,000 requests per minute.
+    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
             </div>
@@ -491,10 +504,20 @@ npm install @ravn-ui/core</code></div>
                     </div>
                 </div>
                 <pre id="form-code" class="mockup-code"><code>&lt;div class="form-group"&gt;
-  &lt;label class="label"&gt;Name&lt;/label&gt;
-  &lt;input type="text" class="input"&gt;
-  &lt;span class="helper-text"&gt;Hint...&lt;/span&gt;
-&lt;/div&gt;</code></pre>
+  &lt;label class="label"&gt;Organization Name&lt;/label&gt;
+  &lt;input type="text" class="input" placeholder="e.g. Acme Corp"&gt;
+  &lt;span class="helper-text"&gt;This will be visible on your invoices.&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="form-group"&gt;
+  &lt;label class="label"&gt;Visibility&lt;/label&gt;
+  &lt;div class="flex items-center gap-3"&gt;
+    &lt;input type="checkbox" class="switch"&gt;
+    &lt;span class="text-sm"&gt;Make profile public&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;button class="btn btn-primary w-full"&gt;Save Changes&lt;/button&gt;</code></pre>
             </div>
         </section>
         <section id="avatars" class="component-section">
