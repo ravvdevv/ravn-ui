@@ -5,7 +5,7 @@
   <p>
     <img src="https://img.shields.io/npm/v/@ravn-ui/core?style=flat-square&color=black" alt="NPM Version" />
     <img src="https://img.shields.io/npm/l/@ravn-ui/core?style=flat-square&color=black" alt="License" />
-    <img src="https://img.shields.io/bundlephobia/minzip/@ravn-ui/core?style=flat-square&color=black" alt="Bundle Size" />
+    <img src="https://img.shields.io/npm/unpacked-size/@ravn-ui/core?style=flat-square&color=black" alt="NPM Unpacked Size" />
     <img src="https://img.shields.io/vercel/deploy/ravn-ui.vercel.app?style=flat-square&color=black" alt="Vercel Status" />
   </p>
 </div>
