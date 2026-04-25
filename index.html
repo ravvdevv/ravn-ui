@@ -209,6 +209,7 @@
             <div class="nav-label">Core</div>
             <a href="#hero" class="nav-item active">Introduction</a>
             <a href="#install" class="nav-item">Installation</a>
+            <a href="#theming" class="nav-item">Theming</a>
         </nav>
 
         <nav class="nav-group">
@@ -287,6 +288,31 @@ npm install @ravn-ui/core</code></div>
     &lt;script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></div>
+            </div>
+        </section>
+        
+        <!-- Theming -->
+        <section id="theming" class="component-section">
+            <h2 class="component-title">Theming</h2>
+            <p class="component-desc">RAVN UI is built on a robust token system. Apply themes globally via the data-theme attribute.</p>
+            
+            <div class="mockup-container">
+                <div class="mockup-tabs">
+                    <div class="mockup-tab active" onclick="showTab(this, 'theme-html', 'theme-js')">HTML</div>
+                    <div class="mockup-tab" onclick="showTab(this, 'theme-js', 'theme-html')">JavaScript</div>
+                    <div class="mockup-tab" style="margin-left: auto; opacity: 0.3;" onclick="copyCode('theme-html')">Copy</div>
+                </div>
+                
+                <div id="theme-html" class="mockup-code" style="display: block;"><code>&lt;!-- Apply midnight theme globally --&gt;
+&lt;html data-theme="midnight"&gt;
+...
+&lt;/html&gt;</code></div>
+
+                <div id="theme-js" class="mockup-code"><code>// Switch themes dynamically with persistence
+RAVN.setTheme('supabase');
+
+// Available: light, dark, claude, midnight, 
+// supabase, linear, zinc, forest, indigo</code></div>
             </div>
         </section>
 
