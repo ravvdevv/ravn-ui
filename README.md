@@ -3,10 +3,10 @@
   <h1>RAVN UI</h1>
   <p><strong>The design core for Elite SaaS.</strong></p>
   <p>
-    <img src="https://img.shields.io/npm/v/@ravn-ui/core?style=flat-square&color=black" alt="NPM Version" />
-    <img src="https://img.shields.io/npm/l/@ravn-ui/core?style=flat-square&color=black" alt="License" />
-    <img src="https://img.shields.io/npm/unpacked-size/@ravn-ui/core?style=flat-square&color=black" alt="NPM Unpacked Size" />
-    <img src="https://img.shields.io/vercel/deploy/ravvdevv/ravn-ui?style=flat-square&color=black" alt="Vercel Status" />
+    <img src="https://img.shields.io/npm/v/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="NPM Version" />
+    <img src="https://img.shields.io/npm/l/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="License" />
+    <img src="https://img.shields.io/npm/unpacked-size/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="NPM Unpacked Size" />
+    <img src="https://img.shields.io/vercel/deploy/ravn-ui?style=flat-square&color=black" alt="Vercel Status" />
   </p>
 </div>
 
