@@ -99,8 +99,13 @@ window.RAVN = {
         return document.documentElement.getAttribute('data-theme') || 'light';
     },
     initTheme: () => {
-        const saved = localStorage.getItem('ravn-theme') || 'light';
-        document.documentElement.setAttribute('data-theme', saved);
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const savedTheme = localStorage.getItem('ravn-theme');
+        
+        // Only apply saved/default theme if the user hasn't hardcoded one in HTML
+        if (!currentTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme || 'light');
+        }
     },
     showToast: (message) => {
         let container = document.querySelector('.toast-container');
