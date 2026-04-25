@@ -142,6 +142,16 @@ window.RAVN = {
         navigator.clipboard.writeText(text).then(() => {
             window.RAVN.showToast(successMsg);
         });
+    },
+    toggleSidebar: () => {
+        const isCollapsed = document.body.classList.toggle('sidebar-collapsed');
+        localStorage.setItem('ravn-sidebar-collapsed', isCollapsed);
+    },
+    initSidebar: () => {
+        const saved = localStorage.getItem('ravn-sidebar-collapsed');
+        if (saved === 'true') {
+            document.body.classList.add('sidebar-collapsed');
+        }
     }
 };
 
@@ -196,3 +206,4 @@ document.addEventListener('keydown', (e) => {
 });
 
 window.RAVN.initTheme();
+window.RAVN.initSidebar();

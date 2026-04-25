@@ -18,10 +18,18 @@
 /* Inputs */
 .input {
     display: flex; height: 2.25rem; width: 100%; border-radius: var(--radius);
-    border: 1px solid var(--border); background-color: transparent;
-    padding: 0 var(--space-3); font-size: 0.875rem; transition: border-color 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--border); background-color: var(--background);
+    padding: 0 var(--space-3); font-size: 0.875rem; transition: all 0.2s;
+    color: var(--foreground);
 }
-.input:focus { outline: none; border-color: var(--gray-400); box-shadow: 0 0 0 2px rgba(0,0,0,0.05); }
+.input::placeholder { color: var(--muted-foreground); opacity: 0.7; }
+.input:focus { outline: none; border-color: var(--ring); box-shadow: 0 0 0 2px rgba(0,0,0,0.05); }
+.input:disabled { opacity: 0.5; cursor: not-allowed; background: var(--muted); }
+
+.input-error { border-color: var(--error); }
+.input-error:focus { border-color: var(--error); box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1); }
+.input-success { border-color: var(--success); }
+.input-success:focus { border-color: var(--success); box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1); }
 
 /* Cards */
 .card { border-radius: var(--radius); border: 1px solid var(--border); background-color: var(--card); color: var(--card-foreground); overflow: hidden; }
