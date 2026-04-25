@@ -84,7 +84,8 @@ Apply any of these via `data-theme="NAME"` on your `<html>` tag.
 | `forest` | Professional Organic | Green |
 
 ## Documentation
-For live previews and full component documentation, visit the [Documentation Portal](index.html) or our [GitHub Pages](https://ravvdevv.github.io/ravn-ui).
+For live interactive previews and full component documentation, visit the official portal:
+👉 **[ravn-ui.vercel.app](https://ravn-ui.vercel.app)**
 
 ---
 RAVN UI &copy; 2026. Built for those who build the future.
