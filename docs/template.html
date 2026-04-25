@@ -221,7 +221,8 @@
             overflow-x: auto;
             line-height: 1.6;
             white-space: pre;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 100%;
         }
 
         .theme-swatch {
@@ -301,37 +302,53 @@
         @media (max-width: 1024px) {
             .mobile-header { display: flex; }
             
+            /* Hide redundant branding in drawer */
+            aside .brand { display: none; }
             aside {
                 position: fixed;
                 left: -100%;
                 top: 0;
                 bottom: 0;
                 width: 280px;
-                z-index: 50;
-                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 150; /* Above everything */
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 background: var(--background);
+                padding-top: var(--space-12);
+                transform: translateX(0);
             }
 
-            body.menu-open aside { left: 0; }
+            body.menu-open { overflow: hidden; }
+            body.menu-open aside { transform: translateX(100%); left: -100%; }
+            /* Use transform for better performance */
+            body.menu-open aside { left: 0; transform: none; }
+
             body.menu-open .sidebar-overlay { display: block; opacity: 1; }
 
             main {
-                padding: 80px var(--space-6) var(--space-12);
+                padding: 80px var(--space-5) var(--space-12);
             }
 
-            .hero h1 { font-size: 2.5rem; }
+            .hero h1 { font-size: 2.25rem; letter-spacing: -0.04em; }
+            .hero p { font-size: 1.1rem; }
+            
+            .mockup-preview { padding: var(--space-8) var(--space-4); }
         }
     </style>
 </head>
 
 <body>
     <header class="mobile-header">
-        <div class="brand" style="margin-bottom: 0;">
-            <img src="logo.png" alt="RAVN Logo" style="width: 20px; height: 20px; object-fit: contain;">
-            RAVN
+        <div class="flex items-center gap-4">
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <div class="brand" style="margin-bottom: 0; font-size: 1rem;">
+                <img src="logo.png" alt="RAVN Logo" style="width: 18px; height: 18px; object-fit: contain;">
+                RAVN
+            </div>
         </div>
-        <button class="menu-toggle" onclick="toggleMenu()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <button class="menu-toggle" onclick="toggleMenu(); document.querySelector('.search-input').focus();">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </button>
     </header>
 
