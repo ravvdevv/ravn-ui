@@ -258,11 +258,11 @@
                 </div>
                 
                 <div id="inst-cdn" class="mockup-code" style="display: block;"><code>&lt;!-- Core Styles --&gt;
-&lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css"&gt;
-&lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css"&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core@1.0.0/dist/ui.css"&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core@1.0.0/dist/themes.css"&gt;
 
 &lt;!-- Core Logic --&gt;
-&lt;script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"&gt;&lt;/script&gt;</code></div>
+&lt;script src="https://unpkg.com/@ravn-ui/core@1.0.0/dist/ui.js"&gt;&lt;/script&gt;</code></div>
 
                 <div id="inst-npm" class="mockup-code"><code># Using Bun (Recommended)
 bun add @ravn-ui/core
@@ -273,12 +273,18 @@ npm install @ravn-ui/core</code></div>
                 <div id="inst-html" class="mockup-code"><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="en" data-theme="light"&gt;
 &lt;head&gt;
-    &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css"&gt;
-    &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css"&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core@1.0.0/dist/ui.css"&gt;
+    &lt;link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core@1.0.0/dist/themes.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;button class="btn btn-primary"&gt;Hello RAVN&lt;/button&gt;
-    &lt;script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"&gt;&lt;/script&gt;
+    &lt;div class="container py-12"&gt;
+        &lt;h1 class="mb-4"&gt;Hello RAVN&lt;/h1&gt;
+        &lt;button class="btn btn-primary" onclick="RAVN.showToast('It works!')"&gt;Action&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;script src="https://unpkg.com/@ravn-ui/core@1.0.0/dist/ui.js"&gt;&lt;/script&gt;
+    &lt;script&gt;window.RAVN.initTheme();&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></div>
             </div>
