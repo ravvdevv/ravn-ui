@@ -521,23 +521,52 @@ textarea { height: auto; padding: var(--space-2) var(--space-3); }
 [data-theme="dark"] [data-tooltip]::before { background: white; color: black; }
 
 /* Sidebar Navigation */
-.sidebar { width: 260px; height: 100vh; background: var(--background); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
-.sidebar-header { padding: var(--space-6); border-bottom: 1px solid var(--border); }
-.sidebar-nav { flex: 1; padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-1); }
-.sidebar-item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-4); border-radius: var(--radius); font-size: 0.875rem; font-weight: 500; color: var(--muted-foreground); text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; background: none; width: 100%; text-align: left; }
+.sidebar { 
+    width: 260px; height: 100vh; background: var(--background); 
+    border-right: 1px solid var(--border); display: flex; flex-direction: column; 
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.sidebar-header { padding: var(--space-6); border-bottom: 1px solid var(--border); overflow: hidden; white-space: nowrap; }
+.sidebar-content { flex: 1; overflow-y: auto; overflow-x: hidden; }
+.sidebar-nav { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-1); }
+
+.sidebar-item { 
+    display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-4); 
+    border-radius: var(--radius); font-size: 0.875rem; font-weight: 500; color: var(--muted-foreground); 
+    text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; background: none; 
+    width: 100%; text-align: left; white-space: nowrap;
+}
 .sidebar-item:hover { background: var(--muted); color: var(--foreground); }
 .sidebar-item.active { background: var(--primary); color: var(--primary-foreground); }
 
-/* Layout Shells - The SaaS "Fast Track" */
-.layout-shell { display: flex; height: 100vh; width: 100%; overflow: hidden; background: var(--background); position: relative; }
+/* Sidebar Collapse Functionality */
+.sidebar-collapsed .sidebar { width: 72px; }
+.sidebar-collapsed .sidebar-header { padding: var(--space-6) var(--space-4); }
+.sidebar-collapsed .nav-label, 
+.sidebar-collapsed .sidebar-item span:not(.icon),
+.sidebar-collapsed .brand span { display: none; }
+.sidebar-collapsed .sidebar-item { padding: var(--space-2); justify-content: center; }
 
+/* Dashboard Metrics & Layouts */
+.grid-3 { display: grid; grid-template-columns: repeat(1, 1fr); gap: var(--space-4); }
+@media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-6); }
+
+.trend { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; font-weight: 600; margin-top: 0.25rem; }
+.trend-up { color: var(--success); }
+.trend-down { color: var(--error); }
+
+/* Layout Shells */
+.layout-shell { display: flex; height: 100vh; width: 100%; overflow: hidden; background: var(--background); position: relative; }
 .layout-sidebar { 
     width: var(--sidebar-width); height: 100%; border-right: 1px solid var(--border); 
     display: flex; flex-direction: column; background: var(--background); flex-shrink: 0;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 50;
 }
-
 .layout-main { flex: 1; display: flex; flex-direction: column; height: 100%; min-width: 0; position: relative; }
 .layout-header { height: 3.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 var(--space-6); background: var(--background); flex-shrink: 0; }
 .layout-content { flex: 1; overflow-y: auto; padding: var(--space-8); }

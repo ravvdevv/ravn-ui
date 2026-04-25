@@ -596,7 +596,9 @@ RAVN.setTheme('supabase');
             <button class="btn btn-primary btn-sm">Small</button>
         </div>
         <pre id="btn-code" class="mockup-code"><code>&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
-&lt;button class="btn btn-outline"&gt;Secondary&lt;/button&gt;</code></pre>
+&lt;button class="btn btn-outline"&gt;Secondary&lt;/button&gt;
+&lt;button class="btn btn-ghost"&gt;Ghost&lt;/button&gt;
+&lt;button class="btn btn-primary btn-sm"&gt;Small&lt;/button&gt;</code></pre>
     </div>
 </section>
 
@@ -703,17 +705,29 @@ RAVN.setTheme('supabase');
                 </div>
             </div>
         </div>
-        <pre id="card-code" class="mockup-code"><code>&lt;div class="card"&gt;
+        <pre id="card-code" class="mockup-code"><code>&lt;!-- Metric Card --&gt;
+&lt;div class="card"&gt;
   &lt;div class="card-header"&gt;
     &lt;h3&gt;Revenue Stream&lt;/h3&gt;
     &lt;small&gt;Monthly recurring revenue analysis.&lt;/small&gt;
   &lt;/div&gt;
   &lt;div class="card-content"&gt;
     &lt;div style="font-size: 1.5rem; font-weight: 700;"&gt;$14,290.00&lt;/div&gt;
-    &lt;div class="trend trend-up"&gt;12.5%&lt;/div&gt;
+    &lt;div class="trend trend-up"&gt;↑ 12.5% from last month&lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="card-footer"&gt;
     &lt;button class="btn btn-outline btn-sm w-full"&gt;View Full Report&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Actions Card --&gt;
+&lt;div class="card"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;h3&gt;Quick Actions&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="card-content flex gap-2"&gt;
+    &lt;button class="btn btn-primary btn-sm"&gt;Primary&lt;/button&gt;
+    &lt;button class="btn btn-secondary btn-sm"&gt;Invite&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
     </div>
@@ -771,6 +785,11 @@ RAVN.setTheme('supabase');
         &lt;td&gt;&lt;span class="badge"&gt;Paid&lt;/span&gt;&lt;/td&gt;
         &lt;td&gt;$240.00&lt;/td&gt;
       &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;Sarah Chen&lt;/td&gt;
+        &lt;td&gt;&lt;span class="badge badge-secondary"&gt;Pending&lt;/span&gt;&lt;/td&gt;
+        &lt;td&gt;$1,200.00&lt;/td&gt;
+      &lt;/tr&gt;
     &lt;/tbody&gt;
   &lt;/table&gt;
 &lt;/div&gt;</code></pre>
@@ -797,7 +816,11 @@ RAVN.setTheme('supabase');
                 </div>
             </div>
         </div>
-        <pre id="av-code-simple" class="mockup-code"><code>&lt;div class="avatar"&gt;JD&lt;/div&gt;
+        <pre id="av-code-simple" class="mockup-code"><code>&lt;!-- Simple Text --&gt;
+&lt;div class="avatar"&gt;JD&lt;/div&gt;
+
+&lt;!-- Primary Variant --&gt;
+&lt;div class="avatar" style="background: var(--primary); color: var(--primary-foreground);"&gt;RV&lt;/div&gt;
 
 &lt;!-- Image variant --&gt;
 &lt;div class="avatar"&gt;
@@ -872,8 +895,16 @@ RAVN.setTheme('supabase');
         </div>
         <pre id="ac-code" class="mockup-code"><code>&lt;div class="accordion"&gt;
   &lt;div class="accordion-item"&gt;
-    &lt;div class="accordion-trigger"&gt;Title&lt;/div&gt;
-    &lt;div class="accordion-content"&gt;Content...&lt;/div&gt;
+    &lt;div class="accordion-trigger"&gt;How do I install RAVN UI?&lt;/div&gt;
+    &lt;div class="accordion-content"&gt;
+      You can install RAVN UI via Bun, NPM, or simply by including the CDN links in your HTML head.
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="accordion-item"&gt;
+    &lt;div class="accordion-trigger"&gt;Is it compatible with Tailwind?&lt;/div&gt;
+    &lt;div class="accordion-content"&gt;
+      Yes, RAVN UI uses standard CSS variables and classes that can coexist perfectly with Tailwind.
+    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
     </div>
@@ -947,16 +978,27 @@ RAVN.setTheme('supabase');
                 </div>
             </div>
         </div>
-        <pre id="form-code" class="mockup-code"><code>&lt;div class="form-group"&gt;
-  &lt;label class="label"&gt;Organization Name&lt;/label&gt;
-  &lt;input type="text" class="input" placeholder="e.g. Acme Corp"&gt;
-&lt;/div&gt;
-
-&lt;div class="form-group"&gt;
-  &lt;label class="label"&gt;Visibility&lt;/label&gt;
-  &lt;div class="flex items-center gap-3"&gt;
-    &lt;input type="checkbox" class="switch"&gt;
-    &lt;span class="text-sm"&gt;Public&lt;/span&gt;
+        <pre id="form-code" class="mockup-code"><code>&lt;div class="card"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;h3&gt;Project Settings&lt;/h3&gt;
+    &lt;small&gt;Manage your workspace configuration.&lt;/small&gt;
+  &lt;/div&gt;
+  &lt;div class="card-content"&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label class="label"&gt;Organization Name&lt;/label&gt;
+      &lt;input type="text" class="input" placeholder="e.g. Acme Corp"&gt;
+      &lt;span class="helper-text"&gt;This will be visible on your invoices.&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label class="label"&gt;Visibility&lt;/label&gt;
+      &lt;div class="flex items-center gap-3"&gt;
+        &lt;input type="checkbox" class="switch"&gt;
+        &lt;span class="text-sm"&gt;Make profile public&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="card-footer"&gt;
+    &lt;button class="btn btn-primary w-full"&gt;Save Changes&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
     </div>
@@ -986,16 +1028,19 @@ RAVN.setTheme('supabase');
                 <span>Failed to sync with the database. Please check your connection.</span>
             </div>
         </div>
-        <pre id="alert-code" class="mockup-code"><code>&lt;div class="alert"&gt;
-  &lt;span&gt;Terminal access granted.&lt;/span&gt;
+        <pre id="alert-code" class="mockup-code"><code>&lt;!-- Default --&gt;
+&lt;div class="alert"&gt;
+  &lt;span&gt;Terminal access has been granted to this session.&lt;/span&gt;
 &lt;/div&gt;
 
+&lt;!-- Success --&gt;
 &lt;div class="alert alert-success"&gt;
-  &lt;span&gt;Payment processed successfully.&lt;/span&gt;
+  &lt;span&gt;Payment processed successfully. Transaction ID: #8291.&lt;/span&gt;
 &lt;/div&gt;
 
+&lt;!-- Error --&gt;
 &lt;div class="alert alert-error"&gt;
-  &lt;span&gt;Failed to sync with database.&lt;/span&gt;
+  &lt;span&gt;Failed to sync with the database. Please check your connection.&lt;/span&gt;
 &lt;/div&gt;</code></pre>
     </div>
 </section>
@@ -1027,17 +1072,19 @@ RAVN.setTheme('supabase');
             </div>
         </div>
         <pre id="modal-code" class="mockup-code"><code>&lt;!-- Trigger --&gt;
-&lt;button class="btn btn-primary" data-modal-target="my-modal"&gt;Open&lt;/button&gt;
+&lt;button class="btn btn-primary" data-modal-target="demo-modal"&gt;Launch Modal&lt;/button&gt;
 
 &lt;!-- Modal Structure --&gt;
-&lt;div id="my-modal" class="modal"&gt;
+&lt;div id="demo-modal" class="modal"&gt;
   &lt;div class="modal-backdrop"&gt;&lt;/div&gt;
   &lt;div class="modal-content"&gt;
-    &lt;h3&gt;Title&lt;/h3&gt;
-    &lt;p&gt;Content...&lt;/p&gt;
+    &lt;h3 style="margin-bottom: var(--space-2);"&gt;Confirm Deletion&lt;/h3&gt;
+    &lt;p style="color: var(--muted-foreground); margin-bottom: var(--space-8);"&gt;
+      Are you sure you want to delete this project? This action cannot be undone.
+    &lt;/p&gt;
     &lt;div class="flex justify-end gap-2"&gt;
       &lt;button class="btn btn-ghost" data-modal-close&gt;Cancel&lt;/button&gt;
-      &lt;button class="btn btn-primary"&gt;Confirm&lt;/button&gt;
+      &lt;button class="btn btn-primary" style="background: var(--error);"&gt;Delete Project&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
@@ -1069,9 +1116,10 @@ RAVN.setTheme('supabase');
         <pre id="dd-code" class="mockup-code"><code>&lt;div class="dropdown"&gt;
   &lt;button class="btn btn-outline" data-dropdown&gt;Actions&lt;/button&gt;
   &lt;div class="dropdown-menu"&gt;
-    &lt;button class="dropdown-item"&gt;Edit&lt;/button&gt;
+    &lt;button class="dropdown-item"&gt;Edit Profile&lt;/button&gt;
+    &lt;button class="dropdown-item"&gt;Project Settings&lt;/button&gt;
     &lt;div class="divider"&gt;&lt;/div&gt;
-    &lt;button class="dropdown-item" style="color: var(--error);"&gt;Delete&lt;/button&gt;
+    &lt;button class="dropdown-item" style="color: var(--error);"&gt;Delete Account&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
     </div>
@@ -1133,10 +1181,10 @@ RAVN.setTheme('supabase');
             </div>
         </div>
         <pre id="tt-code" class="mockup-code"><code>&lt;!-- Basic Text --&gt;
-&lt;span data-tooltip="Information here"&gt;Hover me&lt;/span&gt;
+&lt;span data-tooltip="This is a top tooltip"&gt;Hover me&lt;/span&gt;
 
 &lt;!-- On a button --&gt;
-&lt;button class="btn" data-tooltip="Tooltip content"&gt;Action&lt;/button&gt;</code></pre>
+&lt;button class="btn btn-primary" data-tooltip="Saves your changes"&gt;Save Changes&lt;/button&gt;</code></pre>
     </div>
 </section>
 
@@ -1195,10 +1243,14 @@ RAVN.setTheme('supabase');
             </div>
         </div>
         <pre id="sb-code" class="mockup-code"><code>&lt;aside class="sidebar"&gt;
-  &lt;div class="sidebar-header"&gt;...&lt;/div&gt;
+  &lt;div class="sidebar-header"&gt;
+    &lt;div style="font-weight: 700;"&gt;Acme Corp&lt;/div&gt;
+  &lt;/div&gt;
   &lt;nav class="sidebar-nav"&gt;
     &lt;a href="#" class="sidebar-item active"&gt;Dashboard&lt;/a&gt;
     &lt;a href="#" class="sidebar-item"&gt;Projects&lt;/a&gt;
+    &lt;a href="#" class="sidebar-item"&gt;Deployments&lt;/a&gt;
+    &lt;a href="#" class="sidebar-item"&gt;Settings&lt;/a&gt;
   &lt;/nav&gt;
 &lt;/aside&gt;</code></pre>
     </div>
@@ -1224,15 +1276,15 @@ RAVN.setTheme('supabase');
                     RAVN OS
                 </div>
                 <nav class="sidebar-nav" style="padding: var(--space-2);">
-                    <a href="#" class="sidebar-item active">Overview</a>
-                    <a href="#" class="sidebar-item">Analytics</a>
-                    <a href="#" class="sidebar-item">Customers</a>
-                    <a href="#" class="sidebar-item">Settings</a>
+                    <a href="javascript:void(0)" class="sidebar-item active" data-target-view="overview" data-target-container="#db-content">Overview</a>
+                    <a href="javascript:void(0)" class="sidebar-item" data-target-view="analytics" data-target-container="#db-content">Analytics</a>
+                    <a href="javascript:void(0)" class="sidebar-item">Customers</a>
+                    <a href="javascript:void(0)" class="sidebar-item">Settings</a>
                 </nav>
             </aside>
 
             <!-- Main Content Area -->
-            <div style="flex: 1; display: flex; flex-direction: column; height: 100%; overflow-y: auto;">
+            <div id="db-content" style="flex: 1; display: flex; flex-direction: column; height: 100%; overflow-y: auto;">
                 <!-- Internal Header -->
                 <header style="height: 56px; border-bottom: 1px solid var(--border); background: var(--background); display: flex; align-items: center; padding: 0 var(--space-6); justify-content: space-between;">
                     <div class="breadcrumbs">
@@ -1242,57 +1294,85 @@ RAVN.setTheme('supabase');
                     <button class="btn btn-sm btn-outline">Export</button>
                 </header>
 
-                <!-- Dashboard Content -->
+                <!-- Dashboard Content (SPA Views) -->
                 <div style="padding: var(--space-6); background: var(--background); flex: 1;">
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-bottom: var(--space-8);">
-                        <div class="card" style="padding: var(--space-4);">
-                            <div style="font-size: 0.7rem; color: var(--muted-foreground); text-transform: uppercase;">Total Revenue</div>
-                            <div style="font-size: 1.5rem; font-weight: 700;">$45,231.89</div>
-                            <div class="trend trend-up">↑ 20.1% from last month</div>
+                    <!-- View: Overview -->
+                    <div data-view="overview" style="display: block;">
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-bottom: var(--space-8);">
+                            <div class="card" style="padding: var(--space-4);">
+                                <div style="font-size: 0.7rem; color: var(--muted-foreground); text-transform: uppercase;">Total Revenue</div>
+                                <div style="font-size: 1.5rem; font-weight: 700;">$45,231.89</div>
+                                <div class="trend trend-up">↑ 20.1%</div>
+                            </div>
+                            <div class="card" style="padding: var(--space-4);">
+                                <div style="font-size: 0.7rem; color: var(--muted-foreground); text-transform: uppercase;">Subscriptions</div>
+                                <div style="font-size: 1.5rem; font-weight: 700;">+2,350</div>
+                                <div class="trend trend-up">↑ 180.1%</div>
+                            </div>
+                            <div class="card" style="padding: var(--space-4);">
+                                <div style="font-size: 0.7rem; color: var(--muted-foreground); text-transform: uppercase;">Active Now</div>
+                                <div style="font-size: 1.5rem; font-weight: 700;">+573</div>
+                                <div class="trend trend-down">↓ 12</div>
+                            </div>
                         </div>
-                        <div class="card" style="padding: var(--space-4);">
-                            <div style="font-size: 0.7rem; color: var(--muted-foreground); text-transform: uppercase;">Subscriptions</div>
-                            <div style="font-size: 1.5rem; font-weight: 700;">+2,350</div>
-                            <div class="trend trend-up">↑ 180.1% from last month</div>
-                        </div>
-                        <div class="card" style="padding: var(--space-4);">
-                            <div style="font-size: 0.7rem; color: var(--muted-foreground); text-transform: uppercase;">Active Now</div>
-                            <div style="font-size: 1.5rem; font-weight: 700;">+573</div>
-                            <div class="trend trend-down">↓ 12 since last hour</div>
+
+                        <div class="card">
+                            <div class="card-header"><h3>Recent Transactions</h3></div>
+                            <div class="table-container" style="border: none; border-radius: 0;">
+                                <table class="table">
+                                    <thead>
+                                        <tr><th>Customer</th><th>Status</th><th>Amount</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Alex Rivera</td><td><span class="badge badge-secondary">Paid</span></td><td>$240.00</td></tr>
+                                        <tr><td>Sarah Chen</td><td><span class="badge badge-secondary">Pending</span></td><td>$1,200.00</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-header"><h3>Recent Transactions</h3></div>
-                        <div class="table-container" style="border: none; border-radius: 0;">
-                            <table class="table">
-                                <thead>
-                                    <tr><th>Customer</th><th>Status</th><th>Amount</th></tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>Alex Rivera</td><td><span class="badge badge-secondary">Paid</span></td><td>$240.00</td></tr>
-                                    <tr><td>Sarah Chen</td><td><span class="badge badge-secondary">Pending</span></td><td>$1,200.00</td></tr>
-                                </tbody>
-                            </table>
+                    <!-- View: Analytics -->
+                    <div data-view="analytics" style="display: none;">
+                        <div class="card" style="padding: var(--space-8); text-align: center; border-style: dashed;">
+                            <div style="font-size: 2rem; margin-bottom: var(--space-4);">📊</div>
+                            <h3>Analytics Dashboard</h3>
+                            <p class="component-desc">Real-time data stream visualization would go here.</p>
+                            <div class="skeleton" style="width: 100%; height: 200px; margin-top: var(--space-6);"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <pre id="db-code" class="mockup-code"><code>&lt;!-- Shell Layout --&gt;
-&lt;div class="flex h-screen"&gt;
-  &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
-  &lt;main class="flex-1 flex flex-col"&gt;
-    &lt;header class="h-14 border-b flex items-center px-6"&gt;...&lt;/header&gt;
-    &lt;div class="p-6 overflow-auto"&gt;
+        <pre id="db-code" class="mockup-code"><code>&lt;!-- Dashboard Shell --&gt;
+&lt;div style="display: flex; height: 500px; border: 1px solid var(--border);"&gt;
+  &lt;!-- Sidebar --&gt;
+  &lt;aside class="sidebar" style="width: 200px; border-right: 1px solid var(--border);"&gt;
+    &lt;nav class="sidebar-nav"&gt;
+      &lt;a href="#" class="sidebar-item active"&gt;Overview&lt;/a&gt;
+      &lt;a href="#" class="sidebar-item"&gt;Analytics&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/aside&gt;
+
+  &lt;!-- Main Content --&gt;
+  &lt;main style="flex: 1; display: flex; flex-direction: column;"&gt;
+    &lt;header style="height: 56px; border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 var(--space-6);"&gt;
+      &lt;div class="breadcrumbs"&gt;
+        &lt;a href="#" class="breadcrumb-item"&gt;Project&lt;/a&gt;
+        &lt;span class="breadcrumb-item active"&gt;Overview&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;div style="padding: var(--space-6);"&gt;
       &lt;!-- Metrics Grid --&gt;
-      &lt;div class="grid grid-cols-3 gap-4"&gt;
-        &lt;div class="card p-4"&gt;
-          &lt;div class="text-xs text-muted"&gt;Revenue&lt;/div&gt;
-          &lt;div class="text-2xl font-bold"&gt;$45,231&lt;/div&gt;
-          &lt;div class="trend trend-up"&gt;+20.1%&lt;/div&gt;
+      &lt;div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);"&gt;
+        &lt;div class="card" style="padding: var(--space-4);"&gt;
+          &lt;div style="font-size: 0.7rem; color: var(--muted-foreground);"&gt;Total Revenue&lt;/div&gt;
+          &lt;div style="font-size: 1.5rem; font-weight: 700;"&gt;$45,231.89&lt;/div&gt;
+          &lt;div class="trend trend-up"&gt;↑ 20.1%&lt;/div&gt;
         &lt;/div&gt;
+        &lt;!-- Add more cards... --&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/main&gt;

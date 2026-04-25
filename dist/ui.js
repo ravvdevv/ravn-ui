@@ -143,6 +143,20 @@ window.RAVN = {
             window.RAVN.showToast(successMsg);
         });
     },
+    // SPA View Swapper
+    view: (targetId, containerSelector = 'main') => {
+        const container = document.querySelector(containerSelector);
+        if (!container) return;
+        
+        const views = container.querySelectorAll('[data-view]');
+        views.forEach(v => v.style.display = 'none');
+        
+        const target = container.querySelector(`[data-view="${targetId}"]`);
+        if (target) {
+            target.style.display = 'block';
+            target.style.animation = 'fadeIn 0.3s ease-out';
+        }
+    },
     toggleSidebar: () => {
         const isCollapsed = document.body.classList.toggle('sidebar-collapsed');
         localStorage.setItem('ravn-sidebar-collapsed', isCollapsed);
@@ -187,6 +201,23 @@ document.addEventListener('click', (e) => {
     if (layoutToggle) {
         const sidebar = document.querySelector('.layout-sidebar');
         if (sidebar) sidebar.classList.toggle('open');
+    }
+
+    // Sidebar Item Interactivity (for demos & SPAs)
+    const sidebarItem = e.target.closest('.sidebar-item');
+    if (sidebarItem) {
+        const nav = sidebarItem.closest('.sidebar-nav');
+        if (nav) {
+            nav.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+            sidebarItem.classList.add('active');
+        }
+
+        // SPA Navigation Support
+        const viewId = sidebarItem.getAttribute('data-target-view');
+        if (viewId) {
+            const containerSelector = sidebarItem.getAttribute('data-target-container') || 'main';
+            window.RAVN.view(viewId, containerSelector);
+        }
     }
 });
 

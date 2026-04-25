@@ -23,17 +23,19 @@
             </div>
         </div>
         <pre id="modal-code" class="mockup-code"><code>&lt;!-- Trigger --&gt;
-&lt;button class="btn btn-primary" data-modal-target="my-modal"&gt;Open&lt;/button&gt;
+&lt;button class="btn btn-primary" data-modal-target="demo-modal"&gt;Launch Modal&lt;/button&gt;
 
 &lt;!-- Modal Structure --&gt;
-&lt;div id="my-modal" class="modal"&gt;
+&lt;div id="demo-modal" class="modal"&gt;
   &lt;div class="modal-backdrop"&gt;&lt;/div&gt;
   &lt;div class="modal-content"&gt;
-    &lt;h3&gt;Title&lt;/h3&gt;
-    &lt;p&gt;Content...&lt;/p&gt;
+    &lt;h3 style="margin-bottom: var(--space-2);"&gt;Confirm Deletion&lt;/h3&gt;
+    &lt;p style="color: var(--muted-foreground); margin-bottom: var(--space-8);"&gt;
+      Are you sure you want to delete this project? This action cannot be undone.
+    &lt;/p&gt;
     &lt;div class="flex justify-end gap-2"&gt;
       &lt;button class="btn btn-ghost" data-modal-close&gt;Cancel&lt;/button&gt;
-      &lt;button class="btn btn-primary"&gt;Confirm&lt;/button&gt;
+      &lt;button class="btn btn-primary" style="background: var(--error);"&gt;Delete Project&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
