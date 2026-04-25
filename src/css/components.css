@@ -121,9 +121,16 @@
 .sidebar { width: 260px; height: 100vh; background: var(--background); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
 .sidebar-header { padding: var(--space-6); border-bottom: 1px solid var(--border); }
 .sidebar-nav { flex: 1; padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-1); }
-.sidebar-item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-4); border-radius: var(--radius); font-size: 0.875rem; font-weight: 500; color: var(--muted-foreground); text-decoration: none; transition: all 0.2s; }
+.sidebar-item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-4); border-radius: var(--radius); font-size: 0.875rem; font-weight: 500; color: var(--muted-foreground); text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; background: none; width: 100%; text-align: left; }
 .sidebar-item:hover { background: var(--muted); color: var(--foreground); }
 .sidebar-item.active { background: var(--primary); color: var(--primary-foreground); }
+
+/* Layout Shells - The SaaS "Fast Track" */
+.layout-shell { display: flex; height: 100vh; width: 100%; overflow: hidden; background: var(--background); }
+.layout-sidebar { width: var(--sidebar-width); height: 100%; border-right: 1px solid var(--border); display: flex; flex-direction: column; background: var(--background); flex-shrink: 0; }
+.layout-main { flex: 1; display: flex; flex-direction: column; height: 100%; min-width: 0; }
+.layout-header { height: 3.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 var(--space-6); background: var(--background); flex-shrink: 0; }
+.layout-content { flex: 1; overflow-y: auto; padding: var(--space-8); }
 
 /* Progress */
 .progress { height: 0.5rem; width: 100%; background: var(--muted); border-radius: 9999px; overflow: hidden; }
@@ -140,4 +147,14 @@
 .breadcrumb-item a:hover { color: var(--foreground); }
 .breadcrumb-item.active { color: var(--foreground); font-weight: 600; }
 
+/* Grid Utilities (SaaS Metrics) */
+.grid-3 { display: grid; grid-template-columns: repeat(1, 1fr); gap: var(--space-4); }
+@media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+.trend { font-size: 0.75rem; font-weight: 600; margin-top: var(--space-2); }
+.trend-up { color: var(--success); }
+.trend-down { color: var(--error); }
+
 @keyframes toast-in { from { opacity: 0; transform: translateY(10px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+

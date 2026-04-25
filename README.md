@@ -1,63 +1,50 @@
 <div align="center">
   <img src="https://ravn-ui.vercel.app/logo.png" alt="RAVN UI Logo" width="120" />
   <h1>RAVN UI</h1>
-  <p><strong>The design core for Elite SaaS.</strong></p>
+  <p><strong>From blank HTML to SaaS Dashboard in 5 minutes.</strong></p>
   <p>
     <img src="https://img.shields.io/npm/v/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="NPM Version" />
     <img src="https://img.shields.io/npm/l/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="License" />
-    <img src="https://img.shields.io/npm/unpacked-size/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="NPM Unpacked Size" />
   </p>
 </div>
 
 ---
 
-## ⚡ Introduction
+## ⚡ The Death of Setup Hell
 
-RAVN UI is a minimalist, high-fidelity UI library designed for **Elite SaaS founders**. Inspired by the density of Linear and the refinement of shadcn/ui, it provides production-ready components with zero configuration.
+Stop fighting with `tailwind.config.js` and PostCSS plugins. RAVN UI is a zero-config UI system for developers who need to ship SaaS dashboards **now**, not in three hours.
 
-No build tools, no bloated tailwind configs, no complex state management. Just pure, strictly designed CSS and JavaScript that scales.
+- **No Tailwind Config.**
+- **No Build Step.**
+- **No Setup.**
+- **Just Paste and Ship.**
 
-## 🚀 Quickstart
+## 🚀 The 10-Second Quickstart
 
-### Via CDN (Recommended)
-The fastest way to build. Add this to your `index.html`:
+Copy this into your `index.html` and you have a production-ready SaaS core instantly.
 
 ```html
-<!DOCTYPE html>
-<html lang="en" data-theme="midnight">
 <head>
-    <!-- Core Engine -->
+    <!-- Core SaaS Engine -->
     <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
     <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
 </head>
 <body>
-    <button class="btn btn-primary">Elite SaaS Button</button>
-
-    <!-- Interactivity -->
+    <div class="layout-shell">
+        <aside class="layout-sidebar">...</aside>
+        <main class="layout-main">...</main>
+    </div>
     <script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
 </body>
-</html>
 ```
 
-### Via Package Manager
-```bash
-# Using Bun (Recommended)
-bun add @ravn-ui/core
+## ✨ Why RAVN UI? (The Value)
 
-# Using NPM
-npm install @ravn-ui/core
-```
+- **Instant SaaS Layouts**: Use `.layout-shell` to get a production sidebar/header layout in 1 second.
+- **Zero Framework Lock-in**: Works with React, Vue, HTMX, or pure HTML. No dependencies.
+- **High-Density Design**: Inspired by the density of Linear. Built for professional admin panels, not consumer fluff.
+- **13 "Elite" Themes**: Switch your entire UI style instantly with `data-theme`.
 
-## ✨ Core Principles
-
-- **Zero Config**: Drop it in and start building. No PostCSS, no Tailwind, no stress.
-- **Strict Aesthetic**: No emojis. No rounded-xl corners. Only professional, high-density interfaces.
-- **Token Driven**: Built on a robust CSS variable system for effortless white-labeling.
-- **Pure Interactivity**: Lightweight JS for Modals, Tabs, and Accordions. No React dependency.
-
-## 🎨 Professional Themes
-
-RAVN UI comes packed with 8+ "Elite" themes out of the box. Toggle them instantly via `data-theme`.
 
 | Theme | Aesthetic | Primary Color |
 | :--- | :--- | :--- |

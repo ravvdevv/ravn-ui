@@ -4,28 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAVN UI — Elite Minimal Design System</title>
-    <meta name="description" content="A high-density, premium, CDN-first UI library built for the future of SaaS. 15KB total, 0 dependencies.">
-    <meta name="keywords" content="UI Library, SaaS UI, Minimal Design, CSS Framework, Design System, Elite Web Design">
+    <title>RAVN UI — SaaS Dashboards in 5 Minutes. No Tailwind. No Build Step.</title>
+    <meta name="description" content="The zero-config UI system for developers who need to ship SaaS dashboards fast. No setup, no build tools, just pure performance.">
+    <meta name="keywords" content="SaaS Dashboard UI, No-Build CSS, Vanilla JS UI, Minimal Admin Panel, Zero Config UI">
     <meta name="author" content="RAVN UI Team">
     <meta name="theme-color" content="#020617">
     
-    <!-- OpenGraph (Facebook/Discord) -->
+    <!-- OpenGraph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="RAVN UI — Elite Minimal Design System">
-    <meta property="og:description" content="Build premium SaaS interfaces in minutes with a 15KB vanilla core.">
+    <meta property="og:title" content="RAVN UI — Ship your SaaS UI in minutes.">
+    <meta property="og:description" content="No Tailwind config. No build step. No setup. Just paste and ship.">
     <meta property="og:image" content="https://ravn-ui.vercel.app/logo.png">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="RAVN UI — Elite Minimal Design System">
-    <meta name="twitter:description" content="The design system for those who build the future. Minimal, fast, and beautiful.">
-    <meta name="twitter:image" content="https://ravn-ui.vercel.app/logo.png">
-
-    <!-- PWA & Mobile -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="icon" href="logo.png" type="image/png">
     
     <!-- Performance: Critical CSS Inlining -->
     <style>
@@ -43,10 +32,10 @@
         }
     </style>
 
-    <!-- Performance: Preload non-critical assets -->
-    <link rel="preload" href="dist/ui.js" as="script">
+    <!-- Core Engine: The Moat -->
     <link rel="stylesheet" href="dist/ui.css">
     <link rel="stylesheet" href="dist/themes.css">
+    <script src="dist/ui.js" defer></script>
 
     <script>
         if ('serviceWorker' in navigator) {
@@ -491,12 +480,14 @@
         
         <!-- Section: hero.html -->
         <section id="hero" class="hero">
-    <img src="logo.png" alt="RAVN Logo"
-        style="width: 80px; height: 80px; margin-bottom: var(--space-8); object-fit: contain;">
-    <h1>The design core for Elite SaaS.</h1>
-    <p>High-density, production-grade components engineered for the future of SaaS. 15KB total. 13 premium themes. 100% Offline PWA ready. No fluff, just performance.</p>
-    <div class="install-command" onclick="RAVN.copy('bun add @ravn-ui/core', 'Install command copied')">
-        <span style="opacity: 0.5; margin-right: 8px;">$</span> bun add @ravn-ui/core
+    <h1>From blank HTML to SaaS Dashboard in 5 minutes.</h1>
+    <p>No Tailwind config. No build step. No setup. Just paste the CDN link and ship high-density, production-ready interfaces instantly.</p>
+    
+    <div style="display: flex; gap: var(--space-4); margin-top: var(--space-8); flex-wrap: wrap;">
+        <button class="btn btn-primary btn-lg" onclick="location.href='#dashboard'">Get the Dashboard Snippet</button>
+        <div class="install-command" style="height: 2.75rem;" onclick="RAVN.copy('<link rel=\'stylesheet\' href=\'https://unpkg.com/@ravn-ui/core/dist/ui.css\'>', 'CDN Link copied')">
+            <span style="opacity: 0.5; margin-right: 8px;">$</span> Copy CDN Link
+        </div>
     </div>
 </section>
 
@@ -1251,20 +1242,31 @@ RAVN.setTheme('supabase');
             </div>
         </div>
 
-        <pre id="db-code" class="mockup-code"><code>&lt;!-- Shell Layout --&gt;
-&lt;div class="flex h-screen"&gt;
-  &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
-  &lt;main class="flex-1 flex flex-col"&gt;
-    &lt;header class="h-14 border-b flex items-center px-6"&gt;...&lt;/header&gt;
-    &lt;div class="p-6 overflow-auto"&gt;
+        <pre id="db-code" class="mockup-code"><code>&lt;!-- The 5-Minute SaaS Shell --&gt;
+&lt;div class="layout-shell"&gt;
+  &lt;aside class="layout-sidebar"&gt;
+    &lt;div class="sidebar-header"&gt;Project Name&lt;/div&gt;
+    &lt;nav class="sidebar-nav"&gt;
+      &lt;a href="#" class="sidebar-item active"&gt;Overview&lt;/a&gt;
+      &lt;a href="#" class="sidebar-item"&gt;Analytics&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/aside&gt;
+  
+  &lt;main class="layout-main"&gt;
+    &lt;header class="layout-header"&gt;
+      &lt;div class="breadcrumbs"&gt;...&lt;/div&gt;
+    &lt;/header&gt;
+    
+    &lt;div class="layout-content"&gt;
       &lt;!-- Metrics Grid --&gt;
-      &lt;div class="grid grid-cols-3 gap-4"&gt;
-        &lt;div class="card p-4"&gt;
-          &lt;div class="text-xs text-muted"&gt;Revenue&lt;/div&gt;
-          &lt;div class="text-2xl font-bold"&gt;$45,231&lt;/div&gt;
-          &lt;div class="trend trend-up"&gt;+20.1%&lt;/div&gt;
-        &lt;/div&gt;
+      &lt;div class="grid-3"&gt;
+        &lt;div class="card"&gt;...&lt;/div&gt;
+        &lt;div class="card"&gt;...&lt;/div&gt;
+        &lt;div class="card"&gt;...&lt;/div&gt;
       &lt;/div&gt;
+      
+      &lt;!-- Data Table --&gt;
+      &lt;div class="table-container" style="margin-top: 2rem;"&gt;...&lt;/div&gt;
     &lt;/div&gt;
   &lt;/main&gt;
 &lt;/div&gt;</code></pre>
