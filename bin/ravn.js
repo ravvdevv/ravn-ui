@@ -33,20 +33,9 @@ const USERS_PAGE_HTML = `<!DOCTYPE html>
 </head>
 <body>
     <div class="layout-shell">
-        <aside class="layout-sidebar sidebar">
-            <div class="sidebar-header"><div style="font-weight: 900; font-size: 1.5rem; color: var(--primary);">RAVN</div></div>
-            <div class="sidebar-content">
-                <nav class="sidebar-nav">
-                    <a href="../index.html" class="sidebar-item">Dashboard</a>
-                    <a href="javascript:void(0)" class="sidebar-item active">Users</a>
-                    <a href="./settings.html" class="sidebar-item">Settings</a>
-                </nav>
-            </div>
-        </aside>
+        <div id="ravn-sidebar" data-active="users"></div>
         <main class="layout-main">
-            <header class="layout-header">
-                <div class="breadcrumbs"><a href="../index.html" class="breadcrumb-item">App</a><span class="breadcrumb-item active">Users</span></div>
-            </header>
+            <div id="ravn-header" data-title="Users"></div>
             <div class="layout-content">
                 <div class="card">
                     <div class="card-header" style="justify-content: space-between; display: flex;">
@@ -67,7 +56,7 @@ const USERS_PAGE_HTML = `<!DOCTYPE html>
         </main>
     </div>
     <script src="../node_modules/@ravn-ui/core/dist/ui.js"></script>
-    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/components.js"></script>
 </body>
 </html>`;
 
@@ -83,20 +72,9 @@ const SETTINGS_PAGE_HTML = `<!DOCTYPE html>
 </head>
 <body>
     <div class="layout-shell">
-        <aside class="layout-sidebar sidebar">
-            <div class="sidebar-header"><div style="font-weight: 900; font-size: 1.5rem; color: var(--primary);">RAVN</div></div>
-            <div class="sidebar-content">
-                <nav class="sidebar-nav">
-                    <a href="../index.html" class="sidebar-item">Dashboard</a>
-                    <a href="./users.html" class="sidebar-item">Users</a>
-                    <a href="javascript:void(0)" class="sidebar-item active">Settings</a>
-                </nav>
-            </div>
-        </aside>
+        <div id="ravn-sidebar" data-active="settings"></div>
         <main class="layout-main">
-            <header class="layout-header">
-                <div class="breadcrumbs"><a href="../index.html" class="breadcrumb-item">App</a><span class="breadcrumb-item active">Settings</span></div>
-            </header>
+            <div id="ravn-header" data-title="Settings"></div>
             <div class="layout-content" style="max-width: 800px;">
                 <div class="card mb-8">
                     <div class="card-header"><h3>General Settings</h3></div>
@@ -105,32 +83,60 @@ const SETTINGS_PAGE_HTML = `<!DOCTYPE html>
                             <label class="label">Organization Name</label>
                             <input type="text" class="input w-full" value="Acme Corp">
                         </div>
-                        <div class="mb-4">
-                            <label class="label">Primary Email</label>
-                            <input type="email" class="input w-full" value="admin@acme.com">
-                        </div>
                         <button class="btn btn-primary">Save Changes</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header"><h3>Security</h3></div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h4 class="mb-1">Two-Factor Authentication</h4>
-                                <p class="text-sm text-muted">Add an extra layer of security to your account.</p>
-                            </div>
-                            <button class="btn btn-outline btn-sm">Enable</button>
-                        </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
     <script src="../node_modules/@ravn-ui/core/dist/ui.js"></script>
-    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/components.js"></script>
 </body>
 </html>`;
+
+const LAYOUT_COMPONENTS_JS = `// RAVN UI - Shared Layout Components
+const components = {
+    sidebar: (activePage = 'dashboard') => \`
+        <aside class="layout-sidebar sidebar">
+            <div class="sidebar-header"><div style="font-weight: 900; font-size: 1.5rem; color: var(--primary);">RAVN</div></div>
+            <div class="sidebar-content">
+                <nav class="sidebar-nav">
+                    <a href="/index.html" class="sidebar-item \${activePage === 'dashboard' ? 'active' : ''}">Dashboard</a>
+                    <a href="/pages/users.html" class="sidebar-item \${activePage === 'users' ? 'active' : ''}">Users</a>
+                    <a href="/pages/settings.html" class="sidebar-item \${activePage === 'settings' ? 'active' : ''}">Settings</a>
+                </nav>
+            </div>
+            <div style="padding: var(--space-4); border-top: 1px solid var(--border);">
+                <a href="javascript:void(0)" class="sidebar-item" onclick="RAVN.toggleSidebar()">
+                    <span>Collapse Sidebar</span>
+                </a>
+            </div>
+        </aside>
+    \`,
+    header: (title = 'Overview') => \`
+        <header class="layout-header" style="justify-content: space-between;">
+            <div class="breadcrumbs"><span class="breadcrumb-item active">\${title}</span></div>
+            <div class="flex items-center gap-4">
+                <div class="avatar" style="width: 32px; height: 32px;">JD</div>
+            </div>
+        </header>
+    \`
+};
+
+// Auto-inject components
+document.addEventListener('DOMContentLoaded', () => {
+    const sidebarContainer = document.getElementById('ravn-sidebar');
+    const headerContainer = document.getElementById('ravn-header');
+    
+    if (sidebarContainer) {
+        const active = sidebarContainer.getAttribute('data-active') || 'dashboard';
+        sidebarContainer.innerHTML = components.sidebar(active);
+    }
+    if (headerContainer) {
+        const title = headerContainer.getAttribute('data-title') || 'Overview';
+        headerContainer.innerHTML = components.header(title);
+    }
+});`;
 
 const DASHBOARD_HTML = `<!DOCTYPE html>
 <html lang="en" data-theme="light">
@@ -140,33 +146,13 @@ const DASHBOARD_HTML = `<!DOCTYPE html>
     <title>Dashboard — RAVN UI</title>
     <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
     <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
+    <link rel="stylesheet" href="./assets/css/app.css">
 </head>
 <body>
     <div class="layout-shell">
-        <aside class="layout-sidebar sidebar">
-            <div class="sidebar-header"><div style="font-weight: 900; font-size: 1.5rem; color: var(--primary);">RAVN</div></div>
-            <div class="sidebar-content">
-                <nav class="sidebar-nav">
-                    <a href="javascript:void(0)" class="sidebar-item active">Dashboard</a>
-                    <a href="./pages/users.html" class="sidebar-item">Users</a>
-                    <a href="./pages/settings.html" class="sidebar-item">Settings</a>
-                </nav>
-            </div>
-            <div style="padding: var(--space-4); border-top: 1px solid var(--border);">
-                <a href="javascript:void(0)" class="sidebar-item" onclick="RAVN.toggleSidebar()">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-                    <span>Collapse</span>
-                </a>
-            </div>
-        </aside>
+        <div id="ravn-sidebar" data-active="dashboard"></div>
         <main class="layout-main">
-            <header class="layout-header" style="justify-content: space-between;">
-                <div class="breadcrumbs"><span class="breadcrumb-item active">Overview</span></div>
-                <div class="flex items-center gap-4">
-                    <button class="btn btn-ghost btn-sm">Support</button>
-                    <div class="avatar" style="width: 32px; height: 32px;">JD</div>
-                </div>
-            </header>
+            <div id="ravn-header" data-title="Overview"></div>
             <div class="layout-content">
                 <div class="metrics-grid">
                     <div class="card" style="padding: var(--space-4);">
@@ -174,28 +160,18 @@ const DASHBOARD_HTML = `<!DOCTYPE html>
                         <div style="font-size: 1.75rem; font-weight: 800;">$45,231.89</div>
                         <div class="trend trend-up">↑ 12%</div>
                     </div>
-                    <div class="card" style="padding: var(--space-4);">
-                        <div class="text-sm text-muted mb-1">ACTIVE USERS</div>
-                        <div style="font-size: 1.75rem; font-weight: 800;">2,350</div>
-                        <div class="trend trend-up">↑ 180%</div>
-                    </div>
                 </div>
                 <div class="card mt-6">
-                    <div class="card-header"><h3>Project Status</h3></div>
                     <div class="p-12 text-center">
-                        <div class="skeleton mx-auto mb-6" style="width: 64px; height: 64px; border-radius: 50%;"></div>
-                        <h3>Welcome to your new SaaS!</h3>
-                        <p class="text-muted mb-6">This is your production-ready boilerplate. Start by editing <code>index.html</code>.</p>
-                        <div class="flex gap-4 justify-center">
-                            <a href="./pages/users.html" class="btn btn-primary">Manage Team</a>
-                            <a href="./pages/settings.html" class="btn btn-outline">Configure App</a>
-                        </div>
+                        <h3>Welcome to your SaaS!</h3>
+                        <p class="text-muted">Edit <code>assets/js/components.js</code> to change your sidebar globally.</p>
                     </div>
                 </div>
             </div>
         </main>
     </div>
     <script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
+    <script src="./assets/js/components.js"></script>
 </body>
 </html>`;
 
@@ -408,6 +384,7 @@ export const formatCurrency = (val) => {
     fs.writeFileSync(path.join(jsDir, 'app.js'), appJs);
     fs.writeFileSync(path.join(cssDir, 'app.css'), appCss);
     fs.writeFileSync(path.join(functionsDir, 'utils.js'), utilsJs);
+    fs.writeFileSync(path.join(jsDir, 'components.js'), LAYOUT_COMPONENTS_JS);
 
     // Create boilerplate pages in pages/
     const pagesToCreate = [
