@@ -262,9 +262,16 @@
         }
 
         /* Documentation UI theme adaptation */
-        .sidebar {
+        .doc-sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: sticky;
+            top: 0;
             border-right: 1px solid var(--border);
+            padding: var(--space-8) var(--space-6);
+            overflow-y: auto;
             background: var(--background);
+            z-index: 10;
         }
 
         /* Responsive & Mobile Drawer */
@@ -294,7 +301,7 @@
             inset: 0;
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(4px);
-            z-index: 40;
+            z-index: 140;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -307,8 +314,8 @@
             .gap-4 { gap: var(--space-4); }
 
             /* Mobile Sidebar Drawer */
-            aside .brand { display: none; }
-            aside {
+            .doc-sidebar .brand { display: none; }
+            .doc-sidebar {
                 position: fixed;
                 left: 0; top: 0; bottom: 0;
                 width: 300px;
@@ -330,7 +337,7 @@
             }
 
             body.menu-open { overflow: hidden; }
-            body.menu-open aside { transform: translateX(0); }
+            body.menu-open .doc-sidebar { transform: translateX(0); }
             body.menu-open .sidebar-overlay { display: block; opacity: 1; }
 
             main {
@@ -365,7 +372,7 @@
 
     <div class="sidebar-overlay" onclick="toggleMenu()"></div>
 
-    <aside>
+    <aside class="doc-sidebar">
         <button class="drawer-close" onclick="toggleMenu()">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
