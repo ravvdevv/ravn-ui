@@ -1,60 +1,61 @@
-# RAVN UI
-
-**From blank HTML to SaaS Dashboard in 5 minutes.** 
-
-RAVN UI is a zero-config, CDN-first UI system for building production-ready SaaS interfaces without Tailwind, without build tools, and without setup hell.
+<div align="center">
+  <img src="https://ravn-ui.vercel.app/logo.png" alt="RAVN UI Logo" width="120" />
+  <h1>RAVN UI</h1>
+  <p><strong>Strictly designed, high-performance, and CDN-first.</strong></p>
+  <p>
+    <img src="https://img.shields.io/npm/v/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="NPM Version" />
+    <img src="https://img.shields.io/npm/l/%40ravn-ui%2Fcore?style=flat-square&color=black" alt="License" />
+  </p>
+</div>
 
 ---
 
-## ⚡ 10-Second Quickstart
+RAVN UI is a strictly designed, high-performance, and CDN-first UI library inspired by the precision of **Linear** and the flexibility of **shadcn/ui**. Built for developers who prioritize clarity, scale, and zero-configuration speed.
 
-Copy this into your `index.html`. You now have a responsive, high-density SaaS shell.
+## ✨ Key Features
+
+- **Elite Aesthetic**: High-fidelity design tokens, Inter typography, and a 4px precision spacing scale.
+- **CDN-First**: No build tools, no npm installation required. Just copy-paste and build.
+- **Modular Architecture**: Source files are split into logical modules (Tokens, Base, Components, Utilities).
+- **Premium Themes**: Includes 13 professional themes inspired by Supabase, Linear, and Claude.
+- **Functional Documentation**: Built-in interactive search, scroll-sync, and one-click code copying.
+
+## 🚀 Quickstart
+
+### Via CDN (Recommended)
+Add the following to your `<head>`:
 
 ```html
-<head>
-    <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
-    <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
-</head>
-<body>
-    <div class="layout-shell">
-        <!-- Sidebar (Drawer on mobile) -->
-        <aside class="layout-sidebar">
-            <nav class="sidebar-nav">
-                <a class="sidebar-item active">Dashboard</a>
-                <a class="sidebar-item">Analytics</a>
-            </nav>
-        </aside>
+<!-- Core Styles -->
+<link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
+<link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
 
-        <!-- Main Content -->
-        <main class="layout-main">
-            <header class="layout-header">
-                <button data-layout-toggle class="btn btn-sm">Menu</button>
-                <h1 class="text-sm">Overview</h1>
-            </header>
-            <div class="layout-content">
-                <!-- Your SaaS metrics, tables, and cards go here -->
-            </div>
-        </main>
-    </div>
-    <script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
-</body>
+<!-- Core Logic -->
+<script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
 ```
 
+### Via Package Manager
+```bash
+# Using Bun
+bun add @ravn-ui/core
+
+# Using NPM
+npm install @ravn-ui/core
+```
+
+## 🏗️ Modular Usage
+If you prefer to use the modular source files for your own build pipeline:
+
+```css
+@import "@ravn-ui/core/src/css/tokens.css";
+@import "@ravn-ui/core/src/css/base.css";
+@import "@ravn-ui/core/src/css/components.css";
+@import "@ravn-ui/core/src/css/utilities.css";
+```
+
+## 📖 Documentation
+Run a local server and open `index.html` to explore the full interactive documentation and component playground.
+
 ---
 
-## 🚀 Why RAVN?
-
-- **Zero Build Step**: No `npm install`, no `postcss.config.js`. Just a CDN link.
-- **SaaS Shell Included**: Responsive sidebars and headers are core primitives, not examples.
-- **13 Elite Themes**: Use `data-theme="midnight"` or `data-theme="supabase"` on the `<html>` tag to flip your style instantly.
-- **Under 25KB**: Fast, lean, and 0 dependencies.
-
----
-
-## 🎨 Themes
-Try these in your `<html>` tag:
-`light`, `dark`, `zinc`, `claude`, `midnight`, `forest`, `indigo`, `supabase`, `linear`, `retro`, `pixel-craft`, `rose-pine`, `nord`.
-
----
-
-[Documentation](https://ravn-ui.vercel.app) | [License: MIT](LICENSE)
+RAVN UI © 2026. Built for those who build the future.
