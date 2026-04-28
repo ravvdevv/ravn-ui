@@ -27,19 +27,22 @@ RAVN UI supports 12+ premium themes (Dark, Zinc, Claude, Midnight, Indigo, etc.)
 
 ### 3. Logic & SPA Utilities (`ui.js`)
 The `RAVN` global object provides high-level control:
-- **`RAVN.view(targetId)`**: Handles Single Page App (SPA) style navigation. It looks for elements with `data-view="id"` and swaps their visibility with a fade-in animation.
-- **`RAVN.toggleSidebar()`**: Manages the `.sidebar-collapsed` state. It toggles a class on the `<body>` which shrinks the sidebar to an icon-only view and expands the main content.
-- **Automatic Listeners**: Any element with `data-target-view="id"` will automatically trigger a view switch on click.
+- **`RAVN.store`**: Global reactive state management (`.set`, `.get`, `.subscribe`).
+- **`RAVN.route(path)`**: Handles SPA navigation, URL hash syncing, and view swapping.
+- **`RAVN.on(event, selector, handler)`**: Built-in event delegation to avoid inline `onclick`.
+- **`RAVN.fetch(url, options)`**: Minimal wrapper over native fetch that returns JSON.
+- **`RAVN.toggleSidebar()`**: Manages the `.sidebar-collapsed` state on the `<body>`.
 
 ---
 
 ## 📂 Project Structure (Recommended)
 When an AI or developer works on a RAVN UI project, they should adhere to this "Classic/PHP-style" organization:
-- `/index.html`: The root entry point (usually the Dashboard shell).
-- `/assets/css/app.css`: Custom project-specific overrides.
-- `/assets/js/app.js`: Application logic and API integrations.
-- `/pages/`: Secondary HTML views (e.g., `settings.html`, `users.html`).
-- `/functions/`: Reusable Javascript utility modules (e.g., `api.js`, `utils.js`).
+- `/index.html`: The root entry point.
+- `/css/app.css`: Custom project-specific overrides.
+- `/app.js`: Application logic entry point with the standard `render()` pattern.
+- `/components/`: Pure functions returning HTML strings (e.g., `card.js`, `modal.js`).
+- `/functions/`: Reusable Javascript utility modules (e.g., `store.js`, `api.js`).
+- `/pages/`: Secondary HTML views (for MPA architecture).
 
 ---
 
@@ -104,11 +107,11 @@ RAVN UI projects use a **Hybrid SPA** model, giving developers the performance o
 
 ## 🤖 Instructions for AI Assistants
 When assisting with a RAVN UI project:
-1. **Prefer Hybrid Navigation**: Use `data-view` for fast dashboard tabs and separate `pages/` files for distinct application sections.
-2. **Persistent Layouts**: When creating new pages in `pages/`, ensure they replicate the `.layout-shell` and sidebar structure to maintain a unified user experience.
-3. **Semantic Over Utilities**: Use `.card`, `.btn`, `.table` before reaching for utility classes.
-4. **Theming Consistency**: Never hardcode colors. Use semantic variables (e.g., `var(--primary)`, `var(--border)`).
-5. **Offline Awareness**: If a `package.json` exists, link to `node_modules`. Otherwise, use CDN links.
+1. **Golden Patterns**: ALWAYS use the Micro-Component pattern (JS functions returning HTML strings) instead of innerHTML soup. Use `RAVN.on()` for event delegation. NEVER use inline `onclick` handlers.
+2. **Prefer Hybrid Navigation**: Use `RAVN.route()` and `data-route` for fast dashboard tabs and separate `pages/` files for distinct application sections.
+3. **Persistent Layouts**: When creating new pages in `pages/`, ensure they replicate the `.layout-shell` and sidebar structure.
+4. **Semantic Over Utilities**: Use `.card`, `.btn-success`, `.table` before reaching for utility classes.
+5. **Theming Consistency**: Never hardcode colors. Use semantic variables.
 
 ---
 
