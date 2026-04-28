@@ -1,4 +1,4 @@
-/* RAVN UI - Interactivity (Improved) */
+/* RAVN UI - Interactivity (Improved & Upgraded) */
 
 document.addEventListener('DOMContentLoaded', () => {
     // Modal Logic
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     tabs.forEach(t => t.classList.remove('tab-active'));
                     tab.classList.add('tab-active');
                     
-                    // Optional: trigger event for content switching
+                    // Trigger event for content switching
                     const contentId = tab.getAttribute('data-tab-target');
                     if (contentId) {
                         const content = document.getElementById(contentId);
@@ -82,15 +82,119 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // Tooltip Logic
+    const initTooltips = () => {
+        document.querySelectorAll('[data-tooltip]').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                const tooltipText = el.getAttribute('data-tooltip');
+                if (!tooltipText) return;
+                let tooltip = document.createElement('div');
+                tooltip.className = 'tooltip';
+                tooltip.innerText = tooltipText;
+                document.body.appendChild(tooltip);
+                
+                const rect = el.getBoundingClientRect();
+                tooltip.style.top = `${rect.top - tooltip.offsetHeight - 8}px`;
+                tooltip.style.left = `${rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2)}px`;
+                tooltip.style.opacity = '1';
+                
+                el._ravn_tooltip = tooltip;
+            });
+            el.addEventListener('mouseleave', () => {
+                if (el._ravn_tooltip) {
+                    el._ravn_tooltip.remove();
+                    el._ravn_tooltip = null;
+                }
+            });
+        });
+    };
+
     // Initialize all
     initModals();
     initDropdowns();
     initTabs();
     initAccordions();
+    initTooltips();
 });
 
 // Global RAVN Utilities
 window.RAVN = {
+    // 🧠 CORE RUNTIME ADDITIONS
+    store: {
+        _state: {},
+        _listeners: [],
+        set: (key, value) => {
+            window.RAVN.store._state[key] = value;
+            window.RAVN.store._listeners.forEach(fn => fn(key, value, window.RAVN.store._state));
+        },
+        get: (key) => window.RAVN.store._state[key],
+        subscribe: (fn) => {
+            window.RAVN.store._listeners.push(fn);
+            return () => {
+                window.RAVN.store._listeners = window.RAVN.store._listeners.filter(l => l !== fn);
+            };
+        }
+    },
+    
+    on: (event, selector, handler) => {
+        document.addEventListener(event, (e) => {
+            const target = e.target.closest(selector);
+            if (target) {
+                handler(e, target);
+            }
+        });
+    },
+
+    fetch: async (url, options = {}) => {
+        try {
+            const res = await fetch(url, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...options.headers
+                }
+            });
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            const contentType = res.headers.get("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                return await res.json();
+            }
+            return await res.text();
+        } catch (err) {
+            console.error('RAVN.fetch Error:', err);
+            throw err;
+        }
+    },
+
+    route: (path, updateUrl = true) => {
+        const views = document.querySelectorAll('[data-route], [data-view]');
+        views.forEach(v => v.style.display = 'none');
+        
+        // Support hash or path
+        const routeId = path.replace(/^#/, '') || 'home';
+        const target = document.querySelector(`[data-route="${routeId}"]`) || document.querySelector(`[data-view="${routeId}"]`);
+        
+        if (target) {
+            target.style.display = 'block';
+            target.style.animation = 'fadeIn 0.3s ease-out';
+            
+            if (updateUrl) {
+                history.pushState({ route: routeId }, '', `#${routeId}`);
+            }
+            
+            // Lifecycle hooks
+            if (window.RAVN._hooks && window.RAVN._hooks[routeId]) {
+                window.RAVN._hooks[routeId].forEach(fn => fn());
+            }
+        }
+    },
+    onViewEnter: (routeId, fn) => {
+        if (!window.RAVN._hooks) window.RAVN._hooks = {};
+        if (!window.RAVN._hooks[routeId]) window.RAVN._hooks[routeId] = [];
+        window.RAVN._hooks[routeId].push(fn);
+    },
+
+    // 🎨 THEME ENGINE
     setTheme: (theme) => {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('ravn-theme', theme);
@@ -111,52 +215,94 @@ window.RAVN = {
             }
         }
     },
-    modal: (id, action) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        if (action === 'open') {
-            el.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        } else {
-            el.classList.remove('open');
-            document.body.style.overflow = '';
+
+    // 🧩 ESSENTIAL COMPONENTS
+    modal: (config, action) => {
+        if (typeof config === 'string') {
+            // Legacy signature
+            const el = document.getElementById(config);
+            if (!el) return;
+            if (action === 'open') {
+                el.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            } else {
+                el.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+            return;
         }
+
+        // New signature: RAVN.modal({ title, content, actions })
+        let container = document.getElementById('ravn-dynamic-modal');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'ravn-dynamic-modal';
+            container.className = 'modal';
+            container.innerHTML = `
+                <div class="modal-backdrop" data-modal-close></div>
+                <div class="modal-content card" style="max-width: 500px; margin: auto; position: relative; z-index: 1001;">
+                    <div class="modal-header flex justify-between items-center p-6 pb-0">
+                        <h3 class="modal-title font-bold m-0"></h3>
+                        <button class="btn btn-ghost btn-sm" data-modal-close>&times;</button>
+                    </div>
+                    <div class="modal-body p-6"></div>
+                    <div class="modal-footer p-6 flex justify-end gap-4" style="border-top: 1px solid var(--border)"></div>
+                </div>
+            `;
+            document.body.appendChild(container);
+        }
+
+        container.querySelector('.modal-title').innerHTML = config.title || '';
+        container.querySelector('.modal-body').innerHTML = config.content || '';
+        
+        const footer = container.querySelector('.modal-footer');
+        footer.innerHTML = '';
+        if (config.actions) {
+            config.actions.forEach(act => {
+                const btn = document.createElement('button');
+                btn.className = `btn ${act.class || 'btn-primary'}`;
+                btn.innerText = act.text;
+                btn.onclick = () => {
+                    if (act.onClick) act.onClick();
+                    if (act.close !== false) window.RAVN.modal('ravn-dynamic-modal', 'close');
+                };
+                footer.appendChild(btn);
+            });
+        }
+        
+        window.RAVN.modal('ravn-dynamic-modal', 'open');
     },
-    showToast: (message) => {
+
+    toast: (message, options = {}) => {
         let container = document.querySelector('.toast-container');
         if (!container) {
             container = document.createElement('div');
-            container.className = 'toast-container';
+            container.className = 'toast-container flex flex-col gap-2 fixed bottom-4 right-4 z-50';
             document.body.appendChild(container);
         }
         const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.innerText = message;
+        const typeClass = options.type ? `alert-${options.type}` : 'alert-info';
+        toast.className = `toast alert ${typeClass} shadow-lg transition-opacity duration-300`;
+        toast.innerHTML = `<div>${message}</div>`;
         container.appendChild(toast);
         setTimeout(() => {
             toast.style.opacity = '0';
             setTimeout(() => toast.remove(), 300);
-        }, 3000);
+        }, options.duration || 3000);
     },
+    showToast: (msg) => window.RAVN.toast(msg), // Legacy
+
     copy: (text, successMsg = 'Copied to clipboard') => {
         navigator.clipboard.writeText(text).then(() => {
-            window.RAVN.showToast(successMsg);
+            window.RAVN.toast(successMsg, { type: 'success' });
         });
     },
-    // SPA View Swapper
-    view: (targetId, containerSelector = 'main') => {
-        const container = document.querySelector(containerSelector);
-        if (!container) return;
-        
-        const views = container.querySelectorAll('[data-view]');
-        views.forEach(v => v.style.display = 'none');
-        
-        const target = container.querySelector(`[data-view="${targetId}"]`);
-        if (target) {
-            target.style.display = 'block';
-            target.style.animation = 'fadeIn 0.3s ease-out';
-        }
+
+    // Legacy View Swapper (points to route now)
+    view: (targetId) => {
+        window.RAVN.route(targetId, false);
     },
+
     toggleSidebar: () => {
         const isCollapsed = document.body.classList.toggle('sidebar-collapsed');
         localStorage.setItem('ravn-sidebar-collapsed', isCollapsed);
@@ -169,7 +315,23 @@ window.RAVN = {
     }
 };
 
-// Global Interactivity
+// Global Routing (Browser Back/Forward Support)
+window.addEventListener('popstate', (e) => {
+    if (e.state && e.state.route) {
+        window.RAVN.route(e.state.route, false);
+    } else {
+        window.RAVN.route(window.location.hash || 'home', false);
+    }
+});
+
+// Initial Route
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.hash) {
+        window.RAVN.route(window.location.hash, false);
+    }
+});
+
+// Global Interactivity Event Delegation
 document.addEventListener('click', (e) => {
     // Dropdowns
     const dropdownToggle = e.target.closest('[data-dropdown]');
@@ -212,11 +374,10 @@ document.addEventListener('click', (e) => {
             sidebarItem.classList.add('active');
         }
 
-        // SPA Navigation Support
-        const viewId = sidebarItem.getAttribute('data-target-view');
-        if (viewId) {
-            const containerSelector = sidebarItem.getAttribute('data-target-container') || 'main';
-            window.RAVN.view(viewId, containerSelector);
+        // SPA Navigation Support via routes
+        const routeId = sidebarItem.getAttribute('data-target-route') || sidebarItem.getAttribute('data-target-view');
+        if (routeId) {
+            window.RAVN.route(routeId);
         }
     }
 });

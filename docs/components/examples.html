@@ -1,0 +1,45 @@
+<section id="examples" class="mb-16">
+    <h2 class="text-2xl font-bold mb-4">Examples</h2>
+    <p class="text-muted-foreground mb-6">Drop these copy-paste snippets into your app to build complex layouts in minutes.</p>
+
+    <!-- Todo App -->
+    <div class="card p-6 mb-6">
+        <h3 class="font-bold mb-2">Vanilla Todo App</h3>
+        <div class="code-block p-4 bg-gray-900 text-gray-50 rounded text-sm mb-4 overflow-auto" style="max-height: 400px;">
+<pre><code>// Component
+function TodoItem(item) {
+    return `
+    &lt;div class="flex items-center justify-between p-3 border-b"&gt;
+        &lt;span class="${item.done ? 'text-muted-foreground line-through' : ''}"&gt;${item.text}&lt;/span&gt;
+        &lt;button class="btn btn-ghost btn-sm text-error" data-action="delete-todo" data-id="${item.id}"&gt;&times;&lt;/button&gt;
+    &lt;/div&gt;`;
+}
+
+// Logic
+document.addEventListener('DOMContentLoaded', () => {
+    RAVN.store.set('todos', [{ id: 1, text: 'Learn RAVN', done: false }]);
+
+    RAVN.on('click', '[data-action="add-todo"]', () => {
+        const input = document.getElementById('new-todo');
+        const todos = RAVN.store.get('todos');
+        RAVN.store.set('todos', [...todos, { id: Date.now(), text: input.value, done: false }]);
+        input.value = '';
+    });
+
+    RAVN.on('click', '[data-action="delete-todo"]', (e, el) => {
+        const id = parseInt(el.getAttribute('data-id'));
+        const todos = RAVN.store.get('todos');
+        RAVN.store.set('todos', todos.filter(t => t.id !== id));
+    });
+
+    RAVN.store.subscribe((key) => {
+        if (key === 'todos') {
+            document.getElementById('todo-list').innerHTML = 
+                RAVN.store.get('todos').map(TodoItem).join('');
+        }
+    });
+});
+</code></pre>
+        </div>
+    </div>
+</section>

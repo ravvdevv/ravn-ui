@@ -1,0 +1,63 @@
+<section id="api" class="mb-16">
+    <h2 class="text-2xl font-bold mb-4">Core API Reference</h2>
+    <p class="text-muted-foreground mb-6">RAVN UI ships with a lightweight, framework-agnostic runtime exposed globally under <code>window.RAVN</code>.</p>
+
+    <div class="space-y-8">
+        <!-- RAVN.store -->
+        <div class="card p-6">
+            <h3 class="font-bold mb-2"><code>RAVN.store</code></h3>
+            <p class="text-sm text-muted-foreground mb-4">A simple global state management system. No Redux, no context API.</p>
+            <div class="code-block p-4 bg-gray-900 text-gray-50 rounded text-sm mb-4">
+<pre><code>// Set state
+RAVN.store.set('todos', [{ id: 1, text: 'Ship faster' }]);
+
+// Get state
+const todos = RAVN.store.get('todos');
+
+// Subscribe to changes
+const unsubscribe = RAVN.store.subscribe((key, val, state) => {
+    if (key === 'todos') console.log('Todos updated!', val);
+});</code></pre>
+            </div>
+        </div>
+
+        <!-- RAVN.route -->
+        <div class="card p-6">
+            <h3 class="font-bold mb-2"><code>RAVN.route(path)</code></h3>
+            <p class="text-sm text-muted-foreground mb-4">Built-in router for SPA applications. Automatically toggles <code>data-route</code> blocks and pushes history state.</p>
+            <div class="code-block p-4 bg-gray-900 text-gray-50 rounded text-sm mb-4">
+<pre><code>// Navigate to a view
+RAVN.route('dashboard');
+
+// Run a hook when a view loads
+RAVN.onViewEnter('dashboard', () => {
+    fetchAnalytics();
+});</code></pre>
+            </div>
+        </div>
+
+        <!-- RAVN.on -->
+        <div class="card p-6">
+            <h3 class="font-bold mb-2"><code>RAVN.on(event, selector, handler)</code></h3>
+            <p class="text-sm text-muted-foreground mb-4">High-performance event delegation. Stop writing inline <code>onclick</code> attributes.</p>
+            <div class="code-block p-4 bg-gray-900 text-gray-50 rounded text-sm mb-4">
+<pre><code>RAVN.on('click', '[data-action="delete"]', (event, target) => {
+    const id = target.getAttribute('data-id');
+    deleteItem(id);
+});</code></pre>
+            </div>
+        </div>
+
+        <!-- RAVN.fetch -->
+        <div class="card p-6">
+            <h3 class="font-bold mb-2"><code>RAVN.fetch(url, options)</code></h3>
+            <p class="text-sm text-muted-foreground mb-4">Minimal wrapper over the native fetch API that assumes JSON payloads.</p>
+            <div class="code-block p-4 bg-gray-900 text-gray-50 rounded text-sm mb-4">
+<pre><code>const user = await RAVN.fetch('/api/user', {
+    method: 'POST',
+    body: JSON.stringify({ name: 'John' })
+});</code></pre>
+            </div>
+        </div>
+    </div>
+</section>

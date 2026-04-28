@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
+const { execSync } = require('child_process');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -21,273 +22,76 @@ const BANNER = `
  ------------------------------------------
 `;
 
-const USERS_PAGE_HTML = `<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users — Boilerplate</title>
-    <link rel="stylesheet" href="../node_modules/@ravn-ui/core/dist/ui.css">
-    <link rel="stylesheet" href="../node_modules/@ravn-ui/core/dist/themes.css">
-    <link rel="stylesheet" href="../assets/css/app.css">
-</head>
-<body>
-    <div class="layout-shell">
-        <div id="ravn-sidebar" data-active="users"></div>
-        <main class="layout-main">
-            <div id="ravn-header" data-title="Users"></div>
-            <div class="layout-content">
-                <div class="card">
-                    <div class="card-header" style="justify-content: space-between; display: flex;">
-                        <h3>Team Members</h3>
-                        <button class="btn btn-primary btn-sm">+ Add User</button>
-                    </div>
-                    <div class="table-container" style="border: none;">
-                        <table class="table">
-                            <thead><tr><th>User</th><th>Role</th><th>Status</th><th>Joined</th></tr></thead>
-                            <tbody>
-                                <tr><td>Jane Cooper</td><td>Admin</td><td><span class="badge badge-secondary">Active</span></td><td>Jan 12, 2024</td></tr>
-                                <tr><td>Cody Fisher</td><td>Editor</td><td><span class="badge">Offline</span></td><td>Feb 1, 2024</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    <script src="../node_modules/@ravn-ui/core/dist/ui.js"></script>
-    <script src="../assets/js/components.js"></script>
-</body>
-</html>`;
-
-const SETTINGS_PAGE_HTML = `<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings — Boilerplate</title>
-    <link rel="stylesheet" href="../node_modules/@ravn-ui/core/dist/ui.css">
-    <link rel="stylesheet" href="../node_modules/@ravn-ui/core/dist/themes.css">
-    <link rel="stylesheet" href="../assets/css/app.css">
-</head>
-<body>
-    <div class="layout-shell">
-        <div id="ravn-sidebar" data-active="settings"></div>
-        <main class="layout-main">
-            <div id="ravn-header" data-title="Settings"></div>
-            <div class="layout-content" style="max-width: 800px;">
-                <div class="card mb-8">
-                    <div class="card-header"><h3>General Settings</h3></div>
-                    <div class="p-6">
-                        <div class="mb-4">
-                            <label class="label">Organization Name</label>
-                            <input type="text" class="input w-full" value="Acme Corp">
-                        </div>
-                        <button class="btn btn-primary">Save Changes</button>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    <script src="../node_modules/@ravn-ui/core/dist/ui.js"></script>
-    <script src="../assets/js/components.js"></script>
-</body>
-</html>`;
-
-const LAYOUT_COMPONENTS_JS = `// RAVN UI - Shared Layout Components
-const components = {
-    sidebar: (activePage = 'dashboard') => \`
-        <aside class="layout-sidebar sidebar">
-            <div class="sidebar-header"><div style="font-weight: 900; font-size: 1.5rem; color: var(--primary);">RAVN</div></div>
-            <div class="sidebar-content">
-                <nav class="sidebar-nav">
-                    <a href="/index.html" class="sidebar-item \${activePage === 'dashboard' ? 'active' : ''}">Dashboard</a>
-                    <a href="/pages/users.html" class="sidebar-item \${activePage === 'users' ? 'active' : ''}">Users</a>
-                    <a href="/pages/settings.html" class="sidebar-item \${activePage === 'settings' ? 'active' : ''}">Settings</a>
-                </nav>
-            </div>
-            <div style="padding: var(--space-4); border-top: 1px solid var(--border);">
-                <a href="javascript:void(0)" class="sidebar-item" onclick="RAVN.toggleSidebar()">
-                    <span>Collapse Sidebar</span>
-                </a>
-            </div>
-        </aside>
-    \`,
-    header: (title = 'Overview') => \`
-        <header class="layout-header" style="justify-content: space-between;">
-            <div class="breadcrumbs"><span class="breadcrumb-item active">\${title}</span></div>
-            <div class="flex items-center gap-4">
-                <div class="avatar" style="width: 32px; height: 32px;">JD</div>
-            </div>
-        </header>
-    \`
-};
-
-// Auto-inject components
-document.addEventListener('DOMContentLoaded', () => {
-    const sidebarContainer = document.getElementById('ravn-sidebar');
-    const headerContainer = document.getElementById('ravn-header');
-    
-    if (sidebarContainer) {
-        const active = sidebarContainer.getAttribute('data-active') || 'dashboard';
-        sidebarContainer.innerHTML = components.sidebar(active);
-    }
-    if (headerContainer) {
-        const title = headerContainer.getAttribute('data-title') || 'Overview';
-        headerContainer.innerHTML = components.header(title);
-    }
-});`;
-
-const DASHBOARD_HTML = `<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard — RAVN UI</title>
-    <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
-    <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
-    <link rel="stylesheet" href="./assets/css/app.css">
-</head>
-<body>
-    <div class="layout-shell">
-        <div id="ravn-sidebar" data-active="dashboard"></div>
-        <main class="layout-main">
-            <div id="ravn-header" data-title="Overview"></div>
-            <div class="layout-content">
-                <div class="metrics-grid">
-                    <div class="card" style="padding: var(--space-4);">
-                        <div class="text-sm text-muted mb-1">REVENUE</div>
-                        <div style="font-size: 1.75rem; font-weight: 800;">$45,231.89</div>
-                        <div class="trend trend-up">↑ 12%</div>
-                    </div>
-                </div>
-                <div class="card mt-6">
-                    <div class="p-12 text-center">
-                        <h3>Welcome to your SaaS!</h3>
-                        <p class="text-muted">Edit <code>assets/js/components.js</code> to change your sidebar globally.</p>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    <script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
-    <script src="./assets/js/components.js"></script>
-</body>
-</html>`;
-
-const LANDING_HTML = `<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAVN UI — Ship Faster</title>
-    <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
-    <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
-</head>
-<body>
-    <header style="height: 72px; border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 var(--space-8); justify-content: space-between;">
-        <div style="font-weight: 900; font-size: 1.25rem;">RAVN</div>
-        <nav class="flex gap-6">
-            <a href="#" class="text-sm font-medium">Features</a>
-            <a href="#" class="text-sm font-medium">Pricing</a>
-            <a href="#" class="text-sm font-medium">Docs</a>
-        </nav>
-        <button class="btn btn-primary btn-sm">Get Started</button>
-    </header>
-
-    <main style="max-width: 1000px; margin: 120px auto; padding: 0 var(--space-6);">
-        <section style="text-align: center; margin-bottom: 100px;">
-            <h1 style="font-size: 5rem; font-weight: 900; letter-spacing: -0.06em; line-height: 0.9; margin-bottom: 24px;">
-                The SaaS UI for<br><span style="color: var(--primary);">Elite Builders.</span>
-            </h1>
-            <p style="font-size: 1.25rem; color: var(--muted-foreground); max-width: 600px; margin: 0 auto 40px;">
-                A minimal, high-fidelity UI system designed for speed, scale, and aesthetic precision.
-            </p>
-            <div class="flex items-center justify-center gap-4">
-                <button class="btn btn-primary btn-lg">Start Building</button>
-                <button class="btn btn-outline btn-lg">View Components</button>
-            </div>
-        </section>
-
-        <section class="grid" style="grid-template-columns: repeat(3, 1fr); gap: var(--space-8);">
-            <div class="card" style="padding: var(--space-6);">
-                <h3 style="margin-bottom: 8px;">Zero Config</h3>
-                <p class="text-sm text-muted">No build steps. No Tailwind config. Just pure CSS excellence.</p>
-            </div>
-            <div class="card" style="padding: var(--space-6);">
-                <h3 style="margin-bottom: 8px;">CDN First</h3>
-                <p class="text-sm text-muted">Include two lines of code and you're ready to ship your MVP.</p>
-            </div>
-            <div class="card" style="padding: var(--space-6);">
-                <h3 style="margin-bottom: 8px;">Premium Feel</h3>
-                <p class="text-sm text-muted">Designed by SaaS experts for high-density enterprise apps.</p>
-            </div>
-        </section>
-    </main>
-
-    <footer style="margin-top: 120px; padding: var(--space-12) 0; border-top: 1px solid var(--border); text-align: center;">
-        <p class="text-sm text-muted">© 2026 RAVN UI. Built with precision.</p>
-    </footer>
-    <script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
-</body>
-</html>`;
-
-const MINIMAL_HTML = `<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <title>New Project — RAVN UI</title>
-    <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/ui.css">
-    <link rel="stylesheet" href="https://unpkg.com/@ravn-ui/core/dist/themes.css">
-</head>
-<body style="padding: var(--space-12);">
-    <div class="card" style="max-width: 400px; margin: 0 auto; padding: var(--space-8);">
-        <h2 style="margin-bottom: var(--space-2);">Start Here</h2>
-        <p class="text-muted mb-6">Your minimal RAVN UI environment is ready.</p>
-        <button class="btn btn-primary w-full" onclick="RAVN.showToast('Ready to build!')">Get Started</button>
-    </div>
-    <script src="https://unpkg.com/@ravn-ui/core/dist/ui.js"></script>
-</body>
-</html>`;
-
 console.log(BANNER);
-
-const { execSync } = require('child_process');
-
-rl.on('close', () => process.exit(0));
 
 const args = process.argv.slice(2);
 const firstArg = args[0];
 
-if (firstArg === '.') {
-    askTemplate('.');
+if (firstArg === 'add') {
+    const feature = args[1];
+    if (!feature) {
+        console.error('\x1b[31mUsage: ravn add <feature>\x1b[0m');
+        process.exit(1);
+    }
+    handleAddFeature(feature);
+    return;
+}
+
+let mode = '--mpa';
+if (args.includes('--spa')) mode = '--spa';
+else if (args.includes('--hybrid')) mode = '--hybrid';
+
+if (firstArg === '.' || (firstArg && !firstArg.startsWith('--'))) {
+    askTemplate(firstArg === '.' ? '.' : firstArg, mode);
 } else {
     rl.question('\x1b[1mProject name:\x1b[0m ', (name) => {
-        askTemplate(name);
+        askTemplate(name, mode);
     });
 }
 
-function askTemplate(projectName) {
+function handleAddFeature(feature) {
+    const cwd = process.cwd();
+    const componentsDir = path.join(cwd, 'components');
+    const functionsDir = path.join(cwd, 'functions');
+
+    if (!fs.existsSync(componentsDir)) fs.mkdirSync(componentsDir);
+    if (!fs.existsSync(functionsDir)) fs.mkdirSync(functionsDir);
+
+    if (feature === 'auth') {
+        fs.writeFileSync(path.join(functionsDir, 'auth.js'), `export const auth = {\n    login: async (email, password) => {\n        // Integrate with RAVN.fetch here\n        return true;\n    },\n    logout: () => {}\n};\n`);
+        fs.writeFileSync(path.join(componentsDir, 'auth-modal.js'), `export const AuthModal = () => \`\n<div class="card">\n    <div class="card-header"><h3>Login</h3></div>\n    <div class="card-content">\n        <div class="form-group">\n            <label class="label">Email</label>\n            <input type="email" class="input">\n        </div>\n        <button class="btn btn-primary w-full mt-4">Sign In</button>\n    </div>\n</div>\`;\n`);
+        console.log('\x1b[32mAuth feature added successfully!\x1b[0m');
+    } else if (feature === 'dashboard') {
+        fs.writeFileSync(path.join(componentsDir, 'stat-card.js'), `export const StatCard = (title, value, trend) => \`\n<div class="card p-6">\n    <div class="text-sm text-muted">\${title}</div>\n    <div style="font-size: 1.75rem; font-weight: 800;">\${value}</div>\n    <div class="trend \${trend.startsWith('+') ? 'trend-up' : 'trend-down'}">\${trend}</div>\n</div>\`;\n`);
+        console.log('\x1b[32mDashboard feature added successfully!\x1b[0m');
+    } else if (feature === 'tables') {
+        fs.writeFileSync(path.join(componentsDir, 'table.js'), `export const Table = (headers, rows) => \`\n<div class="table-container">\n    <table class="table">\n        <thead><tr>\${headers.map(h => \`<th>\${h}</th>\`).join('')}</tr></thead>\n        <tbody>\${rows.map(r => \`<tr>\${r.map(c => \`<td>\${c}</td>\`).join('')}</tr>\`).join('')}</tbody>\n    </table>\n</div>\`;\n`);
+        console.log('\x1b[32mTables feature added successfully!\x1b[0m');
+    } else {
+        console.error(`\x1b[31mUnknown feature: ${feature}. Available: auth, dashboard, tables.\x1b[0m`);
+    }
+    process.exit(0);
+}
+
+function askTemplate(projectName, mode) {
     console.log('\n\x1b[1mChoose a starter template:\x1b[0m');
     console.log('  \x1b[36m1)\x1b[0m SaaS Dashboard (Best for apps)');
     console.log('  \x1b[36m2)\x1b[0m Landing Page (Best for marketing)');
     console.log('  \x1b[36m3)\x1b[0m Minimal Starter (Blank slate)');
 
     rl.question('\n\x1b[1mSelect (1-3):\x1b[0m ', (choice) => {
-        let content = '';
         let templateName = '';
-
         switch(choice) {
-            case '2': content = LANDING_HTML; templateName = 'Landing Page'; break;
-            case '3': content = MINIMAL_HTML; templateName = 'Minimal'; break;
-            default: content = DASHBOARD_HTML; templateName = 'SaaS Dashboard'; break;
+            case '2': templateName = 'Landing Page'; break;
+            case '3': templateName = 'Minimal'; break;
+            default: templateName = 'SaaS Dashboard'; break;
         }
 
-        askTheme(projectName, content, templateName);
+        askTheme(projectName, templateName, mode);
     });
 }
 
-function askTheme(projectName, content, templateName) {
+function askTheme(projectName, templateName, mode) {
     console.log('\n\x1b[1mSelect a starting theme:\x1b[0m');
     console.log('  \x1b[36m1)\x1b[0m Light (Default)');
     console.log('  \x1b[36m2)\x1b[0m Dark (Night mode)');
@@ -307,23 +111,22 @@ function askTheme(projectName, content, templateName) {
             default: theme = 'light'; break;
         }
 
-        const finalContent = content.replace('data-theme="light"', `data-theme="${theme}"`);
-        askInstallMethod(projectName, finalContent, templateName);
+        askInstallMethod(projectName, templateName, mode, theme);
     });
 }
 
-function askInstallMethod(projectName, content, templateName) {
+function askInstallMethod(projectName, templateName, mode, theme) {
     console.log('\n\x1b[1mInstall method:\x1b[0m');
     console.log('  \x1b[36m1)\x1b[0m CDN (Fastest, Online required)');
     console.log('  \x1b[36m2)\x1b[0m Local (Offline ready, uses node_modules)');
 
     rl.question('\n\x1b[1mSelect (1-2):\x1b[0m ', (method) => {
         const useLocal = method === '2';
-        createProject(projectName, content, templateName, useLocal);
+        createProject(projectName, templateName, mode, theme, useLocal);
     });
 }
 
-function createProject(name, content, templateName, useLocal) {
+function createProject(name, templateName, mode, theme, useLocal) {
     const isCurrentDir = name === '.';
     const targetDir = isCurrentDir ? process.cwd() : path.join(process.cwd(), name || 'ravn-app');
     
@@ -332,87 +135,95 @@ function createProject(name, content, templateName, useLocal) {
         process.exit(1);
     }
 
-    console.log(`\x1b[34mCreating ${templateName} with React-like structure in ${isCurrentDir ? 'current directory' : targetDir}...\x1b[0m`);
+    console.log(`\x1b[34mCreating ${templateName} (${mode}) in ${isCurrentDir ? 'current directory' : targetDir}...\x1b[0m`);
     
     if (!isCurrentDir) {
         fs.mkdirSync(targetDir);
     }
 
-    // Create directories (PHP-style)
-    const assetsDir = path.join(targetDir, 'assets');
-    const cssDir = path.join(assetsDir, 'css');
-    const jsDir = path.join(assetsDir, 'js');
-    const pagesDir = path.join(targetDir, 'pages');
+    // Modern file structure
+    const cssDir = path.join(targetDir, 'css');
+    const componentsDir = path.join(targetDir, 'components');
     const functionsDir = path.join(targetDir, 'functions');
 
-    if (!fs.existsSync(assetsDir)) fs.mkdirSync(assetsDir);
     if (!fs.existsSync(cssDir)) fs.mkdirSync(cssDir);
-    if (!fs.existsSync(jsDir)) fs.mkdirSync(jsDir);
-    if (!fs.existsSync(pagesDir)) fs.mkdirSync(pagesDir);
+    if (!fs.existsSync(componentsDir)) fs.mkdirSync(componentsDir);
     if (!fs.existsSync(functionsDir)) fs.mkdirSync(functionsDir);
 
-    // Default app.js logic
-    const appJs = `// RAVN UI - Custom App Logic
+    // CSS
+    fs.writeFileSync(path.join(cssDir, 'app.css'), `/* Custom App Styles */\nbody { background-color: var(--muted); }`);
+
+    // Official Function Modules
+    fs.writeFileSync(path.join(functionsDir, 'api.js'), `export const api = {\n    get: (url) => window.RAVN.fetch(url),\n    post: (url, data) => window.RAVN.fetch(url, { method: 'POST', body: JSON.stringify(data) })\n};`);
+    fs.writeFileSync(path.join(functionsDir, 'auth.js'), `export const auth = {\n    login: async (user, pass) => { return true; },\n    logout: () => {}\n};`);
+    fs.writeFileSync(path.join(functionsDir, 'store.js'), `export const store = {\n    set: (k, v) => window.RAVN.store.set(k, v),\n    get: (k) => window.RAVN.store.get(k),\n    subscribe: (fn) => window.RAVN.store.subscribe(fn)\n};`);
+    fs.writeFileSync(path.join(functionsDir, 'storage.js'), `export const storage = {\n    save: (k, v) => localStorage.setItem(k, JSON.stringify(v)),\n    load: (k) => JSON.parse(localStorage.getItem(k))\n};`);
+    fs.writeFileSync(path.join(functionsDir, 'forms.js'), `export const forms = {\n    validate: (formEl) => formEl.checkValidity()\n};`);
+
+    // Components
+    fs.writeFileSync(path.join(componentsDir, 'card.js'), `export function Card(content) {\n    return \`<div class="card p-6">\${content}</div>\`;\n}`);
+    fs.writeFileSync(path.join(componentsDir, 'modal.js'), `export function Modal(title, content) {\n    return \`<div class="modal-content card"><div class="modal-header"><h3>\${title}</h3></div><div class="modal-body p-6">\${content}</div></div>\`;\n}`);
+    fs.writeFileSync(path.join(componentsDir, 'toast.js'), `export function Toast(message) {\n    return \`<div class="toast alert alert-info">\${message}</div>\`;\n}`);
+
+    // App Logic (Render Pattern)
+    const appJs = `import { Card } from './components/card.js';
+import { store } from './functions/store.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('RAVN UI Project Initialized');
+    store.set('appState', { initialized: true });
+
+    function render() {
+        const app = document.getElementById('app-root');
+        if (app) {
+            app.innerHTML = Card('<h3>Welcome to RAVN UI</h3><p class="text-muted">Your SaaS is ready to build.</p>');
+        }
+    }
+    
+    // Initial Render
+    render();
+
+    // Event Delegation (No inline onclick)
+    window.RAVN.on('click', '[data-action="demo"]', (e, el) => {
+        window.RAVN.toast('Demo action triggered!', { type: 'success' });
+    });
 });`;
+    fs.writeFileSync(path.join(targetDir, 'app.js'), appJs);
 
-    // Default app.css
-    const appCss = `/* Custom Styles */
-body {
-    background-color: var(--muted);
-}`;
-
-    // Default functions/utils.js
-    const utilsJs = `// Utility Functions
-export const formatCurrency = (val) => {
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
-};`;
-
-    let finalContent = content;
+    // index.html
     const uiCssPath = useLocal ? './node_modules/@ravn-ui/core/dist/ui.css' : 'https://unpkg.com/@ravn-ui/core/dist/ui.css';
     const themesCssPath = useLocal ? './node_modules/@ravn-ui/core/dist/themes.css' : 'https://unpkg.com/@ravn-ui/core/dist/themes.css';
     const uiJsPath = useLocal ? './node_modules/@ravn-ui/core/dist/ui.js' : 'https://unpkg.com/@ravn-ui/core/dist/ui.js';
 
-    // Inject links into template (pointing to assets/)
-    finalContent = content
-        .replace(/<link rel="stylesheet" href="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.css">/g, `<link rel="stylesheet" href="${uiCssPath}">\n    <link rel="stylesheet" href="${themesCssPath}">\n    <link rel="stylesheet" href="./assets/css/app.css">`)
-        .replace(/<link rel="stylesheet" href="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/themes\.css">/g, '')
-        .replace(/<script src="https:\/\/unpkg\.com\/@ravn-ui\/core\/dist\/ui\.js"><\/script>/g, `<script src="${uiJsPath}"></script>\n    <script src="./assets/js/app.js"></script>`);
+    const indexHtml = `<!DOCTYPE html>
+<html lang="en" data-theme="${theme}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${name || 'RAVN App'}</title>
+    <link rel="stylesheet" href="${uiCssPath}">
+    <link rel="stylesheet" href="${themesCssPath}">
+    <link rel="stylesheet" href="./css/app.css">
+</head>
+<body style="padding: var(--space-8);">
+    <div id="app-root" style="max-width: 800px; margin: 0 auto;"></div>
     
-    fs.writeFileSync(path.join(targetDir, 'index.html'), finalContent);
-    fs.writeFileSync(path.join(jsDir, 'app.js'), appJs);
-    fs.writeFileSync(path.join(cssDir, 'app.css'), appCss);
-    fs.writeFileSync(path.join(functionsDir, 'utils.js'), utilsJs);
-    fs.writeFileSync(path.join(jsDir, 'components.js'), LAYOUT_COMPONENTS_JS);
+    <div style="max-width: 800px; margin: 2rem auto; text-align: center;">
+        <button class="btn btn-primary" data-action="demo">Test Event Delegation</button>
+    </div>
 
-    // Create boilerplate pages in pages/
-    const pagesToCreate = [
-        { name: 'users.html', content: USERS_PAGE_HTML },
-        { name: 'settings.html', content: SETTINGS_PAGE_HTML }
-    ];
+    <script src="${uiJsPath}"></script>
+    <script type="module" src="./app.js"></script>
+</body>
+</html>`;
 
-    pagesToCreate.forEach(page => {
-        let pageContent = page.content;
-        if (!useLocal) {
-            pageContent = pageContent
-                .replace(/..\/node_modules\/@ravn-ui\/core\/dist\/ui\.css/g, 'https://unpkg.com/@ravn-ui/core/dist/ui.css')
-                .replace(/..\/node_modules\/@ravn-ui\/core\/dist\/themes.css/g, 'https://unpkg.com/@ravn-ui/core/dist/themes.css')
-                .replace(/..\/node_modules\/@ravn-ui\/core\/dist\/ui\.js/g, 'https://unpkg.com/@ravn-ui/core/dist/ui.js');
-        }
-        fs.writeFileSync(path.join(pagesDir, page.name), pageContent);
-    });
+    fs.writeFileSync(path.join(targetDir, 'index.html'), indexHtml);
 
     if (useLocal) {
-        // Create basic package.json
         const pkg = {
             name: name === '.' ? path.basename(process.cwd()) : name,
             version: '0.1.0',
             private: true,
-            scripts: {
-                "dev": "npx serve .",
-                "start": "npx serve ."
-            }
+            scripts: { "dev": "npx serve ." }
         };
         fs.writeFileSync(path.join(targetDir, 'package.json'), JSON.stringify(pkg, null, 2));
 
@@ -427,23 +238,24 @@ export const formatCurrency = (val) => {
     
     console.log('\n\x1b[32mSuccess! Your premium project is ready.\x1b[0m');
     console.log(`\x1b[1mFolder structure:\x1b[0m`);
-    console.log(`  ├── assets/`);
-    console.log(`  │   ├── css/app.css`);
-    console.log(`  │   └── js/app.js`);
-    console.log(`  ├── pages/`);
-    console.log(`  ├── functions/utils.js`);
-    console.log(`  ├── index.html`);
-    if (useLocal) console.log(`  └── package.json`);
+    console.log(`  ├── components/`);
+    console.log(`  │   ├── card.js`);
+    console.log(`  │   ├── modal.js`);
+    console.log(`  │   └── toast.js`);
+    console.log(`  ├── functions/`);
+    console.log(`  │   ├── api.js`);
+    console.log(`  │   ├── auth.js`);
+    console.log(`  │   ├── forms.js`);
+    console.log(`  │   ├── storage.js`);
+    console.log(`  │   └── store.js`);
+    console.log(`  ├── css/app.css`);
+    console.log(`  ├── app.js (Entry Point)`);
+    console.log(`  └── index.html`);
     
     console.log(`\n\x1b[1mNext steps:\x1b[0m`);
-    if (!isCurrentDir) {
-        console.log(`  cd ${name || 'ravn-app'}`);
-    }
-    if (useLocal) {
-        console.log(`  bun dev (or npm run dev)`);
-    } else {
-        console.log(`  Open index.html in your browser\n`);
-    }
+    if (!isCurrentDir) console.log(`  cd ${name || 'ravn-app'}`);
+    if (useLocal) console.log(`  bun dev`);
+    else console.log(`  Open index.html in your browser\n`);
     console.log(`\x1b[35mHappy building with RAVN UI!\x1b[0m\n`);
     
     process.exit(0);

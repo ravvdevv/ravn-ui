@@ -32,7 +32,10 @@ function build() {
         'tooltips.html',
         'breadcrumbs.html',
         'sidebar.html',
-        'dashboard.html'
+        'dashboard.html',
+        'api.html',
+        'patterns.html',
+        'examples.html'
     ];
 
     let componentsHtml = '';

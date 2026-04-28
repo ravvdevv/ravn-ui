@@ -1,0 +1,53 @@
+<section id="patterns" class="mb-16">
+    <h2 class="text-2xl font-bold mb-4">Golden Patterns</h2>
+    <p class="text-muted-foreground mb-6">Adhere to these rules to maintain an elite, fast, and scalable codebase without relying on a VDOM framework.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="card p-6">
+            <h3 class="text-success font-bold mb-2">✅ DO: Micro Components</h3>
+            <p class="text-sm text-muted-foreground mb-4">Write pure functions that take data and return HTML strings. Compose them like React.</p>
+            <div class="code-block p-4 bg-gray-900 text-gray-50 rounded text-sm mb-4">
+<pre><code>function Card(title, content) {
+    return `
+        &lt;div class="card p-4"&gt;
+            &lt;h3&gt;${title}&lt;/h3&gt;
+            &lt;div&gt;${content}&lt;/div&gt;
+        &lt;/div&gt;
+    `;
+}</code></pre>
+            </div>
+        </div>
+        
+        <div class="card p-6">
+            <h3 class="text-error font-bold mb-2">❌ DON'T: Inline Handlers</h3>
+            <p class="text-sm text-muted-foreground mb-4">Never use <code>onclick="..."</code> in your HTML string components. It breaks CSP and makes code hard to test.</p>
+            <div class="code-block p-4 bg-gray-900 text-gray-50 rounded text-sm mb-4">
+<pre><code>// BAD
+return `&lt;button onclick="save()"&gt;Save&lt;/button&gt;`;
+
+// GOOD
+return `&lt;button data-action="save"&gt;Save&lt;/button&gt;`;
+// Handled by RAVN.on('click', '[data-action="save"]', ...)</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="card p-6">
+        <h3 class="font-bold mb-2">The Standard Render Cycle</h3>
+        <p class="text-sm text-muted-foreground mb-4">Use a single entry point for rendering your views to keep state predictable.</p>
+        <div class="code-block p-4 bg-gray-900 text-gray-50 rounded text-sm mb-4">
+<pre><code>function renderTodos() {
+    const list = document.getElementById('todo-list');
+    if (!list) return;
+    
+    const todos = RAVN.store.get('todos') || [];
+    list.innerHTML = todos.map(t => TodoItem(t)).join('');
+}
+
+// Re-render when state changes
+RAVN.store.subscribe((key) => {
+    if (key === 'todos') renderTodos();
+});</code></pre>
+        </div>
+    </div>
+</section>
