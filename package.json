@@ -1,20 +1,16 @@
 {
   "name": "@ravn-ui/core",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Minimal, premium, CDN-first UI library inspired by DaisyUI and shadcn/ui.",
   "main": "dist/ui.js",
   "style": "dist/ui.css",
-  "bin": {
-    "ravn": "bin/ravn.js"
-  },
+  "types": "dist/ui.d.ts",
   "scripts": {
     "build:docs": "bun scripts/build-docs.ts"
   },
   "files": [
     "dist",
-    "src",
-    "logo.png",
-    "favicon.png"
+    "src"
   ],
   "keywords": [
     "ui",
@@ -23,7 +19,9 @@
     "components",
     "themes",
     "cdn-first",
-    "minimal"
+    "minimal",
+    "accessible",
+    "a11y"
   ],
   "author": "RAVN UI Team",
   "license": "MIT",
@@ -31,6 +29,10 @@
     "type": "git",
     "url": "https://github.com/ravvdevv/ravn-ui"
   },
+  "bugs": {
+    "url": "https://github.com/ravvdevv/ravn-ui/issues"
+  },
+  "homepage": "https://ravn-ui.vercel.app",
   "devDependencies": {
     "@types/node": "^25.6.0"
   }
